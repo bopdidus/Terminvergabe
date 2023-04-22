@@ -1,0 +1,91 @@
+<mat-card id="card-registration">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-stepper linear="false" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your name</ng-template>
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Lastname</mat-label>
+              <input matInput placeholder="Last name" formControlName="lastCtrl"  required>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Firstname</mat-label>
+              <input matInput placeholder="First name" formControlName="firstCtrl"  required>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Birthdate</mat-label>
+              <input type="date" matInput  formControlName="birthCtrl"  required>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" label="Fill out your contact">
+        <form [formGroup]="secondFormGroup">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput  formControlName="emailCtrl"  required>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Contact</mat-label>
+              <input type="tel" matInput  formControlName="phoneCtrl"  required>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step label="Fill out your address">
+        <form [formGroup]="thirdFormGroup">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input  matInput  formControlName="addCtrl"  required>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>City</mat-label>
+                <input  matInput  formControlName="cityCtrl"  required>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Postal</mat-label>
+                <input  matInput  formControlName="postalCtrl"  required>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+  <mat-card-footer>
+    <p>I already have an account. <a href="#">Login</a> </p>
+  </mat-card-footer>
+</mat-card>
+
