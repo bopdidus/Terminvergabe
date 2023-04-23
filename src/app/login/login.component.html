@@ -4,13 +4,18 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
-      <form>
+      <form [formGroup]="loginForm"  >
         <div class="form-group">
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Placeholder">
+            <input matInput placeholder="Placeholder" formControlName="emailCtrl">
             <mat-icon matSuffix>email</mat-icon>
-            <mat-hint>Hint</mat-hint>
+            <mat-error *ngIf="loginForm.controls.emailCtrl.invalid">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="loginForm.controls.emailCtrl.dirty || loginForm.controls.emailCtrl.touched">
+              Email is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
         <br>
@@ -18,14 +23,17 @@
         <div class="form-group">
           <mat-form-field appearance="outline">
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordCtrl">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="loginForm.controls.passwordCtrl.invalid && (loginForm.controls.passwordCtrl.dirty || loginForm.controls.passwordCtrl.touched)">
+              Password is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">
-          <button id="btnLogin" mat-raised-button color="primary" >Sign Up</button>
+          <button id="btnLogin" mat-raised-button color="primary" [disabled]="loginForm.invalid" >Sign Up</button>
         </div>
         <br>
        </form>
