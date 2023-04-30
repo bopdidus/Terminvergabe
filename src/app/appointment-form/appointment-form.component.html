@@ -1,0 +1,44 @@
+<!--
+    Formular indem der Nutzer ein Termin buchen kann.
+-->
+
+<p>appointment-form works!</p>
+
+<mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Datumswahl</ng-template>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Wähle ein Datum</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Test" formControlName="firstCtrl" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+            </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Uhrzeit wählen">
+        <form [formGroup]="secondFormGroup">
+          <mat-form-field appearance="fill">
+            <mat-label>Sie haben folgendes Datum gewählt. \nWählen Sie eine Uhrzeit</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Zurück</button>
+            <button mat-button matStepperNext>Bestätigen</button>
+          </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>Fertig! Hier ist dein QR-Code</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>
