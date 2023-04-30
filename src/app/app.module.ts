@@ -14,7 +14,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 
 
@@ -37,6 +38,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
     MatButtonModule,
     MatToolbarModule,
     MatStepperModule,
+    MatTableModule,
     AppRoutingModule
   ],
   providers: [],
