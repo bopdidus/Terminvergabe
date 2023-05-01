@@ -1,0 +1,20 @@
+#card-registration{
+width: 50vw;
+border-top:5px solid #3F51B5;
+margin: 5% auto;
+}
+mat-form-field{
+width:100%;
+}
+form{
+padding-top:10px;
+padding-bottom:10px;
+}
+mat-card-footer p{
+padding:0 20px ;
+}
+@media screen and (max-width:480px){
+#card-registration{
+width: 90vw;
+}
+}
