@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators, FormGroup, FormControl} from '@angular/forms';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -9,22 +10,41 @@ import {FormBuilder, Validators} from '@angular/forms';
 
 export class RegisterComponent {
 
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-    lastCtrl: ['', Validators.required],
-    birthCtrl: ['', Validators.required],
+  hide = true;
+
+  firstFormGroup = new FormGroup({
+    firstCtrl: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    lastCtrl: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    birthCtrl: new FormControl('', [Validators.required]),
   });
-  secondFormGroup = this._formBuilder.group({
-    emailCtrl: ['', Validators.required],
-    phoneCtrl: ['', Validators.required],
+  secondFormGroup = new FormGroup({
+    emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$")]),
+    phoneCtrl: new FormControl('', [Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]),
+    passwordCtrl : new FormControl('', [Validators.required, Validators.minLength(8)]),
+    confPasswordCtrl : new FormControl('', [Validators.required ])
   });
 
-  thirdFormGroup = this._formBuilder.group({
-     addCtrl: ['', Validators.required],
-     cityCtrl: ['', Validators.required],
-     postalCtrl: ['', Validators.required],
+  thirdFormGroup = new FormGroup({
+     addCtrl: new FormControl('', Validators.required),
+     cityCtrl: new FormControl('', Validators.required),
+     postalCtrl: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   })
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'fr', 'de']);
+    translate.use(localStorage.getItem('language')?localStorage.getItem('language')!:'en');
+  }
 
+  PasswordMatch(fielControl: FormControl)
+  {  
+    return fielControl.value === this.secondFormGroup.controls.passwordCtrl.value? null:{ matching : true}
+  }
+
+  changeLanguage(lang)
+  {
+    localStorage.setItem('language', lang)
+    this.translate.setDefaultLang(lang);
+    this.translate.use(lang)
+   
+  }
 }

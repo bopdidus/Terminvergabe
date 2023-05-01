@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, Validators, FormGroupDirective, NgForm, FormControl, FormGroup} from '@angular/forms';
+import { Validators, FormControl, FormGroup} from '@angular/forms';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -9,13 +10,27 @@ import {FormBuilder, Validators, FormGroupDirective, NgForm, FormControl, FormGr
 })
 export class LoginComponent  {
 hide = true;
-
- constructor( ) {}
+ constructor(public translate: TranslateService) {
+  translate.use(localStorage.getItem('language')?localStorage.getItem('language')!:'en');
+  console.log(this.translate.currentLang)
+  translate.addLangs(['en', 'fr', 'de']);
+ 
+ }
 
  loginForm = new FormGroup({
       emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ]),
       passwordCtrl: new FormControl ('', [Validators.required, Validators.minLength(8)])
     })
 
-
+    SignIn()
+    {
+      
+    }
+    changeLanguage(lang)
+    {
+      localStorage.setItem('language', lang)
+      console.log(lang)
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang)
+    }
 }

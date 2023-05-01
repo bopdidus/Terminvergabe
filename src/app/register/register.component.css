@@ -10,3 +10,11 @@ form{
 padding-top:10px;
 padding-bottom:10px;
 }
+mat-card-footer p{
+padding:0 20px ;
+}
+@media screen and (max-width:480px){
+#card-registration{
+width: 90vw;
+}
+}

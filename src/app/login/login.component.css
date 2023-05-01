@@ -17,3 +17,8 @@ padding: 10px 10px 10px 20px;
 mat-card-content{
 margin-top:10px;
 }
+@media screen and (max-width:480px){
+mat-card{
+width:80vw;
+}
+}
