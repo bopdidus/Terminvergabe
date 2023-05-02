@@ -13,7 +13,7 @@ hide = true;
  constructor(public translate: TranslateService) {
   translate.use(localStorage.getItem('language')?localStorage.getItem('language')!:'en');
   console.log(this.translate.currentLang)
-  translate.addLangs(['en', 'fr', 'de']);
+  translate.addLangs(['de', 'en', 'fr']);
  
  }
 

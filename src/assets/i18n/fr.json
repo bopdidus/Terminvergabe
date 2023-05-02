@@ -18,6 +18,7 @@
     "FIRSTNAME_MINLENGTH":"Prénom doit avoir minimum 03 caractères",
     "BIRTHDATE_REQUIRED":"Date d'anniversaire obligatoire",
     "BIRTHDATE":"Date d'anniversaire",
+    "DATE":"Date",
     "NEXT":"Suivant",
     "CONTACT":"Numéro de téléphone",
     "CONFIRM_PASSWORD":"Confirmation de mot de passe",
@@ -30,5 +31,10 @@
     "SIGN_UP":"S'inscrire",
     "HAVE_ACCOUNT":"J'ai déjà un compte",
     "FILL_ADDRESS":"Remplissez les informations d'adresse",
-    "FILL_ACCOUNT":"Remplissez les informations du compte"
+    "FILL_ACCOUNT":"Remplissez les informations du compte",
+
+    "APPOINTMENTS":"Événements",
+    "TIME":"Temps",
+    "DESCRIPTION":"Descriptif",
+    "STORNO":"StornoFR"
 }

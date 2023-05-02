@@ -18,6 +18,7 @@
     "FIRSTNAME_MINLENGTH":"Firstname should have minimum 3 characters",
     "BIRTHDATE_REQUIRED":"Birthdate is required",
     "BIRTHDATE":"Birthdate",
+    "DATE":"Date",
     "NEXT":"Next",
     "CONTACT":"Contact",
     "CONFIRM_PASSWORD":"Confirm password",
@@ -30,5 +31,10 @@
     "SIGN_UP":"Sign Up",
     "HAVE_ACCOUNT":"I already have an account",
     "FILL_ADDRESS":"Fill out your address",
-    "FILL_ACCOUNT":"Fill out your account information"
+    "FILL_ACCOUNT":"Fill out your account information",
+
+    "APPOINTMENTS":"Appointments",
+    "TIME":"Time",
+    "DESCRIPTION":"Description",
+    "STORNO":"StornoENG"
 }

@@ -1,8 +1,8 @@
 {
     "LOGIN":"Einloggen",
-    "EMAIL":"E-mail",
-    "ERROR_EMAIL":"Bitte geben Sie eine gültige E-mail ein",
-    "EMAIL_REQUIRED":"E-mail ist erforderlich",
+    "EMAIL":"E-Mail",
+    "ERROR_EMAIL":"Bitte geben Sie eine gültige E-Mailadresse ein",
+    "EMAIL_REQUIRED":"E-mailadresse benötigt",
     "LABEL_PASSWORD":"Geben Sie Ihr Passwort ein",
     "PASSWORD_REQUIRED":"Passwort ist erforderlich",
     "HAVE_NOT_ACCOUNT": "Ich habe kein Konto",
@@ -10,19 +10,20 @@
 
     "PERSONAL_INFORMATION":"Füllen Sie persönliche Daten aus",
     "REGISTER":"Anmeldung",
-    "LASTNAME_MINLENGTH":"Nachname muss mindestens 2 Zeichen sein",
+    "LASTNAME_MINLENGTH":"Nachname muss mindestens 2 Zeichen lang sein",
     "LASTNAME":"Nachname",
     "LASTNAME_REQUIRED":"Nachname ist erforderlich",
     "FIRSTNAME":"Vorname",
     "FIRSTNAME_REQUIRED":"Vorname ist erforderlich",
-    "FIRSTNAME_MINLENGTH":"Vorname muss mindestens 3 Zeichen sein",
+    "FIRSTNAME_MINLENGTH":"Vorname muss mindestens 3 Zeichen lang sein",
     "BIRTHDATE_REQUIRED":"Geburtsdatum ist erforderlich",
     "BIRTHDATE":"Geburtsdatum",
-    "NEXT":"Nächst",
+    "DATE":"Datum",
+    "NEXT":"Nächste",
     "CONTACT":"Telefonnummer",
     "CONFIRM_PASSWORD":"Passwort bestätigung",
     "CONFIRM_PASSWORD_REQUIRED":"Passwort bestätigung ist erforderlich",
-    "DONT_MATCH":"Passwörter stimmen nicht",
+    "DONT_MATCH":"Passwörter stimmen nicht überein",
     "BACK":"Zurück",
     "ADDRESS":"Addresse",
     "CITY":"Stadt",
@@ -30,6 +31,10 @@
     "SIGN_UP":"Anmelden",
     "HAVE_ACCOUNT":"Ich habe schon ein Konto",
     "FILL_ADDRESS":"Füllen Sie Ihre Addresse aus",
-    "FILL_ACCOUNT":"Füllen Sie Ihr Informationskonto"
+    "FILL_ACCOUNT":"Füllen Sie Ihr Informationskonto",
 
+    "APPOINTMENTS":"Termine",
+    "TIME":"Uhrzeit",
+    "DESCRIPTION":"Beschreibung",
+    "STORNO":"Storno"
 }
