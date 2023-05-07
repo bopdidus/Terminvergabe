@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CompanyModule} from './company/company.module';
 //-------------------MODULES(END)----------------------
 
 //-------------------COMPONENTS(START)----------------------
@@ -66,6 +67,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatDividerModule,
     HttpClientModule,
+    CompanyModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',

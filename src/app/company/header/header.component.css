@@ -1,0 +1,60 @@
+#top-header
+{
+    margin: 0;
+    height: 200px;
+    padding-top: 15px;
+   background-color: royalblue;
+   margin-bottom: 20px;
+   position: relative;
+  box-sizing: border-box;
+}
+#top-header h2{
+    text-align: center;
+    color: white;
+    font-size: 5rem;
+    margin-top: 15px;
+}
+ul{ 
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    position: absolute;
+    bottom:0;
+}
+ul li{
+    display: inline;
+}
+ul li a{
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: dodgerblue;
+    border-bottom: 5px solid blue;
+  }
+  
+  .active {
+    background-color: dodgerblue;
+  }
+  
+@media screen and (max-width:480px) {
+    ul {
+        list-style-type: none;
+        width: 100%;
+      }
+      
+      li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+      
+      /* Change the link color on hover */
+      li a:hover {
+        background-color: #555;
+        color: white;
+      }
+  }

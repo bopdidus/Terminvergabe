@@ -1,0 +1,10 @@
+table{
+  width: 70vw;
+  margin: auto;
+  border: 1px solid #AAA;
+}
+table tr td{
+  border: 1px solid #AAA;
+  padding: 20px;
+}
+

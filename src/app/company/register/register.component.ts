@@ -2,20 +2,19 @@ import { Component } from '@angular/core';
 import {Validators, FormGroup, FormControl} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-
 export class RegisterComponent {
 
   hide = true;
 
   firstFormGroup = new FormGroup({
-    firstCtrl: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    lastCtrl: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    birthCtrl: new FormControl('', [Validators.required]),
+    nameCtrl: new FormControl('', [Validators.required, Validators.minLength(2)])
+   
   });
   secondFormGroup = new FormGroup({
     emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$")]),
@@ -47,4 +46,5 @@ export class RegisterComponent {
     this.translate.use(lang)
    
   }
+
 }

@@ -1,0 +1,35 @@
+.container-fluid{
+    background-image: url('/assets/backg.jpg');
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    padding: 0;
+}
+
+.overlay{
+    background-color: rgba(0,0,128, 0.7);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.group {
+    position: absolute;
+    top: 10%;
+    left: 0; 
+    right: 0; 
+    height: 120px;
+padding: 5px;
+text-align: center;
+}
+.group a{
+    max-height: 100px;
+    height: 100px;
+    width: 200px;
+   margin-right: 10px;
+}
+.group a:hover{
+    animation: jello; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s
+}

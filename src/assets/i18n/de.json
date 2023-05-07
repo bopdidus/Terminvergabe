@@ -30,6 +30,9 @@
     "SIGN_UP":"Anmelden",
     "HAVE_ACCOUNT":"Ich habe schon ein Konto",
     "FILL_ADDRESS":"Füllen Sie Ihre Addresse aus",
-    "FILL_ACCOUNT":"Füllen Sie Ihr Informationskonto"
+    "FILL_ACCOUNT":"Füllen Sie Ihr Informationskonto",
+    "COMPANY_NAME": "Unternehmensname",
+    "NAME_REQUIRED": "Name is erforderlich",
+    "NAME_MINLENGTH":"Name muss 2 Zeichen mindestens"
 
 }

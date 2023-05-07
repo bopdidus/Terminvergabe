@@ -30,5 +30,8 @@
     "SIGN_UP":"Sign Up",
     "HAVE_ACCOUNT":"I already have an account",
     "FILL_ADDRESS":"Fill out your address",
-    "FILL_ACCOUNT":"Fill out your account information"
+    "FILL_ACCOUNT":"Fill out your account information",
+    "COMPANY_NAME": "Company name",
+    "NAME_REQUIRED": "Name is required",
+    "NAME_MINLENGTH":"Name should have minimum 2 characters"
 }
