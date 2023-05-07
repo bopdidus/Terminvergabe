@@ -1,9 +1,10 @@
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import {BreakpointObserver} from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Observable, map } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-appointment-form',
@@ -12,7 +13,7 @@ import { Observable, map } from 'rxjs';
 })
 export class AppointmentFormComponent {
   myDate = new Date();
-  
+
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
     if (view === 'month') {
@@ -31,13 +32,24 @@ export class AppointmentFormComponent {
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
-  isLinear = true;
+  isLinear = false;
 
   stepperOrientation: Observable<StepperOrientation>;
 
-  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
+  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, public translate: TranslateService) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
-      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+
+    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'en');
+    console.log(this.translate.currentLang)
+    translate.addLangs(['de', 'en', 'fr']);
+  }
+
+  changeLanguage(lang) {
+    localStorage.setItem('language', lang)
+    console.log(lang)
+    this.translate.setDefaultLang(lang);
+    this.translate.use(lang)
   }
 }

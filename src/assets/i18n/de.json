@@ -19,7 +19,7 @@
     "BIRTHDATE_REQUIRED":"Geburtsdatum ist erforderlich",
     "BIRTHDATE":"Geburtsdatum",
     "DATE":"Datum",
-    "NEXT":"Nächste",
+    "NEXT":"Weiter",
     "CONTACT":"Telefonnummer",
     "CONFIRM_PASSWORD":"Passwort bestätigung",
     "CONFIRM_PASSWORD_REQUIRED":"Passwort bestätigung ist erforderlich",
@@ -36,5 +36,15 @@
     "APPOINTMENTS":"Termine",
     "TIME":"Uhrzeit",
     "DESCRIPTION":"Beschreibung",
-    "STORNO":"Storno"
+    "STORNO":"Storno",
+
+    "PROMPT APPOINTMENT FORM STEP 2":"Sie haben folgendes Datum gewählt. \nWählen Sie eine Uhrzeit:",
+    "HINT APPOINTMENT FORM STEP 2":"Uhrzeit wählen",
+    "APPOINTMENT FORM CONFIRMATION":"Fertig! Hier ist dein QR-Code:",
+    "DATECHOICE":"Datumswahl",
+    "DATECHOICE_PROMPT":"Wähle ein Datum",
+    "DATE_FORMAT":"MM/DD/YYYY",
+    "DONE":"Fertig",
+    "CONFIRM":"Bestätigen",
+    "RESET":"Zurücksetzen"
 }

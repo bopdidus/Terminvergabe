@@ -1,7 +1,11 @@
 mat-card {
-  width: 35vw;
+  width: 55vw;
   margin: 7% auto;
   border-top: 5px solid #3F51B5;
+}
+
+mat-card-title{
+  margin-right: 37vw;
 }
 
 mat-card-footer p {

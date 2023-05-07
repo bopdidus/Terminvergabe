@@ -7,9 +7,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: 'home-screen', component: HomeScreenComponent},
-  {path: 'appointment-list', component: AppointmentListComponent},
-  {path: 'appointment-form', component: AppointmentFormComponent},
+  { path: 'home-screen', component: HomeScreenComponent },
+  { path: 'appointment-list', component: AppointmentListComponent },
+  { path: 'appointment-form', component: AppointmentFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent }
 ];

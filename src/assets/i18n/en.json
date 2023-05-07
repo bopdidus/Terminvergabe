@@ -36,5 +36,15 @@
     "APPOINTMENTS":"Appointments",
     "TIME":"Time",
     "DESCRIPTION":"Description",
-    "STORNO":"StornoENG"
+    "STORNO":"StornoENG",
+
+    "PROMPT APPOINTMENT FORM STEP 2":"You chose the following date. \nPlease select a time for your appointment:",
+    "HINT APPOINTMENT FORM STEP 2":"Select time",
+    "APPOINTMENT FORM CONFIRMATION":"Appointement confirmed. Here is your QR Code:",
+    "DATECHOICE":"Choose your date",
+    "DATECHOICE_PROMPT":"Choose a date",
+    "DATE_FORMAT":"MM/DD/YYYY",
+    "DONE":"Done",
+    "CONFIRM":"Confirm",
+    "RESET":"Reset"
 }

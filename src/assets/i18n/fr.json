@@ -36,5 +36,15 @@
     "APPOINTMENTS":"Événements",
     "TIME":"Temps",
     "DESCRIPTION":"Descriptif",
-    "STORNO":"StornoFR"
+    "STORNO":"StornoFR",
+
+    "PROMPT APPOINTMENT FORM STEP 2":"Translation needed",
+    "HINT APPOINTMENT FORM STEP 2":"Translation needed",
+    "APPOINTMENT FORM CONFIRMATION":"Translation needed",
+    "DATECHOICE":"Translation needed",
+    "DATECHOICE_PROMPT":"Translation needed",
+    "DATE_FORMAT":"MM/DD/YYYY",
+    "DONE":"Translation needed",
+    "CONFIRM":"Translation needed",
+    "RESET":"Translation needed"
 }
