@@ -1,10 +1,15 @@
-<mat-card>
+<!--
+  Seite, auf der der Nutzer seine Termine, sowie die dazugehörigen QR-Codes einsehen kann
+-->
+
+<mat-card id="card-appointment-list">
   <mat-card-header>
-    <mat-card-title>{{'APPOINTMENTS'|translate}}</mat-card-title><div>
-      <button routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab color="primary"><mat-icon>home</mat-icon></button>
+    <mat-card-title>{{"APPOINTMENTS"|translate}}</mat-card-title>
+    <div>
+      <button id="workaround" routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+        color="primary"><mat-icon>home</mat-icon></button>
     </div>
   </mat-card-header>
-  <mat-divider></mat-divider>
   <mat-card-content>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -47,8 +52,11 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-footer>
-    <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
-      <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
-    </select>
+    <p>
+      <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+      </select>
+      {{"FLAG"|translate}}
+    </p>
   </mat-card-footer>
 </mat-card>

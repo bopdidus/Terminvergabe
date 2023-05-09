@@ -32,7 +32,7 @@ export class AppointmentListComponent {
 
   hide = true;
   constructor(public translate: TranslateService) {
-    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'en');
+    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
   }

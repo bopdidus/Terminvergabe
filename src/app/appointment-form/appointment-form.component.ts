@@ -41,7 +41,7 @@ export class AppointmentFormComponent {
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
 
-    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'en');
+    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
   }

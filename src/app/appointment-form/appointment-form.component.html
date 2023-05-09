@@ -51,11 +51,13 @@
       </mat-step>
     </mat-stepper>
   </mat-card-content>
+  <mat-divider></mat-divider>
   <mat-card-footer>
     <p>
       <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
       </select>
+      {{"FLAG"|translate}}
     </p>
   </mat-card-footer>
 </mat-card>

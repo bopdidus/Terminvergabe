@@ -46,5 +46,6 @@
     "DATE_FORMAT":"MM/DD/YYYY",
     "DONE":"Done",
     "CONFIRM":"Confirm",
-    "RESET":"Reset"
+    "RESET":"Reset",
+    "FLAG": "🇬🇧"
 }
