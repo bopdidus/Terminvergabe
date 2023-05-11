@@ -14,25 +14,13 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppointmentFormComponent {
   myDate = new Date();
 
-  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
-    // Only highligh dates inside the month view.
-    if (view === 'month') {
-      const date = cellDate.getDate();
-
-      // Highlight the 1st and 20th day of each month.
-      return date === 1 || date === 20 ? 'example-custom-date-class' : '';
-    }
-
-    return '';
-  };
-
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
+    dateCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
+    timeCtrl: ['', Validators.required],
   });
-  isLinear = false;
+  isLinear = true;
 
   stepperOrientation: Observable<StepperOrientation>;
 
@@ -52,4 +40,16 @@ export class AppointmentFormComponent {
     this.translate.setDefaultLang(lang);
     this.translate.use(lang)
   }
+
+  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+    // Only highligh dates inside the month view.
+    if (view === 'month') {
+      const date = cellDate.getDate();
+
+      // Highlight the 1st and 20th day of each month.
+      return date === 1 || date === 20 ? 'example-custom-date-class' : '';
+    }
+
+    return '';
+  };
 }

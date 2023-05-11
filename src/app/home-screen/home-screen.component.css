@@ -32,6 +32,7 @@ text-align: center;
 .group a:hover{
     animation: jello; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 2s
+}
 
 #calendar {
     background-color: #3F51B5;

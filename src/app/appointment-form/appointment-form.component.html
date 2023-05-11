@@ -5,19 +5,17 @@
 <mat-card id="card-appointment-form">
   <mat-card-header>
     <mat-card-title>{{"DATECHOICE"|translate}}</mat-card-title>
-    <div>
-      <button routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
-        color="primary"><mat-icon>home</mat-icon></button>
-    </div> <!--Noch mehr Übersetzung nötig - vor allem für fr-->
+    <button routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+      color="primary"><mat-icon>home</mat-icon></button><!--Noch mehr Übersetzung nötig - vor allem für fr-->
   </mat-card-header>
   <mat-card-content>
-    <mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+    <mat-stepper [linear]=false #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>{{"DATECHOICE"|translate}}</ng-template>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{"DATECHOICE_PROMPT"|translate}}</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Test" formControlName="firstCtrl" required>
+            <input matInput [matDatepicker]="picker" placeholder="Test" formControlName="dateCtrl" required>
             <mat-hint>{{"DATE_FORMAT"|translate}}</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
@@ -31,13 +29,15 @@
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>{{"TIME"|translate}}</ng-template>
           <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
-          <mat-form-field appearance="fill">
-            <mat-label>{{"HINT APPOINTMENT FORM STEP 2"|translate}}</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-          </mat-form-field>
+          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required>
+            <mat-chip-option>13:00</mat-chip-option>
+            <mat-chip-option>14:00</mat-chip-option>
+            <mat-chip-option>14:30</mat-chip-option>
+            <mat-chip-option>15:00</mat-chip-option>
+          </mat-chip-listbox>
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
-            <button mat-button matStepperNext>{{"CONFIRM"|translate}}</button>
+            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
           </div>
         </form>
       </mat-step>
@@ -46,7 +46,7 @@
         <p>{{"APPOINTMENT FORM CONFIRMATION"|translate}}</p>
         <div>
           <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
-          <button mat-button (click)="stepper.reset()">{{"RESET"|translate}}</button>
+          <button mat-button (click)="stepper.reset()">{{"CONFIRM"|translate}}</button>
         </div>
       </mat-step>
     </mat-stepper>

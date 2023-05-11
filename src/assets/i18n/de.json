@@ -48,5 +48,7 @@
     "DONE":"Fertig",
     "CONFIRM":"Bestätigen",
     "RESET":"Zurücksetzen",
-    "FLAG": "🇩🇪"
+    "FLAG": "🇩🇪",
+    "CHECK APPOINTMENTS HINT":"Überpüfe deine Termine",
+    "MAKE APPOINTMENT HINT":"Mache einen Termin"
 }

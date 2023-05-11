@@ -48,5 +48,7 @@
     "DONE":"Done",
     "CONFIRM":"Confirm",
     "RESET":"Reset",
-    "FLAG": "🇬🇧"
+    "FLAG": "🇬🇧",
+    "CHECK APPOINTMENTS HINT":"Check your appointments",
+    "MAKE APPOINTMENT HINT":"Make an appointment"
 }
