@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'appointment-form', component: AppointmentFormComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  {path: '', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule)}
+  {path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule)},
+  {path: 'user', loadChildren: () => import('./user/user.module').then(u => u.UserModule)},
 ];
 
 @NgModule({

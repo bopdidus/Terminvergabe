@@ -28,6 +28,7 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UserModule } from './user/user.module';
 //-------------------COMPONENTS(END)----------------------
 
 export function createTranslateLoader(http: HttpClient) {
@@ -67,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatDividerModule,
     HttpClientModule,
+    UserModule,
     CompanyModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({

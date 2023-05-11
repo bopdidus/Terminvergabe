@@ -1,0 +1,18 @@
+legend{
+    float: none !important;
+    width: auto !important;
+}
+fieldset{
+    border: 1px solid black;
+    padding: 10px !important;
+    margin: 15px !important;
+}
+#block_confirm{
+    display: none;
+}
+mat-card{
+    width: 50%;
+}
+.form-group{
+    margin: 10px !important;
+}
