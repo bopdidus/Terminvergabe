@@ -2,43 +2,62 @@
     Formular indem der Nutzer ein Termin buchen kann.
 -->
 
-<p>appointment-form works!</p>
-
-<mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
-    <mat-step [stepControl]="firstFormGroup">
+<mat-card id="card-appointment-form">
+  <mat-card-header>
+    <mat-card-title>{{"DATECHOICE"|translate}}</mat-card-title>
+    <div>
+      <button routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+        color="primary"><mat-icon>home</mat-icon></button>
+    </div> <!--Noch mehr Übersetzung nötig - vor allem für fr-->
+  </mat-card-header>
+  <mat-card-content>
+    <mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+      <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Datumswahl</ng-template>
+          <ng-template matStepLabel>{{"DATECHOICE"|translate}}</ng-template>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Wähle ein Datum</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Test" formControlName="firstCtrl" required>
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
-            </mat-form-field>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Uhrzeit wählen">
-        <form [formGroup]="secondFormGroup">
-          <mat-form-field appearance="fill">
-            <mat-label>Sie haben folgendes Datum gewählt. \nWählen Sie eine Uhrzeit</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                   required>
+            <mat-label>{{"DATECHOICE_PROMPT"|translate}}</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Test" formControlName="firstCtrl" required>
+            <mat-hint>{{"DATE_FORMAT"|translate}}</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Zurück</button>
-            <button mat-button matStepperNext>Bestätigen</button>
+            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
           </div>
         </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>Fertig! Hier ist dein QR-Code</p>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>{{"TIME"|translate}}</ng-template>
+          <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
+          <mat-form-field appearance="fill">
+            <mat-label>{{"HINT APPOINTMENT FORM STEP 2"|translate}}</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
+            <button mat-button matStepperNext>{{"CONFIRM"|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>{{"DONE"|translate}}</ng-template>
+        <p>{{"APPOINTMENT FORM CONFIRMATION"|translate}}</p>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
+          <button mat-button (click)="stepper.reset()">{{"RESET"|translate}}</button>
         </div>
-    </mat-step>
-</mat-stepper>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-footer>
+    <p>
+      <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+      </select>
+      {{"FLAG"|translate}}
+    </p>
+  </mat-card-footer>
+</mat-card>

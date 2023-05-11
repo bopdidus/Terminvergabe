@@ -18,6 +18,7 @@
     "FIRSTNAME_MINLENGTH":"Prénom doit avoir minimum 03 caractères",
     "BIRTHDATE_REQUIRED":"Date d'anniversaire obligatoire",
     "BIRTHDATE":"Date d'anniversaire",
+    "DATE":"Date",
     "NEXT":"Suivant",
     "CONTACT":"Numéro de téléphone",
     "CONFIRM_PASSWORD":"Confirmation de mot de passe",
@@ -33,5 +34,19 @@
     "FILL_ACCOUNT":"Remplissez les informations du compte",
     "COMPANY_NAME": "Nom de l'entreprise",
     "NAME_REQUIRED": "Nom obligatoire",
-    "NAME_MINLENGTH":"Name doit avoir minimal 2 caractères"
+    "NAME_MINLENGTH":"Name doit avoir minimal 2 caractères",
+    "APPOINTMENTS":"Événements",
+    "TIME":"Temps",
+    "DESCRIPTION":"Descriptif",
+    "STORNO":"StornoFR",
+    "PROMPT APPOINTMENT FORM STEP 2":"Translation needed",
+    "HINT APPOINTMENT FORM STEP 2":"Translation needed",
+    "APPOINTMENT FORM CONFIRMATION":"Translation needed",
+    "DATECHOICE":"Translation needed",
+    "DATECHOICE_PROMPT":"Translation needed",
+    "DATE_FORMAT":"MM/DD/YYYY",
+    "DONE":"Translation needed",
+    "CONFIRM":"Translation needed",
+    "RESET":"Translation needed",
+    "FLAG": "🇫🇷"
 }

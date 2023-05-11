@@ -1,3 +1,4 @@
+<!--Auswahl - Register/Login besser als Index?-->
 <div class="container-fluid">
     <div class="overlay"></div>
     <div class="group">
@@ -5,3 +6,17 @@
         <a mat-raised-button href="/company/register" >I am a Company</a>
     </div>
 </div>
+
+<mat-grid-list cols="2" rowHeight="fit">
+    <mat-grid-tile id="calendar">
+        <button routerLink="/appointment-list" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab color="accent" matTooltip="Überprüfe deine Termine" matBadge="5">
+            <mat-icon>bookmark</mat-icon>
+        </button>
+        </mat-grid-tile>
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-grid-tile id="appointment">
+        <button routerLink="/appointment-form" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab color="primary" matTooltip="Mache einen neuen Termin" matBadge="1" >
+            <mat-icon>home</mat-icon>
+        </button>
+    </mat-grid-tile>
+</mat-grid-list>

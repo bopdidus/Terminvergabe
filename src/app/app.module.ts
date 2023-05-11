@@ -17,6 +17,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CompanyModule} from './company/company.module';
 //-------------------MODULES(END)----------------------
@@ -66,11 +68,13 @@ export function createTranslateLoader(http: HttpClient) {
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
+    MatGridListModule,
+    MatBadgeModule,
     HttpClientModule,
     CompanyModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      defaultLanguage: 'de',
       loader: {
           provide: TranslateLoader,
           useFactory: (createTranslateLoader),
