@@ -31,8 +31,9 @@ export class RegisterComponent {
   })
 
   constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'fr', 'de']);
-    translate.use(localStorage.getItem('language')?localStorage.getItem('language')!:'en');
+    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
+    console.log(this.translate.currentLang)
+    translate.addLangs(['de', 'en', 'fr']);
   }
 
   PasswordMatch(fielControl: FormControl)

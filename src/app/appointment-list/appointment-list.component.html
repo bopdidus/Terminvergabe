@@ -1,40 +1,62 @@
-<p>appointment-list works!</p>
+<!--
+  Seite, auf der der Nutzer seine Termine, sowie die dazugehörigen QR-Codes einsehen kann
+-->
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-card id="card-appointment-list">
+  <mat-card-header>
+    <mat-card-title>{{"APPOINTMENTS"|translate}}</mat-card-title>
+    <div>
+      <button id="workaround" routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+        color="primary"><mat-icon>home</mat-icon></button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!--- Note that these columns can be defined in any order.
+      <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Date Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
+      <!-- Date Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
 
-  <!-- Date Column -->
-  <ng-container matColumnDef="datum">
-    <th mat-header-cell *matHeaderCellDef> Datum </th>
-    <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
-  </ng-container>
+      <!-- Date Column -->
+      <ng-container matColumnDef="datum">
+        <th mat-header-cell *matHeaderCellDef> {{'DATE'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
+      </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> {{'DESCRIPTION'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
 
-  <!-- Time Column -->
-  <ng-container matColumnDef="uhrzeit">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.uhrzeit}} </td>
-  </ng-container>
+      <!-- Time Column -->
+      <ng-container matColumnDef="uhrzeit">
+        <th mat-header-cell *matHeaderCellDef> {{'TIME'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.uhrzeit}} </td>
+      </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> {{'STORNO'|translate}} </th>
+        <td mat-cell *matCellDef="let element"><mat-icon fontIcon="home"></mat-icon> {{element.symbol}} </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-footer>
+    <p>
+      <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+      </select>
+      {{"FLAG"|translate}}
+    </p>
+  </mat-card-footer>
+</mat-card>

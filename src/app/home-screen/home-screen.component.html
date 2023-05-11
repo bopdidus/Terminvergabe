@@ -1,7 +1,33 @@
-<div class="container-fluid">
+<!--Auswahl - Register as person/company besser als Landing page?-->
+
+
+<!-- <div class="container-fluid">
     <div class="overlay"></div>
     <div class="group">
-        <a mat-raised-button href="/register"  >I am a Person</a>
-        <a mat-raised-button href="/company/register" >I am a Company</a>
+        <a mat-raised-button href="/register">I am a Person</a>
+        <a mat-raised-button href="/company/register">I am a Company</a>
     </div>
-</div>
+</div> -->
+
+<mat-grid-list cols="2" rowHeight="fit">
+    <mat-grid-tile id="calendar">
+        <button routerLink="/appointment-list" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+            color="primary" matTooltip="{{'CHECK APPOINTMENTS HINT'|translate}}" matBadge="4" matBadgeColor="accent">
+            <mat-icon>calendar_view_day</mat-icon>
+        </button>
+    </mat-grid-tile>
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-grid-tile id="appointment">
+        <button routerLink="/appointment-form" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+            color="primary" matTooltip="{{'MAKE APPOINTMENT HINT'|translate}}">
+            <mat-icon>query_builder</mat-icon>
+        </button>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<p>
+    <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+    </select>
+    {{"FLAG"|translate}}
+</p>

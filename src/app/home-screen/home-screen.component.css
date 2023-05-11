@@ -33,3 +33,43 @@ text-align: center;
     animation: jello; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 2s
 }
+
+#calendar {
+    background-color: #3F51B5;
+    accent-color: white;
+}
+
+#appointment {
+    background-color: white;
+    accent-color: #3F51B5;
+}
+
+button {
+    width: 10%;
+    height: 10%;
+}
+
+mat-grid-list {
+    width: 100%;
+    height: 100%;
+}
+
+mat-card {
+    width: 35vw;
+    margin: 7% auto;
+    border-top: 5px solid #3F51B5;
+}
+
+mat-card-footer p {
+    padding: 10px 10px 10px 20px;
+}
+
+mat-card-content {
+    margin-top: 10px;
+}
+
+@media screen and (max-width:480px) {
+    mat-card {
+        width: 80vw;
+    }
+}
