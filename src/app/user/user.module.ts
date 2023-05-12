@@ -8,6 +8,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -38,7 +39,8 @@ export function createTranslateLoader(http: HttpClient) {
     MatSidenavModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule
   ]
 })
 export class UserModule { }

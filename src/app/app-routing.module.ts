@@ -13,12 +13,9 @@ const routes: Routes = [
   { path: 'appointment-form', component: AppointmentFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-<<<<<<< HEAD
-  {path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule)},
+
+  {path: '', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule)},
   {path: 'user', loadChildren: () => import('./user/user.module').then(u => u.UserModule)},
-=======
-  { path: '', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule) }
->>>>>>> 1c257633131072dd68839e494a98b99006e87384
 ];
 
 @NgModule({

@@ -1,8 +1,15 @@
 #img{
-    width: 100%;
-    height: 250px;
-    border: 1px solid red;
+    width: 65%;
+    border-radius: 50%;
+    height: 200px;
+    border: 1px solid #ccc;
+    margin: auto;
     margin-bottom: 20px;
+    margin-top: 20px;
+    background-image: url('/assets/images/user-profile.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 ul{
     list-style: none;
