@@ -16,3 +16,12 @@ mat-card{
 .form-group{
     margin: 10px !important;
 }
+form{
+    width: 80%;
+}
+
+@media screen and (max-width:480px) {
+    form{
+        width: 100%;
+    }
+}

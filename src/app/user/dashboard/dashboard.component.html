@@ -1,9 +1,12 @@
 <mat-drawer-container class="drawer-container">
-    <mat-drawer mode="side" opened>
+    <mat-drawer #drawer [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? 'false' : 'true'" >
         <sidebar></sidebar>
     </mat-drawer>
     <mat-drawer-content>
         <app-header></app-header>
+        <button id="btnMenu"  (click)="drawer.toggle()" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
         <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>

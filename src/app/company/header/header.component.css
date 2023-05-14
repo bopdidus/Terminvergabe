@@ -3,8 +3,8 @@
     margin: 0;
     height: 200px;
     padding-top: 15px;
-   background-color: royalblue;
    margin-bottom: 20px;
+   background-color: rgba(63, 81, 181);;
    position: relative;
   box-sizing: border-box;
 }
@@ -15,10 +15,9 @@
     margin-top: 15px;
 }
 ul{ 
-    width: 100%;
     list-style-type: none;
-    text-align: center;
     padding: 0;
+    left: 40%;
     position: absolute;
     bottom:0;
 }
@@ -43,6 +42,7 @@ li a:hover:not(.active) {
     ul {
         list-style-type: none;
         width: 100%;
+        left: 0;
       }
       
       li a {
@@ -56,5 +56,11 @@ li a:hover:not(.active) {
       li a:hover {
         background-color: #555;
         color: white;
+      }
+      #top-header h2{
+        margin-bottom: 20px;
+      }
+      #top-header{
+        height: 300px;
       }
   }

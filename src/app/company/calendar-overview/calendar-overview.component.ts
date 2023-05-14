@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 import { Appointment, STATUS } from '../../Model/appointment';
 
 @Component({
@@ -10,8 +11,12 @@ import { Appointment, STATUS } from '../../Model/appointment';
 export class CalendarOverviewComponent {
     
  appoints:any[]=[]
-    constructor()
+ months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novembre", "December"]
+ displayYear=false
+    constructor(public translate: TranslateService)
     {
+      translate.addLangs(['en', 'fr', 'de']);
+      translate.use(localStorage.getItem('language')?localStorage.getItem('language')!:'en');
       this.appoints.push(new Appointment(
         "Verlängerung",
        new Date(),
@@ -37,7 +42,9 @@ export class CalendarOverviewComponent {
          new Date(),
       ).asDTO());
     }
-
+ 
+   
+  
     
 }
 

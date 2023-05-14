@@ -1,25 +1,82 @@
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-               <th>Subject</th>
-               <th>Start at</th>
-               <th>End at</th>
-               <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of appoints">
-                <td>{{item.subject}}</td>
-                <td><input class="form-control" type="datetime-local" value="{{item.startAt | date:'yyyy-MM-dd HH:mm'}}" /> </td>
-                <td><input  class="form-control"  type="datetime-local" value="{{item.endAt | date:'yyyy-MM-dd HH:mm'}}" /> </td>
-                <td>
-                    <button class="btn btn-success">Accept</button> &nbsp;&nbsp;
-                    <button class="btn btn-warning">Cancel</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row " >
+        <div class="col" >
+            <ul>
+                <li class="active"><a  href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">April</a></li>
+                <li><a href="#">May</a></li>
+                <li><a href="#">June</a></li>
+                <li><a href="#">July</a></li>
+                <li><a href="#">August</a></li>
+                <li><a href="#">September</a></li>
+                <li><a href="#">October</a></li>
+                <li><a href="#">November</a></li>
+                <li><a href="#">December</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle value="daily">{{'LOGIN'|translate}}</mat-button-toggle>
+                <mat-button-toggle value="Monthly">{{'LOGIN'|translate}}</mat-button-toggle>
+                <mat-button-toggle value="yearly">{{'LOGIN'|translate}}</mat-button-toggle>
+            </mat-button-toggle-group>
+            
+        </div>
+        <div class="col" >
+            <button mat-button class="control">
+                {{'NEXT'|translate}}
+                <mat-icon aria-hidden="false" aria-label="Example next icon" iconPositionEnd>arrow_forward_ios</mat-icon>
+            </button>
+            <button mat-button class="control"> 
+                <mat-icon aria-hidden="false" aria-label="Example previous icon" >arrow_back_ios</mat-icon>
+                {{'PREVIOUS'|translate}}
+            </button>
+           
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                       <th scope="col">{{'DATE'|translate}}</th>
+                       <th scope="col">{{'SUBJECT'|translate}}</th>
+                       <th scope="col">{{'STARTAT'|translate}}</th>
+                       <th scope="col">{{'ENDAT'|translate}}</th>
+                       <th scope="col">{{'ACTION'|translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of appoints">
+                        <th >{{item.startAt | date:'dd'}}</th>
+                        <td>{{item.subject}}</td>
+                        <td><input class="form-control" type="time" value="{{item.startAt | date:'HH:mm'}}" /> </td>
+                        <td><input  class="form-control"  type="time" value="{{item.endAt | date:'HH:mm'}}" /> </td>
+                        <td>
+                            <button class="btn btn-success">{{'ACCEPT'|translate}}</button> &nbsp;&nbsp;
+                            <button class="btn btn-warning">{{'CANCEL'|translate}}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
+   <div class="row" *ngIf="displayYear == true">
+        <div class="col">
+            <mat-grid-list cols="3" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let month of months"><a href="#">{{month}}</a> </mat-grid-tile>
+              </mat-grid-list>
+        </div>
+   </div>
 </div>
 
    

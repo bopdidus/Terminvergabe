@@ -4,5 +4,18 @@
     border: 1px solid #555;
   }
   mat-drawer{
-    width: 15%;
+    width: 18%;
   }
+
+.visible{
+  display: block;
+}
+.invisible{
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  mat-drawer{
+    width: 80%;
+  }
+}

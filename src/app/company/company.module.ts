@@ -11,6 +11,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { CompanyRoutingModule } from './company-routing.module';
 import { CalendarOverviewComponent } from './calendar-overview/calendar-overview.component';
@@ -40,9 +42,11 @@ export function createTranslateLoader(http: HttpClient) {
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    MatButtonToggleModule,
     ReactiveFormsModule,
     TranslateModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
     ],
 })
 export class CompanyModule { }
