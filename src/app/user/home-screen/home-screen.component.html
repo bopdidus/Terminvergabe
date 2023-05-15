@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="myContainer">
+        <div  id="divCol1">
+            <button class="myBtnMenu" routerLink="/appointment-list" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+                color="accent" matTooltip="{{'CHECK APPOINTMENTS HINT'|translate}}" matBadge="4" matBadgeColor="warn">
+                <mat-icon>calendar_view_day</mat-icon>
+            </button>
+        </div>
+        <div id="divCol2">
+            <button class="myBtnMenu" routerLink="/appointment-form" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+                color="primary" matTooltip="{{'MAKE APPOINTMENT HINT'|translate}}">
+                <mat-icon>query_builder</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="floating-container">
+    
+</div>
+<div class="floating-container">
+    <button class="floating-button" mat-fab color="warn" id="floatButton" >
+        <mat-icon>add</mat-icon>
+    </button>
+    <div class="element-container">
+        <button mat-fab class="float-element"> 
+            <mat-icon>person</mat-icon>
+        </button>
+        <button mat-fab class="float-element">
+            <mat-icon>settings</mat-icon>
+        </button>
+       
+    </div>
+  </div>
+
+ 
+<!--<p>
+    <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+    </select>
+    {{"FLAG"|translate}}
+</p>-->

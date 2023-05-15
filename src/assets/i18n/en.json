@@ -69,5 +69,9 @@
     "ENDAT":"End at",
     "ACTION":"Actions",
     "ACCEPT":"Accept",
-    "CANCEL":"Cancel"
+    "CANCEL":"Cancel",
+    "DAILY":"Daily",
+    "MONTHLY":"Monthly",
+    "YEARLY":"Yearly"
+
 }

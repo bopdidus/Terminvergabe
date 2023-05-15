@@ -10,6 +10,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -17,6 +22,14 @@ import {ProfileComponent} from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeScreenComponent } from './home-screen/home-screen.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpClient) {
@@ -30,19 +43,33 @@ export function createTranslateLoader(http: HttpClient) {
     ProfileComponent,
     HeaderComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegisterComponent,
+    LoginComponent,
+    HomeScreenComponent,
+    AppointmentListComponent,
+    AppointmentFormComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
+    MatFormFieldModule,
     TranslateModule,
     HttpClientModule,
+    MatChipsModule,
+    MatStepperModule,
     MatSidenavModule,
+    MatDatepickerModule,
+    MatInputModule,
     MatCardModule,
+    FormsModule,
+    MatTooltipModule,
+    MatBadgeModule,
+    MatTableModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
-    MatDividerModule,
-    MatTooltipModule
-  ]
+    MatDividerModule
+    ]
 })
 export class UserModule { }

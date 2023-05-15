@@ -1,0 +1,132 @@
+<mat-card id="card-registration">
+  <mat-card-header>
+    <mat-card-title>{{'REGISTER'|translate}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-stepper linear="false" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>{{'PERSONAL_INFORMATION'|translate}}</ng-template>
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'LASTNAME'|translate}}</mat-label>
+              <input matInput placeholder="Last name" formControlName="lastCtrl"  required>
+              <mat-error *ngIf="firstFormGroup.controls.lastCtrl.hasError('minlength') && !firstFormGroup.controls.lastCtrl.hasError('required')"> {{'LASTNAME_MINLENGTH'|translate}}</mat-error>
+              <mat-error *ngIf="firstFormGroup.controls.lastCtrl.hasError('required')"> {{'LASTNAME_REQUIRED'|translate}} </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'FIRSTNAME'|translate}}</mat-label>
+              <input matInput placeholder="First name" formControlName="firstCtrl"  required>
+              <mat-error *ngIf="firstFormGroup.controls.firstCtrl.hasError('required')"> {{'FIRSTNAME_REQUIRED'|translate}}</mat-error>
+              <mat-error *ngIf="firstFormGroup.controls.firstCtrl.hasError('minlength') && !firstFormGroup.controls.firstCtrl.hasError('required')"> {{'FIRSTNAME_MINLENGTH'|translate}} </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'BIRTHDATE'|translate}}</mat-label>
+              <input type="date" matInput  formControlName="birthCtrl" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}"  required>
+              <mat-error *ngIf="firstFormGroup.controls.birthCtrl.hasError('required')"> {{'BIRTHDATE_REQUIRED'|translate}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-button matStepperNext>{{'NEXT'|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" label="{{'FILL_ACCOUNT'|translate}}">
+        <form [formGroup]="secondFormGroup">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'EMAIL'|translate}}</mat-label>
+              <input type="email" matInput  formControlName="emailCtrl"  required>
+              <mat-error *ngIf="secondFormGroup.controls.emailCtrl.hasError('required')">{{'EMAIL_REQUIRED'|translate}}</mat-error>
+              <mat-error *ngIf="secondFormGroup.controls.emailCtrl.hasError('pattern')">{{'ERROR_EMAIL'|translate}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'CONTACT'|translate}}</mat-label>
+              <input type="tel" matInput  formControlName="phoneCtrl" >
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>{{'LABEL_PASSWORD'|translate}}</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordCtrl" required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="">
+                {{'PASSWORD_REQUIRED'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>{{'CONFIRM_PASSWORD'|translate}}</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="confPasswordCtrl" required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="">
+                {{'CONFIRM_PASSWORD_REQUIRED'|translate}}
+              </mat-error>
+              <mat-error *ngIf="">
+                {{'DONT_MATCH'|translate}}
+               </mat-error>
+            </mat-form-field>
+          </div>
+
+
+          <div>
+            <button mat-button matStepperPrevious>{{'BACK'|translate}}</button>
+            <button mat-button matStepperNext>{{'NEXT'|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step label="{{'FILL_ADDRESS'|translate}}">
+        <form [formGroup]="thirdFormGroup">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'ADDRESS'|translate}} </mat-label>
+              <input  matInput  formControlName="addCtrl"  required>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>{{'CITY'|translate}} </mat-label>
+                <input  matInput  formControlName="cityCtrl"  required>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>{{'POSTAL'|translate}}</mat-label>
+                <input  matInput  formControlName="postalCtrl"  required>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>{{'BACK'|translate}}</button>
+          <button mat-button (click)="stepper.reset()">{{'SIGN_UP'|translate}}</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+  <mat-card-footer>
+    <p>{{'HAVE_ACCOUNT'|translate}}. <a href="/login">{{'LOGIN'|translate}}</a> 
+      <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang" >{{lang}}</option>
+      </select>
+    </p>
+  </mat-card-footer>
+</mat-card>
+

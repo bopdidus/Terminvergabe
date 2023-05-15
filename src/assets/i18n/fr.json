@@ -69,5 +69,8 @@
     "ENDAT":"Heure de fin",
     "ACTION":"Actions",
     "ACCEPT":"Accepter",
-    "CANCEL":"Annuler"
+    "CANCEL":"Annuler",
+    "DAILY":"Journalier",
+    "MONTHLY":"Mensuel",
+    "YEARLY":"Annuel"
 }

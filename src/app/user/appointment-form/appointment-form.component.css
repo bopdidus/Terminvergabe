@@ -1,0 +1,38 @@
+#card-appointment-form {
+  width: 50vw;
+  border-top: 5px solid #3F51B5;
+  margin: 5% auto;
+}
+
+/* mat-card {
+  width: 55vw;
+  margin: 7% auto;
+  border-top: 5px solid #3F51B5;
+} */
+
+mat-card-title {
+  margin-right: 37vw;
+}
+
+mat-card-footer p {
+  padding: 0 20px;
+}
+
+mat-card-content {
+  margin-top: 10px;
+}
+
+table {
+  width: 90%;
+}
+
+/* button.example-custom-date-class {
+  background: orange;
+  border-radius: 100%;
+} */
+
+@media screen and (max-width:480px) {
+  mat-card {
+    width: 80vw;
+  }
+}

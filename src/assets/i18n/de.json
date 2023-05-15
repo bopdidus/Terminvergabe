@@ -69,5 +69,8 @@
     "ENDAT":"Endsstunde",
     "ACTION":"Actions",
     "ACCEPT":"Zusagen",
-    "CANCEL":"Stornieren"
+    "CANCEL":"Stornieren",
+    "DAILY":"Täglich",
+    "MONTHLY":"Monatlich",
+    "YEARLY":"Jährlich"
 }
