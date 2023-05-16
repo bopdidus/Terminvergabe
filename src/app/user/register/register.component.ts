@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { BreakpointObserver, Breakpoints, MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import {Validators, FormGroup, FormControl} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -8,8 +9,9 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent {
-
+export class RegisterComponent  {
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
   hide = true;
 
   firstFormGroup = new FormGroup({
@@ -30,10 +32,14 @@ export class RegisterComponent {
      postalCtrl: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   })
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private breakpointObserver:BreakpointObserver) {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
+
+    this.mobileQuery = media.matchMedia('(max-width: 480px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   PasswordMatch(fielControl: FormControl)
@@ -46,6 +52,7 @@ export class RegisterComponent {
     localStorage.setItem('language', lang)
     this.translate.setDefaultLang(lang);
     this.translate.use(lang)
-   
   }
+
+
 }

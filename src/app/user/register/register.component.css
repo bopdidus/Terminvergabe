@@ -1,9 +1,12 @@
 #card-registration {
-    width: 50vw;
+    width: 60%;
     border-top: 5px solid #3F51B5;
     margin: 5% auto;
 }
-
+.container{
+  border: 1px solid white;
+  height: 100%;
+}
 mat-form-field {
     width: 100%;
 }
