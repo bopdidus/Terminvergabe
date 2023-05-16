@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
 import {  BreakpointObserver, Breakpoints, MediaMatcher } from '@angular/cdk/layout';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeScreenComponent implements OnInit, AfterViewInit {
   mobileQuery: MediaQueryList;
+  view:string;
   private _mobileQueryListener: () => void;
   divCol1;
   divCol2
@@ -20,6 +21,7 @@ export class HomeScreenComponent implements OnInit, AfterViewInit {
     this.mobileQuery = media.matchMedia('(max-width: 480px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.view ="home"
   }
 
   changeLanguage(lang) {

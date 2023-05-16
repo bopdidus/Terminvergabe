@@ -7,7 +7,7 @@
             </button>
         </div>
         <div id="divCol2">
-            <button class="myBtnMenu" routerLink="/appointment-form" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+            <button mat-fab class="myBtnMenu" routerLink="/appointment-form" routerLinkActive="active" ariaCurrentWhenActive="page" 
                 color="primary" matTooltip="{{'MAKE APPOINTMENT HINT'|translate}}">
                 <mat-icon>query_builder</mat-icon>
             </button>
@@ -15,23 +15,8 @@
     </div>
 </div>
 
-<div class="floating-container">
-    
-</div>
-<div class="floating-container">
-    <button class="floating-button" mat-fab color="warn" id="floatButton" >
-        <mat-icon>add</mat-icon>
-    </button>
-    <div class="element-container">
-        <button mat-fab class="float-element"> 
-            <mat-icon>person</mat-icon>
-        </button>
-        <button mat-fab class="float-element">
-            <mat-icon>settings</mat-icon>
-        </button>
-       
-    </div>
-  </div>
+<floating-button [currentView]="view"></floating-button>
+
 
  
 <!--<p>

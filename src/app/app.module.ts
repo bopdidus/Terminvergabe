@@ -1,7 +1,6 @@
 //-------------------MODULES(START)----------------------
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,6 +19,7 @@ import { UserModule } from './user/user.module';
 //-------------------COMPONENTS(START)----------------------
 import { AppComponent } from './app.component';
 
+
 //-------------------COMPONENTS(END)----------------------
 
 export function createTranslateLoader(http: HttpClient) {
@@ -30,14 +30,13 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatButtonModule,
     MatCardModule,
     MatDividerModule,
     MatGridListModule,

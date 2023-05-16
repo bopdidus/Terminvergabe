@@ -1,3 +1,7 @@
+.container-fluid{
+    background-color: #e8e8e8;
+}
+
 legend{
     float: none !important;
     width: auto !important;
@@ -11,17 +15,28 @@ fieldset{
     display: none;
 }
 mat-card{
-    width: 50%;
+    width: 70%;
+    margin: auto;
+    height: 100vh;
 }
 .form-group{
     margin: 10px !important;
 }
 form{
     width: 80%;
+    margin: auto;
 }
 
 @media screen and (max-width:480px) {
     form{
         width: 100%;
+        background: transparent;
+    }
+    button{
+        margin-bottom: 10px;
+    }
+    mat-card{
+        width: 95%;
+        height: auto;
     }
 }

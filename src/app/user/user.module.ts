@@ -15,6 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -27,9 +31,7 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FloatingButtonComponent } from './floating-button/floating-button.component';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpClient) {
@@ -48,7 +50,8 @@ export function createTranslateLoader(http: HttpClient) {
     LoginComponent,
     HomeScreenComponent,
     AppointmentListComponent,
-    AppointmentFormComponent
+    AppointmentFormComponent,
+    FloatingButtonComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule,
     HttpClientModule,
     MatChipsModule,
+    MatButtonModule,
     MatStepperModule,
     MatSidenavModule,
     MatDatepickerModule,

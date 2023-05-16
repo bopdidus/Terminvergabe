@@ -10,16 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'home-screen', component: HomeScreenComponent },
+  { path: 'home', component: HomeScreenComponent },
   { path: 'appointment-list', component: AppointmentListComponent },
   { path: 'appointment-form', component: AppointmentFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  {path:"home", component: DashboardComponent,
-  children:[
-    {path:"profile", component: ProfileComponent}
-  ]
-},
+  {path:'profile', component: ProfileComponent},
+  {path:'user', component: DashboardComponent},
 ];
 
 @NgModule({
