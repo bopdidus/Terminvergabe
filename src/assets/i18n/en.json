@@ -72,6 +72,7 @@
     "CANCEL":"Cancel",
     "DAILY":"Daily",
     "MONTHLY":"Monthly",
-    "YEARLY":"Yearly"
+    "YEARLY":"Yearly",
+    "NOTFOUND": "Page Not Found"
 
 }

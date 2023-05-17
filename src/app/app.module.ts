@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyModule } from './company/company.module';
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module';
 
 //-------------------COMPONENTS(START)----------------------
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 //-------------------COMPONENTS(END)----------------------
@@ -31,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
   ],
 
   imports: [
@@ -45,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     UserModule,
+    MatProgressBarModule,
     CompanyModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({

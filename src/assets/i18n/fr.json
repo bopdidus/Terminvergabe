@@ -72,5 +72,6 @@
     "CANCEL":"Annuler",
     "DAILY":"Journalier",
     "MONTHLY":"Mensuel",
-    "YEARLY":"Annuel"
+    "YEARLY":"Annuel",
+    "NOTFOUND": "Page introuvable"
 }

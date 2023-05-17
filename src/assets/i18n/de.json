@@ -72,5 +72,6 @@
     "CANCEL":"Stornieren",
     "DAILY":"Täglich",
     "MONTHLY":"Monatlich",
-    "YEARLY":"Jährlich"
+    "YEARLY":"Jährlich",
+    "NOTFOUND": "Seite Nicht Gefunden"
 }
