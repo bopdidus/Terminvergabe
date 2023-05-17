@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'appointment-form', component: AppointmentFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  {path:'profile', component: ProfileComponent},
-  {path:'user', component: DashboardComponent},
+  { path: 'profile', component: ProfileComponent },
+  { path: 'user', component: DashboardComponent },
 ];
 
 @NgModule({

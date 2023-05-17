@@ -6,7 +6,7 @@
   <mat-card-header>
     <mat-card-title>{{"APPOINTMENTS"|translate}}</mat-card-title>
     <div>
-      <button id="workaround" routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+      <button id="workaround" routerLink="/user/home" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
         color="primary"><mat-icon>home</mat-icon></button>
     </div>
   </mat-card-header>
@@ -60,3 +60,5 @@
     </p>
   </mat-card-footer>
 </mat-card>
+
+<floating-button [currentView]="view"></floating-button>

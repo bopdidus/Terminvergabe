@@ -21,7 +21,7 @@ export class HomeScreenComponent implements OnInit, AfterViewInit {
     this.mobileQuery = media.matchMedia('(max-width: 480px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.view ="home"
+    this.view ="home";
   }
 
   changeLanguage(lang) {

@@ -29,12 +29,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class AppointmentListComponent {
   displayedColumns: string[] = ['position', 'datum', 'name', 'uhrzeit', 'symbol'];
   dataSource = ELEMENT_DATA;
+  view:string;
 
   hide = true;
   constructor(public translate: TranslateService) {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
+    this.view ="appointment-list";
   }
 
   changeLanguage(lang) {

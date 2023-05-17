@@ -5,11 +5,11 @@
 <mat-card id="card-appointment-form">
   <mat-card-header>
     <mat-card-title>{{"DATECHOICE"|translate}}</mat-card-title>
-    <button routerLink="/home-screen" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+    <button routerLink="/user/home" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
       color="primary"><mat-icon>home</mat-icon></button><!--Noch mehr Übersetzung nötig - vor allem für fr-->
   </mat-card-header>
   <mat-card-content>
-    <mat-stepper [linear]=false #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+    <mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>{{"DATECHOICE"|translate}}</ng-template>
