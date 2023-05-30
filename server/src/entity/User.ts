@@ -1,18 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index } from "typeorm"
+import { UserAddress } from "./address"
 
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryGeneratedColumn("uuid")
+    id: string
 
-    @Column()
+    @Column({ length: 30, nullable: true })
     firstName: string
 
-    @Column()
+    @Column({ length: 30 })
     lastName: string
 
+    @Index({ unique: true })
+    @Column({ type: "date" })
+    birthdate: Date
+
+    @Index({ unique: true })
+    @Column({unique:true})
+    email: string
+
+    @Column({type: "numeric", nullable: true})
+    phoneNumber:number
+
     @Column()
-    age: number
+    password:string
+
+    @Column()
+    address:UserAddress
 
 }
