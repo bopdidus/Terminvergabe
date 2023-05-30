@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne } from "typeorm"
 import { UserAddress } from "./address"
+import  {Length, IsDate, IsEmail, IsOptional} from 'class-validator';
 
 @Entity()
 export class User {
@@ -8,26 +9,33 @@ export class User {
     id: string
 
     @Column({ length: 30, nullable: true })
-    firstName: string
+    @Length(3,30)
+    @IsOptional()
+    firstName?: string
 
     @Column({ length: 30 })
+    @Length(2,30)
+    
     lastName: string
 
     @Index({ unique: true })
     @Column({ type: "date" })
+    @IsDate()
     birthdate: Date
 
     @Index({ unique: true })
     @Column({unique:true})
+    @IsEmail()
     email: string
 
     @Column({type: "numeric", nullable: true})
-    phoneNumber:number
+    @IsOptional()
+    phoneNumber?:number
 
     @Column()
     password:string
 
-    @Column()
+    @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.users)
     address:UserAddress
 
 }

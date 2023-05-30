@@ -15,11 +15,11 @@ AppDataSource.initialize().then(async () => {
     Routes.forEach(route => {
         (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
             const result = (new (route.controller as any))[route.action](req, res, next)
-            if (result instanceof Promise) {
-                result.then(result => result !== null && result !== undefined ? res.send(result) : undefined)
+            if (result.data instanceof Promise) {
+                result.then(resp => resp !== null && resp !== undefined ? res.status(result.code).send(resp) : res.sendStatus(500))
 
-            } else if (result !== null && result !== undefined) {
-                res.json(result)
+            } else if (result.data !== null && result.data !== undefined) {
+                res.status(result.code).json(result.data)
             }
         })
     })

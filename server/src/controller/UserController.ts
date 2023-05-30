@@ -8,24 +8,29 @@ export class UserController {
     private userRepository = AppDataSource.getRepository(User)
 
     async all(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.find()
+        const users =  this.userRepository.find()
+        return {code:200, data: users}  
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        const id = request.params.id
+        try {
+            const id = request.params.id
 
-        const user = await this.userRepository.findOne({
-            where: { id: id }
-        })
-
-        if (!user) {
-            return "unregistered user"
+            const user = await this.userRepository.findOne({
+                where: { id: id }
+            })
+            return response.status(201).send(user);
         }
-        return user
+        catch(error){
+            return {code:500, data: error}  
+        }
+        
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const { firstName, lastName, email, phoneNumber, password, street, city, postal } = request.body;
+       
+        try {
+            const { firstName, lastName, email, phoneNumber, password, street, city, postal } = request.body;
         const address = Object.assign(new UserAddress(), {
             street,
             city,
@@ -39,40 +44,46 @@ export class UserController {
             phoneNumber,
             address
         })
-
-        return this.userRepository.save(user)
+        const saveUser = this.userRepository.save(user)
+        return {code: 200, data:saveUser}
+        } catch (error) {
+           return {code:500, data: error}  
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const { firstName, lastName, email, phoneNumber, password, street, city, postal,id } = request.body;
-         var user = new  User()
-        user.firstName = firstName
-        user.lastName = lastName
-        user.email = email
-        user.phoneNumber = phoneNumber
-        user.password = password
-        user.address.city = city
-        user.address.street = street
-        user.address.postal = postal
-       const res= await this.userRepository.update( {id: id}, user)
-              
-        return  res
-
+        try {
+            const { firstName, lastName, email, phoneNumber, password, street, city, postal,id } = request.body;
+            var user = new  User()
+            user.firstName = firstName
+            user.lastName = lastName
+            user.email = email
+            user.phoneNumber = phoneNumber
+            user.password = password
+            user.address.city = city
+            user.address.street = street
+            user.address.postal = postal
+            const res= await this.userRepository.update( {id: id}, user)
+            return {code:201, data: res} 
+        } catch (error) {
+         return {code:500, data: error}   
+        }
          
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        const id = parseInt(request.params.id)
+        try {
+            const id = request.params.id
 
-        let userToRemove = await this.userRepository.findOneBy({ id })
-
-        if (!userToRemove) {
-            return "this user not exist"
+            let userToRemove = await this.userRepository.findOneBy({ id })
+           
+           let removedUser = await this.userRepository.remove(userToRemove)
+    
+            return {code:201, data: removedUser} 
+        } catch (error) {
+            return {code:500, data: error} 
         }
-
-        await this.userRepository.remove(userToRemove)
-
-        return "user has been removed"
+       
     }
 
 }
