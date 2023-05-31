@@ -8,14 +8,15 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserGuard } from '../guards/user.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
-  { path: 'appointment-list', component: AppointmentListComponent },
-  { path: 'appointment-form', component: AppointmentFormComponent },
+  { path: 'appointment-list', component: AppointmentListComponent, canActivate:[UserGuard] },
+  { path: 'appointment-form', component: AppointmentFormComponent, canActivate:[UserGuard]  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate:[UserGuard]  },
   { path: 'user', component: DashboardComponent },
 ];
 
