@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { UserRoutingModule } from './user-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
@@ -32,6 +32,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpClient) {
@@ -74,6 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatToolbarModule,
     MatIconModule,
     MatDividerModule
-    ]
+    ],
+    providers:[ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },]
 })
 export class UserModule { }
