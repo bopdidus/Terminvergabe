@@ -2,21 +2,22 @@ import * as express from "express"
 import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
-import { Routes } from "./routes/routes"
-import { User } from "./entity/User"
+import * as cors from "cors"
+import {UserRoutes} from "./routes/user.route"
 
 AppDataSource.initialize().then(async () => {
 
     // create express app
     const app = express()
     app.use(bodyParser.json())
+    app.use(cors())
 
-    // register express routes from defined application routes
-    Routes.forEach(route => {
-        (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
+  
+    UserRoutes.forEach(route => {
+        (app as any)[route.method](route.route, ...route.validation ,(req: Request, res: Response, next: Function) => {
             const result = (new (route.controller as any))[route.action](req, res, next)
-            if (result.data instanceof Promise) {
-                result.then(resp => resp !== null && resp !== undefined ? res.status(result.code).send(resp) : res.sendStatus(500))
+            if (result instanceof Promise) {
+                result.then(resp => resp !== null && resp !== undefined ? res.status(resp.code).json(resp.data) : res.sendStatus(500))
 
             } else if (result.data !== null && result.data !== undefined) {
                 res.status(result.code).json(result.data)
@@ -24,6 +25,7 @@ AppDataSource.initialize().then(async () => {
         })
     })
 
+   
     // setup express app here
     // ...
 
