@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from "express"
 import { User } from "../entity/User"
 import { UserAddress } from "../entity/address"
 import * as bcrypt from "bcryptjs"
+import * as Jwt from "jsonwebtoken"
+import { CONSTANT } from "../constants"
 
 export class UserController {
 
@@ -11,14 +13,12 @@ export class UserController {
   
 
     async all(request: Request, response: Response, next: NextFunction) {
-        this.userRepository = AppDataSource.getRepository(User)
         const users = await this.userRepository.find()
         return {code:200, data: users}  
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
         try {
-            this.userRepository = AppDataSource.getRepository(User)
             const id = request.params.id
 
             const user = await this.userRepository.findOne({
@@ -72,9 +72,34 @@ export class UserController {
         }
     }
 
+    async login(request:Request, response:Response, next: NextFunction){
+        try {
+            if(request.body.email!= undefined && request.body.password != null){
+                const salt = await bcrypt.genSalt(15)
+                const hashPassword = await bcrypt.hash(request.body.password, salt)
+                const user = await this.userRepository.findOneOrFail({
+                        where:{
+                            email:request.body.email
+                        }
+                    })
+
+                    if(!user) return { code:404, data:"User does not exist"}
+                    const validPass = await bcrypt.compare(request.body.password, user.password)
+                    if(!validPass) return response.status(404).send("Email or Password is Wrong");
+                    const token = Jwt.sign({_id: user.id}, CONSTANT.SECRET, {expiresIn:"1h"})
+                    return {code:200, data:{"result": user, "token": token}}
+            }
+            else{
+                 return { code:400, data:"No parameters"}
+            }
+            
+        } catch (error) {
+            return {code:500, data: error} 
+        }
+    }
+
     async update(request: Request, response: Response, next: NextFunction) {
         try {
-            this.userRepository = AppDataSource.getRepository(User)
             const { firstName, lastName, email, phoneNumber, password, street, city, postal,id } = request.body;
             var user = new  User()
             user.firstName = firstName
@@ -95,7 +120,6 @@ export class UserController {
 
     async remove(request: Request, response: Response, next: NextFunction) {
         try {
-            this.userRepository = AppDataSource.getRepository(User)
             const id = request.params.id
 
             let userToRemove = await this.userRepository.findOneBy({ id })

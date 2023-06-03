@@ -1,4 +1,5 @@
 import { UserController } from "../controller/UserController";
+import { checkAuth } from "../middlewares/auth.middleware";
 import { CheckRequest } from "../middlewares/validation";
 
 export const UserRoutes = [{
@@ -7,7 +8,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "all",
     validation:[
-        
+        checkAuth
     ]
 }, {
     method: "get",
@@ -42,4 +43,14 @@ export const UserRoutes = [{
     validation:[
         
     ]
-}]
+},
+{
+    method: "post",
+    route: "/login",
+    controller: UserController,
+    action: "login",
+    validation:[
+        
+    ]
+}
+]

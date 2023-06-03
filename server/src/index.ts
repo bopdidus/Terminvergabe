@@ -20,6 +20,7 @@ AppDataSource.initialize().then(async () => {
                 result.then(resp => resp !== null && resp !== undefined ? res.status(resp.code).json(resp.data) : res.sendStatus(500))
 
             } else if (result.data !== null && result.data !== undefined) {
+                console.log("ici")
                 res.status(result.code).json(result.data)
             }
         })
