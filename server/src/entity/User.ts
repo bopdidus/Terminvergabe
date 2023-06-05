@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, ManyToMany } from "typeorm"
 import { UserAddress } from "./address"
+import { Appointment } from "./appointment"
 
 
 @Entity()
@@ -27,8 +28,10 @@ export class User {
 
     @Column()
     password:string
+    
+    @ManyToMany(() =>Appointment, (appointment)=> appointment.users)
+    appointments: Appointment[]
 
     @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.users)
     address:UserAddress
-
 }
