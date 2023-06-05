@@ -14,7 +14,6 @@ export class User {
     @Column({ length: 30 })
     lastName: string
 
-    @Index({ unique: true })
     @Column({ type: "date" })
     birthdate: Date
 

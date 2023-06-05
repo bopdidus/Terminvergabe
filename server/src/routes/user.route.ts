@@ -7,7 +7,7 @@ export const UserRoutes = [{
     route: "/users",
     controller: UserController,
     action: "all",
-    validation:[
+    middlewares:[
         checkAuth
     ]
 }, {
@@ -15,15 +15,15 @@ export const UserRoutes = [{
     route: "/users/:id",
     controller: UserController,
     action: "one",
-    validation:[
-        
+    middlewares:[
+        checkAuth
     ]
 }, {
     method: "put",
     route: "/users",
     controller: UserController,
     action: "update",
-    validation:[
+    middlewares:[
         
     ]
 },
@@ -32,7 +32,7 @@ export const UserRoutes = [{
     route: "/users",
     controller: UserController,
     action: "save",
-    validation:[
+    middlewares:[
         CheckRequest
     ]
 }, {
@@ -40,7 +40,7 @@ export const UserRoutes = [{
     route: "/users/:id",
     controller: UserController,
     action: "remove",
-    validation:[
+    middlewares:[
         
     ]
 },
@@ -49,7 +49,7 @@ export const UserRoutes = [{
     route: "/login",
     controller: UserController,
     action: "login",
-    validation:[
+    middlewares:[
         
     ]
 }

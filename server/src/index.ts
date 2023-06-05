@@ -14,7 +14,7 @@ AppDataSource.initialize().then(async () => {
 
   
     UserRoutes.forEach(route => {
-        (app as any)[route.method](route.route, ...route.validation ,(req: Request, res: Response, next: Function) => {
+        (app as any)[route.method](route.route, ...route.middlewares ,(req: Request, res: Response, next: Function) => {
             const result = (new (route.controller as any))[route.action](req, res, next)
             if (result instanceof Promise) {
                 result.then(resp => resp !== null && resp !== undefined ? res.status(resp.code).json(resp.data) : res.sendStatus(500))
