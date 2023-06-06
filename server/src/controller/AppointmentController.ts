@@ -10,9 +10,8 @@ import { Appointment } from "../entity/appointment"
 export class AppointmentController {
 
     private appointmentRepository = AppDataSource.getRepository(Appointment)
-    //private userRepository = AppDataSource.getRepository(User)
+    private userRepository = AppDataSource.getRepository(User)
 
-    /* !!! Do we need the unused parameters? */
     async all(request: Request, response: Response, next: NextFunction) {
         const appointments = await this.appointmentRepository.find()
         return {code:200, data: appointments}  
@@ -35,19 +34,19 @@ export class AppointmentController {
 
     /* save an appointment */
     async save(request: Request, response: Response, next: NextFunction) {
-        // !!! Können User als body parameter übergeben werden?
         try {
-            const { date, time, user, clerk } = request.body;
+            const { date, time, iduser, idclerk } = request.body;
 
-            let appointmentUsers = {
-                user,
-                clerk
-            }
+            let appointmentUser = await this.userRepository.findOne({
+                where: { id: iduser }})
+            let appointmentClerk = await this.userRepository.findOne({
+                where: { id: idclerk }})
 
             const appointment = Object.assign(new Appointment(), {
                 date,
                 time,
-                appointmentUsers
+                appointmentUser,
+                appointmentClerk
             })
             const saveAppointment = this.appointmentRepository.save(appointment)
             return {code:200, data: saveAppointment} 
@@ -56,15 +55,21 @@ export class AppointmentController {
         }
     }
 
-    // Update appointment - maybe after canceling an appointment and changing it
+    // Update appointment - maybe after cancelling an appointment and changing it
     async update(request: Request, response: Response, next: NextFunction) {
         try {
-            const { id, date, time, user, clerk } = request.body;
+            const { id, date, time, iduser, idclerk } = request.body;
+
+            let user = await this.userRepository.findOne({
+                where: { id: iduser }})
+            let clerk = await this.userRepository.findOne({
+                where: { id: idclerk }})
+
             var appointment = new  Appointment()
             appointment.date = date
             appointment.time = time
-            appointment.users[0] = user
-            appointment.users[1] = clerk
+            appointment.user = user
+            appointment.clerk = clerk //anpassen
             const res = await this.appointmentRepository.update( {id: id}, appointment)
             return {code:201, data: res} 
         } catch (error) {
