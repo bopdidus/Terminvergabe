@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { CompanyRoutingModule } from './company-routing.module';
 import { CalendarOverviewComponent } from './calendar-overview/calendar-overview.component';
@@ -42,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatStepperModule,
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
     FormsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,

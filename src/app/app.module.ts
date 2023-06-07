@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpBackend } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -24,8 +24,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 //-------------------COMPONENTS(END)----------------------
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function createTranslateLoader(http: HttpBackend) {
+  return new TranslateHttpLoader(new HttpClient(http), './assets/i18n/', '.json');
 }
 
 
@@ -52,11 +52,11 @@ export function createTranslateLoader(http: HttpClient) {
     CompanyModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'de',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [HttpClient],
+        deps: [HttpBackend],
       }
     })
   ],

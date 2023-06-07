@@ -1,0 +1,27 @@
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne } from "typeorm"
+import { UserAddress } from "./address"
+
+
+@Entity()
+export class Company {
+
+    @PrimaryGeneratedColumn("uuid")
+    id: string
+
+    @Column({ length: 50 })
+    name: string
+
+    @Index({ unique: true })
+    @Column({unique:true})
+    email: string
+
+    @Column({type: "numeric"})
+    phoneNumber?:number
+
+    @Column()
+    password:string
+
+    @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.companies)
+    address:UserAddress
+
+}

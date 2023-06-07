@@ -1,27 +1,27 @@
-import { UserController } from "../controller/UserController";
+import { CompanyController } from "../controller/CompanyController";
 import { checkAuth } from "../middlewares/auth.middleware";
-import { CheckRequestUser } from "../middlewares/validation";
+import { CheckRequestCompany } from "../middlewares/validation";
 
-export const UserRoutes = [{
+export const CompanyRoutes = [{
     method: "get",
-    route: "/users",
-    controller: UserController,
+    route: "/company",
+    controller: CompanyController,
     action: "all",
     middlewares:[
         checkAuth
     ]
 }, {
     method: "get",
-    route: "/users/:id",
-    controller: UserController,
+    route: "/company/:id",
+    controller: CompanyController,
     action: "one",
     middlewares:[
         checkAuth
     ]
 }, {
     method: "put",
-    route: "/users",
-    controller: UserController,
+    route: "/company",
+    controller: CompanyController,
     action: "update",
     middlewares:[
         
@@ -29,16 +29,16 @@ export const UserRoutes = [{
 },
  {
     method: "post",
-    route: "/users",
-    controller: UserController,
+    route: "/company",
+    controller: CompanyController,
     action: "save",
     middlewares:[
-        CheckRequestUser
+        CheckRequestCompany
     ]
 }, {
     method: "delete",
-    route: "/users/:id",
-    controller: UserController,
+    route: "/company/:id",
+    controller: CompanyController,
     action: "remove",
     middlewares:[
         
@@ -47,7 +47,7 @@ export const UserRoutes = [{
 {
     method: "post",
     route: "/login",
-    controller: UserController,
+    controller: CompanyController,
     action: "login",
     middlewares:[
         

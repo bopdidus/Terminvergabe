@@ -4,7 +4,7 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <form [formGroup]="loginForm" (ngSubmit)="SignIn()">
+    <form [formGroup]="loginForm" (ngSubmit)="SignIn(loginForm.value)">
       <div class="form-group">
         <mat-form-field appearance="outline">
           <mat-label>{{'EMAIL'| translate}}</mat-label>
@@ -35,7 +35,7 @@
         </mat-form-field>
       </div>
       <div class="form-group">
-        <button id="btnLogin" mat-raised-button color="primary" [disabled]="loginForm.invalid" routerLink="/home-screen"
+        <button id="btnLogin" mat-raised-button color="primary" [disabled]="loginForm.invalid" type="submit"
           routerLinkActive="active" ariaCurrentWhenActive="page">{{'LOGIN'|translate}}</button>
       </div>
       <br>

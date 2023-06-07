@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl, FormGroup} from '@angular/forms';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -10,8 +13,11 @@ import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 })
 export class LoginComponent  {
 hide = true;
- constructor(public translate: TranslateService) {
-  translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
+ constructor(public translate: TranslateService, 
+  private router: Router,
+  private _snackBar: MatSnackBar,
+  private api:ApiService) {
+  translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'en');
   console.log(this.translate.currentLang)
   translate.addLangs(['de', 'en', 'fr']);
  
@@ -22,15 +28,35 @@ hide = true;
       passwordCtrl: new FormControl ('', [Validators.required, Validators.minLength(8)])
     })
 
-    SignIn()
+    SignIn(loginform)
     {
-      
+      this.api.login(loginform.emailCtrl.value, loginform.passwordCtrl.value).subscribe({
+        next:(res)=>{
+          if(res == null && res == undefined){
+            this.openSnackBarError("");
+          }
+        },
+        error:(e)=>{
+            this.openSnackBarError(e)
+        },
+        complete:()=>{
+            this.router.navigate(['user/home'])
+        }
+      })
     }
     changeLanguage(lang)
     {
-      localStorage.setItem('language', lang)
+      sessionStorage.setItem('language', lang)
       console.log(lang)
       this.translate.setDefaultLang(lang);
       this.translate.use(lang)
+    }
+
+    openSnackBarError(error:any) {
+    
+      this._snackBar.open(this.translate.instant("")+ " "+error,  "Close",{
+        duration: 5 * 1000,
+        panelClass:['panel-danger']
+      });
     }
 }
