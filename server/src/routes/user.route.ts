@@ -1,6 +1,6 @@
 import { UserController } from "../controller/UserController";
 import { checkAuth } from "../middlewares/auth.middleware";
-import { CheckRequest } from "../middlewares/validation";
+import { CheckRequestUser } from "../middlewares/validation";
 
 export const UserRoutes = [{
     method: "get",
@@ -33,7 +33,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "save",
     middlewares:[
-        CheckRequest
+        CheckRequestUser
     ]
 }, {
     method: "delete",

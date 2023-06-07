@@ -2,6 +2,9 @@ import { BreakpointObserver, Breakpoints, MediaMatcher } from '@angular/cdk/layo
 import { ChangeDetectorRef, Component } from '@angular/core';
 import {Validators, FormGroup, FormControl} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -27,13 +30,18 @@ export class RegisterComponent  {
   });
 
   thirdFormGroup = new FormGroup({
-     addCtrl: new FormControl('', Validators.required),
+    streetCtrl: new FormControl('', Validators.required),
      cityCtrl: new FormControl('', Validators.required),
      postalCtrl: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   })
 
-  constructor(public translate: TranslateService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private breakpointObserver:BreakpointObserver) {
-    translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
+  constructor(public translate: TranslateService, private api:ApiService,
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher, 
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private breakpointObserver:BreakpointObserver) {
+    translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'en');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
 
@@ -49,10 +57,61 @@ export class RegisterComponent  {
 
   changeLanguage(lang)
   {
-    localStorage.setItem('language', lang)
+    sessionStorage.setItem('language', lang)
     this.translate.setDefaultLang(lang);
     this.translate.use(lang)
   }
 
+  onRegister()
+  {
+    let obj ='{'+
+      '"lastName": "'+ this.firstFormGroup.controls.lastCtrl.value+
+      '", "firstName": "'+ this.firstFormGroup.controls.firstCtrl.value+
+      '", "email": "'+ this.secondFormGroup.controls.emailCtrl.value+
+      '", "birthdate": "'+ this.firstFormGroup.controls.birthCtrl.value+
+      '", "password": "'+ this.secondFormGroup.controls.confPasswordCtrl.value+
+      '", "street": "'+ this.thirdFormGroup.controls.streetCtrl.value +
+      '", "city": "'+ this.thirdFormGroup.controls.cityCtrl.value +
+      '", "postal": "'+ this.thirdFormGroup.controls.postalCtrl.value +
+    '"';
+    if(this.secondFormGroup.controls.phoneCtrl.value != "" && 
+    this.secondFormGroup.controls.phoneCtrl.value != undefined &&
+    this.secondFormGroup.controls.phoneCtrl.value != null)
+    {
+        obj = obj + ', "phoneNumber": "'+ this.secondFormGroup.controls.phoneCtrl.value+'"}'
+    }
+    else{
+      obj = obj + '}'
+    }
+    this.api.register(obj).subscribe({
+    
+      next:(res)=>{
+        if(res)
+        {
+          if(res != null && res != undefined){
+            console.log(res);
+            this.router.navigate(['/login']);
+          }else{
+            this.openSnackBarError("");
+          }
+        }
+      else{
+        this.openSnackBarError("");
+      }
+    },
+    error:(error)=>{
+      console.log(error);
+      this.openSnackBarError(error)
+    }})
+  }
+
+  openSnackBarError(error:any) {
+    
+    this._snackBar.open(this.translate.instant("ON_REGISTER_ERROR")+ " "+error,  "Close",{
+      duration: 5 * 1000,
+      verticalPosition:'top',
+      panelClass:['panel-danger']
+    });
+  }
 
 }

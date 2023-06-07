@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import {Validators, FormGroup, FormControl} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
@@ -29,7 +32,9 @@ export class RegisterComponent {
      postalCtrl: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   })
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private router: Router,
+    private _snackBar: MatSnackBar,
+    private api:ApiService) {
     translate.addLangs(['en', 'fr', 'de']);
     translate.use(localStorage.getItem('language')?localStorage.getItem('language')!:'en');
   }
@@ -45,6 +50,40 @@ export class RegisterComponent {
     this.translate.setDefaultLang(lang);
     this.translate.use(lang)
    
+  }
+
+  onRegister()
+  {
+    const obj ='{'+
+      '"name": "'+ this.firstFormGroup.controls.nameCtrl.value+
+      '", "email": "'+ this.secondFormGroup.controls.emailCtrl.value+
+      '", "phoneNumber": "'+ this.secondFormGroup.controls.phoneCtrl.value+
+      '", "password": "'+ this.secondFormGroup.controls.confPasswordCtrl.value+
+      '", "street": "'+ this.thirdFormGroup.controls.addCtrl.value +
+      '", "city": "'+ this.thirdFormGroup.controls.cityCtrl.value +
+      '", "postal": "'+ this.thirdFormGroup.controls.postalCtrl.value +
+    '"}'
+    this.api.register(obj).subscribe({
+      next:(res)=>{
+      if(res != null && res != undefined){
+        console.log(res);
+        this.router.navigate(['/login']);
+      }else{
+        this.openSnackBarError("");
+      }
+    },
+    error:(error)=>{
+      console.log(error);
+      this.openSnackBarError(error)
+    }})
+  }
+
+  openSnackBarError(error:any) {
+    
+    this._snackBar.open(this.translate.instant("")+ " "+error,  "Close",{
+      duration: 5 * 1000,
+      panelClass:['panel-danger']
+    });
   }
 
 }

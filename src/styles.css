@@ -9,3 +9,14 @@ ul{
 a{
     text-decoration: none;
 }
+
+.panel-danger{
+    background: red !important;
+    color: white !important	;
+   /* -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  /*-webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  -moz-text-fill-color: white; /* Will override color (regardless of order) */
+  /*-moz-text-stroke-width: 1px;
+  -moz-text-stroke-color: black;*/
+}

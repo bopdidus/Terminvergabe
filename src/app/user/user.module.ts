@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS, HttpBackend} from '@angular/common/http';
 import { UserRoutingModule } from './user-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
@@ -19,6 +19,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -35,8 +36,9 @@ import { FloatingButtonComponent } from './floating-button/floating-button.compo
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 //------------------------COMPONENT(END)------------------------------
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function createTranslateLoader(http: HttpBackend) {
+  return new TranslateHttpLoader(new HttpClient(http), './assets/i18n/', '.json');
+  
 }
 
 
@@ -58,10 +60,18 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     UserRoutingModule,
     MatFormFieldModule,
-    TranslateModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+                deps: [HttpBackend],
+                useFactory: createTranslateLoader
+    }
+    }),
     HttpClientModule,
     MatChipsModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatStepperModule,
     MatSidenavModule,
     MatDatepickerModule,
@@ -76,6 +86,10 @@ export function createTranslateLoader(http: HttpClient) {
     MatIconModule,
     MatDividerModule
     ],
-    providers:[ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },]
+    providers:[ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },  TranslateService]
 })
-export class UserModule { }
+export class UserModule { 
+  constructor()
+  {
+  }
+}
