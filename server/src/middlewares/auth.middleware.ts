@@ -4,7 +4,7 @@ import { CONSTANT } from '../constants';
 
 export const checkAuth= (req:Request, res:Response, next: NextFunction)=>{
 //get the token from header
-const token = <string>req.headers["token"];
+const token = <string>req.headers.authorization;
 if(!token) return res.status(401).send('Acces Denied')
 
 try {

@@ -8,7 +8,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "all",
     middlewares:[
-        checkAuth
+       // checkAuth
     ]
 }, {
     method: "get",

@@ -4,7 +4,6 @@ import * as Joi from "joi";
 
 export const CheckRequest = (req, res, next)=>{
     const { error } = RegisterObjectSimpleUser.validate(req.body);
-        console.log(error)
         const valid = error == null
         if(valid)
         {
