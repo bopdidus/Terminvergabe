@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints, MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import {Validators, FormGroup, FormControl} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 import { ApiService } from '../services/api.service';
@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent  {
+export class RegisterComponent{
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   hide = true;
@@ -40,15 +40,21 @@ export class RegisterComponent  {
     media: MediaMatcher, 
     private router: Router,
     private _snackBar: MatSnackBar,
-    private breakpointObserver:BreakpointObserver) {
-    translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'en');
+    private breakpointObserver:BreakpointObserver) 
+    {      
+    this.translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
-    translate.addLangs(['de', 'en', 'fr']);
-
+    sessionStorage.setItem('language', translate.currentLang)
+    this.translate.addLangs(['de', 'en', 'fr']);
     this.mobileQuery = media.matchMedia('(max-width: 480px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+  // ngAfterViewInit(): void {    
+  //   this.translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'de');
+  //   console.log(this.translate.currentLang)
+  //   this.translate.addLangs(['de', 'en', 'fr']);
+  // }
 
   PasswordMatch(fielControl: FormControl)
   {  

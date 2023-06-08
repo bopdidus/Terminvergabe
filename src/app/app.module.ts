@@ -66,7 +66,7 @@ export function createTranslateLoader(http: HttpBackend) {
     CompanyModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      defaultLanguage: 'de',
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),

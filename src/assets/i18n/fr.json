@@ -35,6 +35,8 @@
     "COMPANY_NAME": "Nom de l'entreprise",
     "NAME_REQUIRED": "Nom obligatoire",
     "NAME_MINLENGTH":"Name doit avoir minimal 2 caractères",
+    "CLERKCHOICE":"FR Choice of clerk",
+    "CLERKCHOICE_PROMPT":"FR Choose clerk...",
     "APPOINTMENTS":"Événements",
     "TIME":"Temps",
     "DESCRIPTION":"Descriptif",

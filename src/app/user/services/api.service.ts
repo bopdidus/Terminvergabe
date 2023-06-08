@@ -7,7 +7,7 @@ const httpOptions = {
   })
 }
 
-const apiURL="http://192.168.1.103:3000/"
+const apiURL="http://localhost:3000/"
 
 @Injectable({
   providedIn: 'root'

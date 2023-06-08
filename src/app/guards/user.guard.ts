@@ -9,7 +9,7 @@ export class UserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return (localStorage.getItem("token"))?true:false;
+    return (sessionStorage.getItem("token"))?true:false;
   }
   
 }

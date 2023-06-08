@@ -21,9 +21,10 @@ loginForm = new FormGroup({
   private router: Router,
   private _snackBar: MatSnackBar,
   private api:ApiService) {
-  translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'en');
+  this.translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'de');
   console.log(this.translate.currentLang)
-  translate.addLangs(['de', 'en', 'fr']);
+  sessionStorage.setItem('language', translate.currentLang)
+  this.translate.addLangs(['de', 'en', 'fr']);
  
  }
 
