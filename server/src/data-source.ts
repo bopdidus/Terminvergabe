@@ -4,6 +4,7 @@ import { UserAddress } from "./entity/address"
 import { Company } from "./entity/company"
 import { Disponibility } from "./entity/disponibility"
 import { User } from "./entity/User"
+import { Appointment } from "./entity/appointment"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
     database: "terminator_db",
     synchronize: true,
     logging: false,
-    entities: [User, UserAddress, Company, Disponibility],
+    entities: [User, UserAddress, Company, Disponibility, Appointment],
     migrations: [],
     subscribers: [],
 })

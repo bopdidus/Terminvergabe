@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany } from "typeorm"
 import { UserAddress } from "./address"
+import { Appointment } from "./appointment"
 import { Company } from "./company"
 import { Disponibility } from "./disponibility"
 
@@ -28,14 +29,15 @@ export class User {
 
     @Column()
     password:string
+    
+    @OneToMany(() =>Appointment, (appointment)=> appointment.user)
+    appointments: Appointment[]
 
     @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.users)
-    address:UserAddress
 
     @ManyToOne(() =>Company, (company)=> company.users)
     company:Company
 
     @OneToMany(()=> Disponibility, (disponibility)=> disponibility.user )
     disponibilities:Disponibility[]
-
 }

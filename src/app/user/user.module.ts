@@ -19,8 +19,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { NgFor } from '@angular/common';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSelectModule} from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -32,9 +34,7 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
-
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
-import { MatOptionModule } from '@angular/material/core';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpBackend) {
@@ -71,7 +71,6 @@ export function createTranslateLoader(http: HttpBackend) {
     HttpClientModule,
     MatChipsModule,
     MatButtonModule,
-    MatSnackBarModule,
     MatStepperModule,
     MatSidenavModule,
     MatDatepickerModule,
@@ -86,7 +85,9 @@ export function createTranslateLoader(http: HttpBackend) {
     MatIconModule,
     MatDividerModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule,
+    NgFor
     ],
     providers:[ TranslateService]
 })
