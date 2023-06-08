@@ -27,6 +27,6 @@ export class ApiService {
   register(body:string)
   {
     const params = JSON.parse(body)
-    return this.http.post(apiURL+"company", params, httpOptions)
+    return this.http.post(apiURL+"companies", params, httpOptions)
   }
 }
