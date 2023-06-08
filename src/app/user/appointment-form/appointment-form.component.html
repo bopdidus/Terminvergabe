@@ -45,11 +45,8 @@
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>{{"TIME"|translate}}</ng-template>
           <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
-          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required>
-            <mat-chip-option>13:00</mat-chip-option>
-            <mat-chip-option>14:00</mat-chip-option>
-            <mat-chip-option>14:30</mat-chip-option>
-            <mat-chip-option>15:00</mat-chip-option>
+          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required *ngFor="let time of times" [value]="time.value">
+            <mat-chip-option>{{time.timeValue}}</mat-chip-option>
           </mat-chip-listbox>
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>

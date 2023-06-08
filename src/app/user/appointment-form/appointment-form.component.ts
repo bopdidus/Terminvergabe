@@ -14,6 +14,11 @@ interface Clerk{
   name: string;
 }
 
+interface Timeslot{
+  value: string;
+  timeValue: string;
+}
+
 @Component({
   selector: 'app-appointment-form',
   templateUrl: './appointment-form.component.html',
@@ -28,6 +33,13 @@ export class AppointmentFormComponent {
     {value: 'zarina-1', name: 'Zarina Kasir'},
     {value: 'ahmet-2', name: 'Ahmet Kaya'},
   ];
+
+  times: Timeslot[] = [
+    {value: 'slot-0', timeValue: '08:00'},
+    {value: 'slot-1', timeValue: '09:00'},
+    {value: 'slot-2', timeValue: '10:00'},
+    {value: 'slot-3', timeValue: '11:00'}
+  ]
 
   myDate = new Date();
 
