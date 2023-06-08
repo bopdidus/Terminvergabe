@@ -13,7 +13,7 @@ export const RegisterObjectSimpleUser = Joi.object().keys({
 })
 
 export const RegisterObjectCompanyUser = Joi.object().keys({
-    name: Joi.string().alphanum().min(2).max(30).required(),
+    name: Joi.string().min(2).max(30).required(),
     email: Joi.string().pattern( new RegExp("^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$")).required(),
     phoneNumber: Joi.number().required(),
     password: Joi.string().alphanum().required(),

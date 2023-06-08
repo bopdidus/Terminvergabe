@@ -1,6 +1,8 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { UserAddress } from "./entity/address"
+import { Company } from "./entity/company"
+import { Disponibility } from "./entity/disponibility"
 import { User } from "./entity/User"
 
 export const AppDataSource = new DataSource({
@@ -12,7 +14,7 @@ export const AppDataSource = new DataSource({
     database: "terminator_db",
     synchronize: true,
     logging: false,
-    entities: [User, UserAddress],
+    entities: [User, UserAddress, Company, Disponibility],
     migrations: [],
     subscribers: [],
 })
