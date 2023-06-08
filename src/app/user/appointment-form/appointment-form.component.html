@@ -12,6 +12,22 @@
     <mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel="t">{{"CLERKCHOICE"|translate}}</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>{{"CLERKCHOICE_PROMPT"|translate}}</mat-label>
+            <mat-select formControlName="dateCtrl" required>
+              <mat-option *ngFor="let clerk of clerks" [value]="clerk.value">
+                {{clerk.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>          
+          <div>
+            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>{{"DATECHOICE"|translate}}</ng-template>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{"DATECHOICE_PROMPT"|translate}}</mat-label>
@@ -29,11 +45,8 @@
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>{{"TIME"|translate}}</ng-template>
           <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
-          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required>
-            <mat-chip-option>13:00</mat-chip-option>
-            <mat-chip-option>14:00</mat-chip-option>
-            <mat-chip-option>14:30</mat-chip-option>
-            <mat-chip-option>15:00</mat-chip-option>
+          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required *ngFor="let time of times" [value]="time.value">
+            <mat-chip-option>{{time.timeValue}}</mat-chip-option>
           </mat-chip-listbox>
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
@@ -46,7 +59,7 @@
         <p>{{"APPOINTMENT FORM CONFIRMATION"|translate}}</p>
         <div>
           <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
-          <button mat-button (click)="stepper.reset()">{{"CONFIRM"|translate}}</button>
+          <button mat-button (click)="onAppointmentCommit()">{{"CONFIRM"|translate}}</button>
         </div>
       </mat-step>
     </mat-stepper>

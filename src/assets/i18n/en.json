@@ -35,6 +35,8 @@
     "COMPANY_NAME": "Company name",
     "NAME_REQUIRED": "Name is required",
     "NAME_MINLENGTH":"Name should have minimum 2 characters",
+    "CLERKCHOICE":"Choice of clerk",
+    "CLERKCHOICE_PROMPT":"Choose clerk...",
     "APPOINTMENTS":"Appointments",
     "TIME":"Time",
     "DESCRIPTION":"Description",

@@ -19,6 +19,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { NgFor } from '@angular/common';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 //--------------------------MODULE(END)---------------------------
 
@@ -33,6 +35,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
 import { RegisterComponent } from './register/register.component';
 
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpBackend) {
@@ -82,7 +85,10 @@ export function createTranslateLoader(http: HttpBackend) {
     ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    NgFor
     ],
     providers:[ TranslateService]
 })

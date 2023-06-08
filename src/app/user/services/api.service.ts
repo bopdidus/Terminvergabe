@@ -7,7 +7,7 @@ const httpOptions = {
   })
 }
 
-const apiURL="http://192.168.1.103:3000/"
+const apiURL="http://localhost:3000/"
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  setAppointment(date: string){
+    const body='{"date":'+ date + '", "time":"13:00"'
+    return this.http.post(apiURL, body, httpOptions)
+  }
+  
   login(email:string, password:string)
   {
     const body='{"email": "'+ email+'", "password":"'+ password+'"}'
@@ -28,5 +33,4 @@ export class ApiService {
     const params = JSON.parse(body)
     return this.http.post(apiURL+"users", params, httpOptions)
   }
-
 }

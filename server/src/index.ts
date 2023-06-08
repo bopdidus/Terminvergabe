@@ -4,6 +4,7 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import * as cors from "cors"
 import {UserRoutes} from "./routes/user.route"
+import { User } from "./entity/User"
 import { CompanyRoutes } from "./routes/company.route"
 import { DisponibilityRoutes } from "./routes/disponibility.route"
 
@@ -51,6 +52,9 @@ AppDataSource.initialize().then(async () => {
         })
     })
 
+    //try setup dummy data
+
+    //const conUser = new User("firstName": "Otto", "lastName":"Schmidt",)
    
     // setup express app here
     // ...

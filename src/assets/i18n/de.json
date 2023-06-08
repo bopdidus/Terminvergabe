@@ -35,6 +35,8 @@
     "COMPANY_NAME": "Unternehmensname",
     "NAME_REQUIRED": "Name is erforderlich",
     "NAME_MINLENGTH":"Name muss 2 Zeichen mindestens",
+    "CLERKCHOICE":"Sachbearbeiterwahl",
+    "CLERKCHOICE_PROMPT":"Sachbearbeiter wählen...",
     "APPOINTMENTS":"Termine",
     "TIME":"Uhrzeit",
     "DESCRIPTION":"Beschreibung",
