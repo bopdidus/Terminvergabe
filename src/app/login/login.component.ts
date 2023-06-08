@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl, FormGroup} from '@angular/forms';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../user/services/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,6 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent  {
 hide = true;
+loginForm = new FormGroup({
+  emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ]),
+  passwordCtrl: new FormControl ('', [Validators.required, Validators.minLength(8)])
+})
  constructor(public translate: TranslateService, 
   private router: Router,
   private _snackBar: MatSnackBar,
@@ -23,18 +27,21 @@ hide = true;
  
  }
 
- loginForm = new FormGroup({
-      emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ]),
-      passwordCtrl: new FormControl ('', [Validators.required, Validators.minLength(8)])
-    })
-
     SignIn(loginform)
     {
-      this.api.login(loginform.emailCtrl.value, loginform.passwordCtrl.value).subscribe({
-        next:(res)=>{
-          if(res == null && res == undefined){
-            this.openSnackBarError("");
+      this.api.login(loginform.get('emailCtrl').value, loginform.get('passwordCtrl').value).subscribe({
+        next:(res:any)=>{
+          if(res)
+          {
+            if(res == null && res == undefined){
+              this.openSnackBarError("");
+            }
+            else{
+              sessionStorage.setItem("token", res.token)
+              sessionStorage.setItem("user", res.result)
+            }
           }
+          
         },
         error:(e)=>{
             this.openSnackBarError(e)
@@ -54,7 +61,7 @@ hide = true;
 
     openSnackBarError(error:any) {
     
-      this._snackBar.open(this.translate.instant("")+ " "+error,  "Close",{
+      this._snackBar.open(this.translate.instant("ON_REGISTER_ERROR")+ " "+error,  "Close",{
         duration: 5 * 1000,
         panelClass:['panel-danger']
       });

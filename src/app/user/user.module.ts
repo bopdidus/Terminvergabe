@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS, HttpBackend} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpBackend} from '@angular/common/http';
 import { UserRoutingModule } from './user-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
@@ -31,9 +31,8 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpBackend) {
@@ -50,7 +49,6 @@ export function createTranslateLoader(http: HttpBackend) {
     SidebarComponent,
     DashboardComponent,
     RegisterComponent,
-    LoginComponent,
     HomeScreenComponent,
     AppointmentListComponent,
     AppointmentFormComponent,
@@ -86,7 +84,7 @@ export function createTranslateLoader(http: HttpBackend) {
     MatIconModule,
     MatDividerModule
     ],
-    providers:[ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },  TranslateService]
+    providers:[ TranslateService]
 })
 export class UserModule { 
   constructor()

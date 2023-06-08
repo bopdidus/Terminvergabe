@@ -14,12 +14,18 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
+
 
 import { CompanyRoutingModule } from './company-routing.module';
 import { CalendarOverviewComponent } from './calendar-overview/calendar-overview.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,12 +37,16 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     CalendarOverviewComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AppointmentComponent,
+    AppointmentListComponent,
   ],
   imports: [
     CommonModule,
     CompanyRoutingModule,
     MatCardModule,
+    MatTooltipModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
@@ -49,10 +59,11 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     TranslateModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDatepickerModule
     ],
     providers:[
-      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+      
     ]
 })
 export class CompanyModule { }

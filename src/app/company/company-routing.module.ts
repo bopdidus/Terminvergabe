@@ -8,7 +8,7 @@ import { UserGuard } from '../guards/user.guard';
 const routes: Routes = [
   {path:"company", component: HeaderComponent,
   children:[
-    {path:"calendar-overview", component: CalendarOverviewComponent, canActivate:[UserGuard] }
+    {path:"calendar-overview", component: CalendarOverviewComponent, /* canActivate:[UserGuard] */}
   ]
 },
   {path:"register", component: RegisterComponent},
