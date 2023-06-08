@@ -14,6 +14,7 @@ export class AppointmentController {
 
     async all(request: Request, response: Response, next: NextFunction) {
         const appointments = await this.appointmentRepository.find()
+        console.log("Test all appointments")
         return {code:200, data: appointments}  
     }
 

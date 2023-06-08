@@ -19,6 +19,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { NgFor } from '@angular/common';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -33,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpClient) {
@@ -74,7 +77,10 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    NgFor
     ],
     providers:[ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },]
 })
