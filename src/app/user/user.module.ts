@@ -31,7 +31,7 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 //------------------------COMPONENT(END)------------------------------
@@ -50,7 +50,6 @@ export function createTranslateLoader(http: HttpBackend) {
     SidebarComponent,
     DashboardComponent,
     RegisterComponent,
-    LoginComponent,
     HomeScreenComponent,
     AppointmentListComponent,
     AppointmentFormComponent,
