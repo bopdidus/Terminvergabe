@@ -104,7 +104,7 @@
             <div class="form-group">
               <mat-form-field appearance="fill">
                 <mat-label>{{'ADDRESS'|translate}} </mat-label>
-                <input  matInput  formControlName="addCtrl"  required>
+                <input  matInput  formControlName="streetCtrl"  required>
               </mat-form-field>
             </div>
             <div class="row">
@@ -124,7 +124,7 @@
           </form>
           <div>
             <button mat-button matStepperPrevious>{{'BACK'|translate}}</button>
-            <button mat-button (click)="stepper.reset()">{{'SIGN_UP'|translate}}</button>
+            <button mat-button type="submit" [disabled]="!firstFormGroup.valid || !secondFormGroup.valid || !thirdFormGroup.valid" (click)="onRegister()">{{'SIGN_UP'|translate}}</button>
           </div>
         </mat-step>
       </mat-stepper>

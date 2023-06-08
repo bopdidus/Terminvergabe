@@ -25,7 +25,7 @@
     "CONFIRM_PASSWORD_REQUIRED":"Passwort bestätigung ist erforderlich",
     "DONT_MATCH":"Passwörter stimmen nicht überein",
     "BACK":"Zurück",
-    "ADDRESS":"Addresse",
+    "ADDRESS":"Straße",
     "CITY":"Stadt",
     "POSTAL":"Postleitzahl",
     "SIGN_UP":"Anmelden",
@@ -75,5 +75,6 @@
     "DAILY":"Täglich",
     "MONTHLY":"Monatlich",
     "YEARLY":"Jährlich",
-    "NOTFOUND": "Seite Nicht Gefunden"
+    "NOTFOUND": "Seite Nicht Gefunden",
+    "ON_REGISTER_ERROR":"Fehler werden aufgetreten"
 }

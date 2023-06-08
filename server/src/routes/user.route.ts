@@ -1,30 +1,30 @@
 import { AppointmentController } from "../controller/AppointmentController";
 import { UserController } from "../controller/UserController";
 import { checkAuth } from "../middlewares/auth.middleware";
-import { CheckRequest } from "../middlewares/validation";
+import { CheckRequestLogin, CheckRequestUser } from "../middlewares/validation";
 
 export const UserRoutes = [{
     method: "get",
     route: "/users",
     controller: UserController,
     action: "all",
-    validation:[
-        //checkAuth
+    middlewares:[
+       // checkAuth
     ]
 }, {
     method: "get",
     route: "/users/:id",
     controller: UserController,
     action: "one",
-    validation:[
-        
+    middlewares:[
+        checkAuth
     ]
 }, {
     method: "put",
     route: "/users",
     controller: UserController,
     action: "update",
-    validation:[
+    middlewares:[
         
     ]
 },
@@ -33,15 +33,15 @@ export const UserRoutes = [{
     route: "/users",
     controller: UserController,
     action: "save",
-    validation:[
-        CheckRequest
+    middlewares:[
+        CheckRequestUser
     ]
 }, {
     method: "delete",
     route: "/users/:id",
     controller: UserController,
     action: "remove",
-    validation:[
+    middlewares:[
         
     ]
 },
@@ -50,8 +50,8 @@ export const UserRoutes = [{
     route: "/login",
     controller: UserController,
     action: "login",
-    validation:[
-        
+    middlewares:[
+        CheckRequestLogin
     ]
 },
 

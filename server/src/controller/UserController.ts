@@ -5,6 +5,7 @@ import { UserAddress } from "../entity/address"
 import * as bcrypt from "bcryptjs"
 import * as Jwt from "jsonwebtoken"
 import { CONSTANT } from "../constants"
+import { TerminatorEmail } from "../utils/node-email"
 
 export class UserController {
 
@@ -37,9 +38,9 @@ export class UserController {
         try {
             const { firstName, lastName, email, phoneNumber, birthdate, street, city, postal } = request.body;
             const checkEmail = await this.userRepository.findOne({where:{email: email}})    
-            
+            //let terminator =new TerminatorEmail()
             if(checkEmail) return {code:400, data:"Email already exist"}
-            
+           // await terminator.sendActivationEmail(email,"http://localhost:3000/account/activation")
             let addr = await this.addressRepository.findOne({ where: { street: street, city: city}})
         if(addr == null || addr == undefined)
         {
@@ -48,6 +49,7 @@ export class UserController {
                 city,
                 postal
             }) 
+           addr = await this.addressRepository.save(addr)
         }
 
 
@@ -86,7 +88,7 @@ export class UserController {
                     if(!user) return { code:404, data:"User does not exist"}
                     const validPass = await bcrypt.compare(request.body.password, user.password)
                     if(!validPass) return response.status(404).send("Email or Password is Wrong");
-                    const token = Jwt.sign({_id: user.id}, CONSTANT.SECRET, {expiresIn:"1h"})
+                    const token = Jwt.sign({_id: user.email}, CONSTANT.SECRET, {expiresIn:"1h"})
                     return {code:200, data:{"result": user, "token": token}}
             }
             else{

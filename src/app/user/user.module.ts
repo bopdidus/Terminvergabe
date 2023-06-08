@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpBackend} from '@angular/common/http';
 import { UserRoutingModule } from './user-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { NgFor } from '@angular/common';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -32,14 +33,14 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 //------------------------COMPONENT(END)------------------------------
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function createTranslateLoader(http: HttpBackend) {
+  return new TranslateHttpLoader(new HttpClient(http), './assets/i18n/', '.json');
+  
 }
 
 
@@ -51,7 +52,6 @@ export function createTranslateLoader(http: HttpClient) {
     SidebarComponent,
     DashboardComponent,
     RegisterComponent,
-    LoginComponent,
     HomeScreenComponent,
     AppointmentListComponent,
     AppointmentFormComponent,
@@ -61,10 +61,18 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     UserRoutingModule,
     MatFormFieldModule,
-    TranslateModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+                deps: [HttpBackend],
+                useFactory: createTranslateLoader
+    }
+    }),
     HttpClientModule,
     MatChipsModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatStepperModule,
     MatSidenavModule,
     MatDatepickerModule,
@@ -82,6 +90,10 @@ export function createTranslateLoader(http: HttpClient) {
     MatSnackBarModule,
     NgFor
     ],
-    providers:[ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },]
+    providers:[ TranslateService]
 })
-export class UserModule { }
+export class UserModule { 
+  constructor()
+  {
+  }
+}
