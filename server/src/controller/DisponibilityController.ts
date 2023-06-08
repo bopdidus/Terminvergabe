@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import { AppDataSource } from "../data-source"
-import { User } from "../entity/User"
+import { User } from "../entity/user"
 import { Disponibility } from "../entity/disponibility"
 
 export class DisponibilityController {

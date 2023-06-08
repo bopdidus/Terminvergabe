@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany } from "typeorm"
 import { UserAddress } from "./address"
-import { User } from "./User"
+import { User } from "./user"
 
 
 @Entity()
@@ -17,7 +17,7 @@ export class Company {
     email: string
 
     @Column({type: "numeric"})
-    phoneNumber?:number
+    phoneNumber:number
 
     @Column()
     password:string

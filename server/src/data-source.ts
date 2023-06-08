@@ -3,7 +3,7 @@ import { DataSource } from "typeorm"
 import { UserAddress } from "./entity/address"
 import { Company } from "./entity/company"
 import { Disponibility } from "./entity/disponibility"
-import { User } from "./entity/User"
+import { User } from "./entity/user"
 import { Appointment } from "./entity/appointment"
 
 export const AppDataSource = new DataSource({

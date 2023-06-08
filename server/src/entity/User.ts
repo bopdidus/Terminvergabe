@@ -34,6 +34,7 @@ export class User {
     appointments: Appointment[]
 
     @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.users)
+    address: UserAddress
 
     @ManyToOne(() =>Company, (company)=> company.users)
     company:Company
