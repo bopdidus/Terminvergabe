@@ -4,11 +4,11 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <form [formGroup]="loginForm" (ngSubmit)="SignIn(loginForm.value)">
+    <form [formGroup]="loginForm" (ngSubmit)="SignIn(loginForm)">
       <div class="form-group">
         <mat-form-field appearance="outline">
           <mat-label>{{'EMAIL'| translate}}</mat-label>
-          <input matInput placeholder="example@example.com" formControlName="emailCtrl">
+          <input type="email" matInput placeholder="example@example.com" formControlName="emailCtrl">
           <mat-icon matSuffix>email</mat-icon>
           <mat-error *ngIf="loginForm.controls.emailCtrl.invalid">
             {{'ERROR_EMAIL'|translate}}

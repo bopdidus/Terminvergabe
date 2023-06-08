@@ -16,6 +16,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -23,7 +24,6 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { CalendarOverviewComponent } from './calendar-overview/calendar-overview.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 
@@ -45,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     CompanyRoutingModule,
     MatCardModule,
+    MatTooltipModule,
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
@@ -62,7 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatDatepickerModule
     ],
     providers:[
-      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+      
     ]
 })
 export class CompanyModule { }

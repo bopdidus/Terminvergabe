@@ -7,7 +7,7 @@ const httpOptions = {
   })
 }
 
-const apiURL="http://192.168.1.103:3000/users"
+const apiURL="http://192.168.1.103:3000/"
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +19,14 @@ export class ApiService {
   login(email:string, password:string)
   {
     const body='{"email": "'+ email+'", "password":"'+ password+'"}'
-    return this.http.post(apiURL, body, httpOptions)
+    console.log(body)
+    return this.http.post(apiURL+"login", body, httpOptions)
   }
 
   register(body:string)
   {
     const params = JSON.parse(body)
-    return this.http.post(apiURL, params, httpOptions)
+    return this.http.post(apiURL+"users", params, httpOptions)
   }
 
 }

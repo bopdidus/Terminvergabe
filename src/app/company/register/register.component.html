@@ -3,8 +3,11 @@
       <mat-card-title>{{'REGISTER'|translate}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-stepper linear="false" #stepper>
+      <mat-stepper [orientation]="mobileQuery.matches ? 'vertical' : 'horizontal'" linear="false" #stepper>
         <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel >
+            <span matTooltip="{{'PERSONAL_INFORMATION'|translate}}">{{'PERSONAL_INFORMATION'|translate}}</span> 
+         </ng-template>
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>{{'PERSONAL_INFORMATION'|translate}}</ng-template>
             <div class="form-group">
@@ -22,6 +25,9 @@
           </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup" label="{{'FILL_ACCOUNT'|translate}}">
+          <ng-template matStepLabel >
+            <span matTooltip="{{'FILL_ACCOUNT'|translate}}">{{'FILL_ACCOUNT'|translate}}</span> 
+         </ng-template>
           <form [formGroup]="secondFormGroup">
             <div class="form-group">
               <mat-form-field appearance="fill">
@@ -71,11 +77,14 @@
   
             <div>
               <button mat-button matStepperPrevious>{{'BACK'|translate}}</button>
-              <button mat-button matStepperNext>{{'NEXT'|translate}}Next</button>
+              <button mat-button matStepperNext>{{'NEXT'|translate}}</button>
             </div>
           </form>
         </mat-step>
         <mat-step label="{{'FILL_ADDRESS'|translate}}">
+          <ng-template matStepLabel >
+            <span matTooltip="{{'FILL_ACCOUNT'|translate}}">{{'FILL_ACCOUNT'|translate}}</span> 
+         </ng-template>
           <form [formGroup]="thirdFormGroup">
             <div class="form-group">
               <mat-form-field appearance="fill">

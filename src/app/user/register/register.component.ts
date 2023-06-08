@@ -70,8 +70,8 @@ export class RegisterComponent  {
       '", "email": "'+ this.secondFormGroup.controls.emailCtrl.value+
       '", "birthdate": "'+ this.firstFormGroup.controls.birthCtrl.value+
       '", "password": "'+ this.secondFormGroup.controls.confPasswordCtrl.value+
-      '", "street": "'+ this.thirdFormGroup.controls.streetCtrl.value +
-      '", "city": "'+ this.thirdFormGroup.controls.cityCtrl.value +
+      '", "street": "'+ this.thirdFormGroup.controls.streetCtrl.value?.toLowerCase() +
+      '", "city": "'+ this.thirdFormGroup.controls.cityCtrl.value?.toLowerCase() +
       '", "postal": "'+ this.thirdFormGroup.controls.postalCtrl.value +
     '"';
     if(this.secondFormGroup.controls.phoneCtrl.value != "" && 
