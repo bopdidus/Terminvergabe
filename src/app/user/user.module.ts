@@ -35,6 +35,7 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { RegisterComponent } from './register/register.component';
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
+import { SharedModule } from '../shared/shared.module';
 //------------------------COMPONENT(END)------------------------------
 
 export function createTranslateLoader(http: HttpBackend) {
@@ -58,6 +59,7 @@ export function createTranslateLoader(http: HttpBackend) {
   ],
   imports: [
     CommonModule,
+    SharedModule,
     UserRoutingModule,
     MatFormFieldModule,
     TranslateModule.forRoot({

@@ -20,6 +20,7 @@ import { CompanyModule } from './company/company.module';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from './shared/shared.module';
 //-------------------MODULES(END)----------------------
 
 //-------------------COMPONENTS(START)----------------------
@@ -28,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 
 //-------------------COMPONENTS(END)----------------------
@@ -42,11 +44,12 @@ export function createTranslateLoader(http: HttpBackend) {
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
 
   imports: [
     BrowserModule,
+    SharedModule,
     AdminModule,
     BrowserAnimationsModule,
     MatIconModule,

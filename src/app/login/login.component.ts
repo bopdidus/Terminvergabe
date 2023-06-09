@@ -4,6 +4,7 @@ import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import { ApiService } from '../user/services/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoadingService } from '../shared/services/loading.service';
 
 
 @Component({
@@ -17,9 +18,13 @@ loginForm = new FormGroup({
   emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ]),
   passwordCtrl: new FormControl ('', [Validators.required, Validators.minLength(8)])
 })
+
+  showLoader$= this.loaderService.loadingAction$;
+
  constructor(public translate: TranslateService, 
   private router: Router,
   private _snackBar: MatSnackBar,
+  private loaderService:LoadingService,
   private api:ApiService) {
   this.translate.use(sessionStorage.getItem('language') ? sessionStorage.getItem('language')! : 'de');
   console.log(this.translate.currentLang)
@@ -30,6 +35,7 @@ loginForm = new FormGroup({
 
     SignIn(loginform)
     {
+      this.loaderService.showLoader()
       this.api.login(loginform.get('emailCtrl').value, loginform.get('passwordCtrl').value).subscribe({
         next:(res:any)=>{
           if(res)
@@ -45,9 +51,11 @@ loginForm = new FormGroup({
           
         },
         error:(e)=>{
+          this.loaderService.hideLoader()
             this.openSnackBarError(e)
         },
         complete:()=>{
+          this.loaderService.hideLoader()
             this.router.navigate(['user/home'])
         }
       })

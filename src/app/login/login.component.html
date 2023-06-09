@@ -51,3 +51,7 @@
     </p>
   </mat-card-footer>
 </mat-card>
+
+<div *ngIf="showLoader$ |async as showLoader">
+  <loader *ngIf="showLoader"></loader>
+</div>

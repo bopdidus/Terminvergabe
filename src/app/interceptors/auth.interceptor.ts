@@ -7,6 +7,7 @@ import {
   HttpClient
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LoadingService } from '../shared/services/loading.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -24,7 +25,6 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(authReq);
       
     }else{
-      
       console.log(request)
       return next.handle(request)
     }

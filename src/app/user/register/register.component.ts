@@ -5,6 +5,7 @@ import {TranslateService} from '@ngx-translate/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-register',
@@ -34,10 +35,11 @@ export class RegisterComponent{
      cityCtrl: new FormControl('', Validators.required),
      postalCtrl: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   })
-
+  showLoader$= this.loaderService.loadingAction$;
   constructor(public translate: TranslateService, private api:ApiService,
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher, 
+    private loaderService:LoadingService,
     private router: Router,
     private _snackBar: MatSnackBar,
     private breakpointObserver:BreakpointObserver) 
@@ -70,6 +72,7 @@ export class RegisterComponent{
 
   onRegister()
   {
+    this.loaderService.showLoader()
     let obj ='{'+
       '"lastName": "'+ this.firstFormGroup.controls.lastCtrl.value+
       '", "firstName": "'+ this.firstFormGroup.controls.firstCtrl.value+
@@ -98,14 +101,17 @@ export class RegisterComponent{
             console.log(res);
             this.router.navigate(['/login']);
           }else{
+            this.loaderService.hideLoader()
             this.openSnackBarError("");
           }
         }
       else{
+        this.loaderService.hideLoader()
         this.openSnackBarError("");
       }
     },
     error:(error)=>{
+      this.loaderService.hideLoader()
       console.log(error);
       this.openSnackBarError(error)
     }})

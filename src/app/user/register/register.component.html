@@ -139,4 +139,6 @@
   </mat-card>
 </div>
 
-
+<div *ngIf="showLoader$ |async as showLoader">
+  <loader *ngIf="showLoader"></loader>
+</div>
