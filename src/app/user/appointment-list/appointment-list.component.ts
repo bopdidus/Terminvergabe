@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { SwUpdate } from '@angular/service-worker';
 
 export interface PeriodicElement {
   position: number;

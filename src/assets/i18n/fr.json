@@ -76,5 +76,7 @@
     "MONTHLY":"Mensuel",
     "YEARLY":"Annuel",
     "NOTFOUND": "Page introuvable",
-    "ON_REGISTER_ERROR":"Des erreurs sont survenues"
+    "ON_REGISTER_ERROR":"Des erreurs sont survenues",
+    "ADD_HOME_SCREEN": "Ajouter l'application à l'écran d'accueil",
+    "INSTALL_ON_IOS":"Pour installer cette application WEB sur votre appareil, appuyez sur le bouton 'Menu' puis sur le bouton 'Ajouter à l'écran d'accueil'"
 }

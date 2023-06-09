@@ -76,5 +76,7 @@
     "MONTHLY":"Monatlich",
     "YEARLY":"Jährlich",
     "NOTFOUND": "Seite Nicht Gefunden",
-    "ON_REGISTER_ERROR":"Fehler werden aufgetreten"
+    "ON_REGISTER_ERROR":"Fehler werden aufgetreten",
+    "ADD_HOME_SCREEN": "Füg die Anwendung in Home Screen",
+    "INSTALL_ON_IOS":"Um diese WEB-App auf Ihrem Gerät zu installieren, tippen Sie auf die Schaltfläche 'Menü' und dann auf die Schaltfläche 'Zum Startbildschirm hinzufügen'"
 }

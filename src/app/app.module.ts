@@ -1,5 +1,5 @@
 //-------------------MODULES(START)----------------------
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
@@ -27,6 +27,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 //-------------------COMPONENTS(END)----------------------
@@ -72,6 +73,12 @@ export function createTranslateLoader(http: HttpBackend) {
         useFactory: (createTranslateLoader),
         deps: [HttpBackend],
       }
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

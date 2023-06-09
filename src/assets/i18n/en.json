@@ -76,6 +76,8 @@
     "MONTHLY":"Monthly",
     "YEARLY":"Yearly",
     "NOTFOUND": "Page Not Found",
-    "ON_REGISTER_ERROR":"Some errors occured"
+    "ON_REGISTER_ERROR":"Some errors occured",
+    "ADD_HOME_SCREEN": "Add this WEB app to home screen",
+    "INSTALL_ON_IOS":"To install this WEB app on your device, tap the 'Menu' button and then 'Add to home screen' button"
 
 }
