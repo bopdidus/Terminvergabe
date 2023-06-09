@@ -8,11 +8,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProfileComponent {
   view:string;
-  
+  connectedUser:any
   constructor(public translate: TranslateService)
   {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
+    this.connectedUser = sessionStorage.getItem("user")
     translate.addLangs(['de', 'en', 'fr']);
     this.view="profile"
   }
