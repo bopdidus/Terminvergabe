@@ -30,7 +30,7 @@ export class User {
     @Column()
     password:string
     
-    @OneToMany(() =>Appointment, (appointment)=> appointment.user)
+    @OneToMany(() =>Appointment, (appointment)=> appointment.userID)
     appointments: Appointment[]
 
     @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.users)

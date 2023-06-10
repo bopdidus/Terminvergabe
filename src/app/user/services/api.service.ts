@@ -16,8 +16,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  setAppointment(date: string){
-    const body='{"date":'+ date + '", "time":"13:00"'
+  setAppointment()
+  {
+    const body='{"date":"23/07/23", "time":"13:00", "userID":"11111", "clerkID":"99999"}' // id of Users in appointment
+    console.log(body)
     return this.http.post(apiURL, body, httpOptions)
   }
   

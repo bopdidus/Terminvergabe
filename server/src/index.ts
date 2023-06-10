@@ -7,6 +7,7 @@ import {UserRoutes} from "./routes/user.route"
 import { User } from "./entity/user"
 import { CompanyRoutes } from "./routes/company.route"
 import { DisponibilityRoutes } from "./routes/disponibility.route"
+import { AppointmentRoutes } from "./routes/appointment.route"
 
 AppDataSource.initialize().then(async () => {
 
@@ -52,9 +53,17 @@ AppDataSource.initialize().then(async () => {
         })
     })
 
-    //try setup dummy data
+    AppointmentRoutes.forEach(route => {
+        (app as any)[route.method](route.route, ...route.middlewares ,(req: Request, res: Response, next: Function) => {
+            const result =  (new (route.controller as any))[route.action](req, res, next)
+            if (result instanceof Promise) {
+                result.then(resp => resp !== null && resp !== undefined ? res.status(resp.code).json(resp.data) : res.sendStatus(500))
 
-    //const conUser = new User("firstName": "Otto", "lastName":"Schmidt",)
+            } else if (result.data !== null && result.data !== undefined) {
+                res.status(result.code).json(result.data)
+            }
+        })
+    })
    
     // setup express app here
     // ...

@@ -13,9 +13,14 @@ export class AppointmentController {
     private userRepository = AppDataSource.getRepository(User)
 
     async all(request: Request, response: Response, next: NextFunction) {
-        const appointments = await this.appointmentRepository.find()
-        console.log("Test all appointments")
-        return {code:200, data: appointments}  
+        try{            
+            const appointments = await this.appointmentRepository.find()
+            //console.log("Test all appointments")
+            return {code:200, data: appointments}
+        }
+        catch(error){
+            return {code:500, error}
+        }  
     }
 
     /* returns a single appointment (apmnt) by id */
@@ -36,12 +41,16 @@ export class AppointmentController {
     /* save an appointment */
     async save(request: Request, response: Response, next: NextFunction) {
         try {
-            const { date, time, iduser, idclerk } = request.body;
+            // const { date, time, iduser, idclerk } = request.body;
 
-            let appointmentUser = await this.userRepository.findOne({
-                where: { id: iduser }})
-            let appointmentClerk = await this.userRepository.findOne({
-                where: { id: idclerk }})
+            // let appointmentUser = await this.userRepository.findOne({
+            //     where: { id: iduser }})
+            // let appointmentClerk = await this.userRepository.findOne({
+            //     where: { id: idclerk }})
+            let date = '22/07/23';
+            let time = '13:00';
+            let appointmentUser = 'Anna'
+            let appointmentClerk = 'Bob'
 
             const appointment = Object.assign(new Appointment(), {
                 date,
@@ -50,6 +59,7 @@ export class AppointmentController {
                 appointmentClerk
             })
             const saveAppointment = this.appointmentRepository.save(appointment)
+
             return {code:200, data: saveAppointment} 
         } catch (error) {
             return {code:500, data: error}  
@@ -69,8 +79,8 @@ export class AppointmentController {
             var appointment = new  Appointment()
             appointment.date = date
             appointment.time = time
-            appointment.user = user
-            appointment.clerk = clerk //anpassen
+            appointment.userID = iduser
+            appointment.clerkID = idclerk //anpassen
             const res = await this.appointmentRepository.update( {id: id}, appointment)
             return {code:201, data: res} 
         } catch (error) {
