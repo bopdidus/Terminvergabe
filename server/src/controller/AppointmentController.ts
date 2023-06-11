@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source"
 import { NextFunction, Request, Response } from "express"
-import { User } from "../entity/user"
+import { User } from "../entity/User"
 import { UserAddress } from "../entity/address"
 import * as bcrypt from "bcryptjs"
 import * as Jwt from "jsonwebtoken"
@@ -41,22 +41,22 @@ export class AppointmentController {
     /* save an appointment */
     async save(request: Request, response: Response, next: NextFunction) {
         try {
-            // const { date, time, iduser, idclerk } = request.body;
+            const { date, time, userID, clerkID } = request.body;
 
             // let appointmentUser = await this.userRepository.findOne({
             //     where: { id: iduser }})
             // let appointmentClerk = await this.userRepository.findOne({
             //     where: { id: idclerk }})
-            let date = '22/07/23';
-            let time = '13:00';
-            let appointmentUser = 'Anna'
-            let appointmentClerk = 'Bob'
+            // let date = '22/07/23';
+            // let time = '13:00';
+            // let appointmentUser = 'Anna'
+            // let appointmentClerk = 'Bob'
 
             const appointment = Object.assign(new Appointment(), {
                 date,
                 time,
-                appointmentUser,
-                appointmentClerk
+                userID,
+                clerkID
             })
             const saveAppointment = this.appointmentRepository.save(appointment)
 

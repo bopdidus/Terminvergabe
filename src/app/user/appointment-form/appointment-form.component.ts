@@ -5,7 +5,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Observable, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 
@@ -26,12 +26,16 @@ interface Timeslot{
 })
 
 export class AppointmentFormComponent {
+  //snackbar variables
+  currentClerk = '';
+  currentDate : any;
+  currentTime : any;
 
   // Sachbearbeiter Dummy data
   clerks: Clerk[] = [
-    {value: 'otto-0', name: 'Otto Waalkes'},
-    {value: 'zarina-1', name: 'Zarina Kasir'},
-    {value: 'ahmet-2', name: 'Ahmet Kaya'},
+    {value: 'Otto Waalkes', name: 'Otto Waalkes'},
+    {value: 'Zarina Kasir', name: 'Zarina Kasir'},
+    {value: 'Ahmet Kaya', name: 'Ahmet Kaya'},
   ];
 
   times: Timeslot[] = [
@@ -43,8 +47,8 @@ export class AppointmentFormComponent {
 
   myDate = new Date();
 
-  ClerkFormGroup = this._formBuilder.group({
-    dateCtrl: ['', Validators.required],
+  clerkFormGroup = this._formBuilder.group({
+    clerkCtrl: ['', Validators.required],
   });
   firstFormGroup = this._formBuilder.group({
     dateCtrl: ['', Validators.required],
@@ -53,6 +57,7 @@ export class AppointmentFormComponent {
     timeCtrl: ['', Validators.required],
   });
   isLinear = true;
+  qrCode ='';
 
   stepperOrientation: Observable<StepperOrientation>;
 
@@ -78,33 +83,35 @@ export class AppointmentFormComponent {
   {
     console.log("in onAppointmentCommit() gelandet")
     let obj ='{'+
-      '"date": "2023/07/07"';
+      '"date": "' + this.clerkFormGroup.controls.clerkCtrl.value + 
+      '", "time": "' + this.secondFormGroup.controls.timeCtrl.value +
+      '", "userID": "testuserID", "clerkID": "testClerkID"';
     if(false){
       console.log("You should not be here")
     }
     else{
       obj = obj + '}'
     }
-    // this.api.setAppointment(obj).subscribe({
+    this.api.setAppointment(obj).subscribe({
     
-    //   next:(res)=>{
-    //     if(res)
-    //     {
-    //       if(res != null && res != undefined){
-    //         console.log(res);
-    //         //this.router.navigate(['/appointment-form']);
-    //       }else{
-    //         //this.openSnackBarError("");
-    //       }
-    //     }
-    //   else{
-    //     //this.openSnackBarError("");
-    //   }
-    // },
-    // error:(error)=>{
-    //   console.log(error);
-    //   //this.openSnackBarError(error)
-    // }})
+      next:(res)=>{
+        if(res)
+        {
+          if(res != null && res != undefined){
+            console.log("1234"+res);
+            this.router.navigate(['/home-screen']);
+          }else{
+            //this.openSnackBarError("");
+          }
+        }
+      else{
+        //this.openSnackBarError("");
+      }
+    },
+    error:(error)=>{
+      console.log(error);
+      //this.openSnackBarError(error)
+    }})
   }
 
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
@@ -117,6 +124,33 @@ export class AppointmentFormComponent {
     }
 
     return '';
+  }
+
+  setCurrentClerk(clerk: string){
+    this.currentClerk = clerk
+  }
+
+  setCurrentDate(){
+    this.currentDate = this.firstFormGroup.get("dateCtrl")?.value
+    const shortDate = new Date(this.currentDate)
+    this.currentDate = shortDate.toLocaleDateString('de-DE', {weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'})
+  }
+
+  setCurrentTime(){
+    this.currentTime = this.secondFormGroup.get("timeCtrl")?.value
+    this.qrCode = this.currentClerk.toString() + "_" + this.currentDate.toString() + "_" + this.currentTime.toString();
+  }
+
+  openSnackBar(){
+    let outputmsg = "Sie haben bei "+ this.currentClerk + " am " + this.currentDate + " um " + this.currentTime + " einen Termin!";
+    try {
+      //save appointment
+      this.onAppointmentCommit()
+
+    } catch (error) {
+      console.log(error)
+    }
+    this._snackBar.open(outputmsg, 'Okay');
   }
 
   openSnackBarError(error:any) {

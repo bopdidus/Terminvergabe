@@ -4,19 +4,17 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import * as cors from "cors"
 import {UserRoutes} from "./routes/user.route"
-import { User } from "./entity/user"
 import { CompanyRoutes } from "./routes/company.route"
 import { DisponibilityRoutes } from "./routes/disponibility.route"
 import { AppointmentRoutes } from "./routes/appointment.route"
 
 AppDataSource.initialize().then(async () => {
 
-    // create express app
+    // create express app typeorm
     const app = express()
     app.use(bodyParser.json())
     app.use(cors())
 
-  
     UserRoutes.forEach(route => {
         (app as any)[route.method](route.route, ...route.middlewares ,(req: Request, res: Response, next: Function) => {
             const result =  (new (route.controller as any))[route.action](req, res, next)

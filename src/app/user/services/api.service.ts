@@ -16,11 +16,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  setAppointment()
+  setAppointment(body: string)
   {
-    const body='{"date":"23/07/23", "time":"13:00", "userID":"11111", "clerkID":"99999"}' // id of Users in appointment
-    console.log(body)
-    return this.http.post(apiURL, body, httpOptions)
+    const params = JSON.parse(body)
+    return this.http.post(apiURL+"appointments", params, httpOptions)
   }
   
   login(email:string, password:string)

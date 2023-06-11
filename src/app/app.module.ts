@@ -20,6 +20,7 @@ import { CompanyModule } from './company/company.module';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { MatButtonModule } from '@angular/material/button';
+import { QRCodeModule } from 'angularx-qrcode';
 //-------------------MODULES(END)----------------------
 
 //-------------------COMPONENTS(START)----------------------
@@ -65,6 +66,7 @@ export function createTranslateLoader(http: HttpBackend) {
     MatProgressBarModule,
     CompanyModule,
     BrowserAnimationsModule,
+    QRCodeModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {

@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany } from "typeorm"
 import { UserAddress } from "./address"
-import { User } from "./user"
+import { User } from "./User"
 
 
 @Entity()

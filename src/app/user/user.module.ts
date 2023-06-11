@@ -23,6 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgFor } from '@angular/common';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatOptionModule } from '@angular/material/core';
+
+import { QRCodeModule } from 'angularx-qrcode';
 //--------------------------MODULE(END)---------------------------
 
 //-------------------------COMPONENT(START)-------------------------
@@ -60,6 +62,7 @@ export function createTranslateLoader(http: HttpBackend) {
     CommonModule,
     UserRoutingModule,
     MatFormFieldModule,
+    QRCodeModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {

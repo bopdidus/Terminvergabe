@@ -2,6 +2,9 @@
     Formular indem der Nutzer ein Termin buchen kann.
 -->
 
+<div>
+</div>
+
 <mat-card id="card-appointment-form">
   <mat-card-header>
     <mat-card-title>{{"DATECHOICE"|translate}}</mat-card-title>
@@ -10,19 +13,19 @@
   </mat-card-header>
   <mat-card-content>
     <mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
-      <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
+      <mat-step [stepControl]="clerkFormGroup">
+        <form [formGroup]="clerkFormGroup">
           <ng-template matStepLabel="t">{{"CLERKCHOICE"|translate}}</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>{{"CLERKCHOICE_PROMPT"|translate}}</mat-label>
-            <mat-select formControlName="dateCtrl" required>
+            <mat-select formControlName="clerkCtrl" #clerkInput required>
               <mat-option *ngFor="let clerk of clerks" [value]="clerk.value">
                 {{clerk.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>          
           <div>
-            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
+            <button mat-button (click)="setCurrentClerk(clerkInput.value)" matStepperNext>{{"NEXT"|translate}}</button>
           </div>
         </form>
       </mat-step>
@@ -31,13 +34,14 @@
           <ng-template matStepLabel>{{"DATECHOICE"|translate}}</ng-template>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{"DATECHOICE_PROMPT"|translate}}</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Test" formControlName="dateCtrl" required>
-            <mat-hint>{{"DATE_FORMAT"|translate}}</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+            <input matInput [matDatepicker]="picker" formControlName="dateCtrl" #dateInput required>
+              <mat-hint>{{"DATE_FORMAT"|translate}}</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
+            <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
+            <button mat-button (click)="setCurrentDate()" matStepperNext>{{"NEXT"|translate}}</button>
           </div>
         </form>
       </mat-step>
@@ -50,16 +54,17 @@
           </mat-chip-listbox>
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
-            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
+            <button mat-button (click)="setCurrentTime()" matStepperNext>{{"NEXT"|translate}}</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>{{"DONE"|translate}}</ng-template>
         <p>{{"APPOINTMENT FORM CONFIRMATION"|translate}}</p>
+        <qrcode [qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
         <div>
           <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
-          <button mat-button (click)="onAppointmentCommit()">{{"CONFIRM"|translate}}</button>
+          <button mat-button (click)="openSnackBar()">{{"CONFIRM"|translate}}</button> <!--onAppointmentCommit()-->
         </div>
       </mat-step>
     </mat-stepper>

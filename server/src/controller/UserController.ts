@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source"
 import { NextFunction, Request, Response } from "express"
-import { User } from "../entity/user"
+import { User } from "../entity/User"
 import { UserAddress } from "../entity/address"
 import * as bcrypt from "bcryptjs"
 import * as Jwt from "jsonwebtoken"
