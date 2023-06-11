@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SwUpdate } from '@angular/service-worker';
 
@@ -27,17 +27,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
   encapsulation: ViewEncapsulation.None,
 })
 
-export class AppointmentListComponent {
+export class AppointmentListComponent implements OnInit{
   displayedColumns: string[] = ['position', 'datum', 'name', 'uhrzeit', 'symbol'];
   dataSource = ELEMENT_DATA;
   view:string;
 
   hide = true;
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private swUpdate: SwUpdate) {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
     this.view ="appointment-list";
+  }
+  ngOnInit(): void {
+    this.reloadApp()
+  }
+  reloadApp():void{
+    if(this.swUpdate.isEnabled){
+      this.swUpdate.versionUpdates.subscribe(()=>{
+        if(confirm(this.translate.instant("NEW_VERSION"))){
+          window.location.reload()
+        }
+      })
+    }
   }
 
   changeLanguage(lang) {

@@ -3,15 +3,23 @@ import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './components/loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { PwaPromptComponent } from './components/pwa-prompt/pwa-prompt.component';
 
 @NgModule({
   declarations: [
-    LoaderComponent
+    LoaderComponent,
+    PwaPromptComponent
   ],
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
-    MatCardModule
+    MatCardModule,
+    MatBottomSheetModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   exports:[LoaderComponent]
 })

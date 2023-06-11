@@ -1,5 +1,5 @@
 //-------------------MODULES(START)----------------------
-import { NgModule, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
@@ -29,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PwaService } from './shared/services/pwa.service';
 
 
 
@@ -38,7 +39,9 @@ export function createTranslateLoader(http: HttpBackend) {
   return new TranslateHttpLoader(new HttpClient(http), './assets/i18n/', '.json');
 }
 
-
+const initializer = (pwaService:PwaService)=>()=>{
+  pwaService.initPwaPrompt()
+}
 
 @NgModule({
   declarations: [
@@ -84,7 +87,10 @@ export function createTranslateLoader(http: HttpBackend) {
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  { provide: APP_INITIALIZER,useFactory:initializer, deps:[PwaService], multi:true}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
