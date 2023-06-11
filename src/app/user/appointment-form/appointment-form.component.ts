@@ -79,19 +79,25 @@ export class AppointmentFormComponent {
     this.translate.use(lang)
   }
 
+  dateToYMD(date: Date) {
+    let d = date.getDate();
+    let m = date.getMonth() + 1;
+    let y = date.getFullYear();
+    return '' + y + '-' + (m<=9 ? '0'+m : m) + '-' + (d<=9 ? '0'+d : d)
+  }
+
   onAppointmentCommit() //onRegister() copied
   {
     console.log("in onAppointmentCommit() gelandet")
+    let shortDate = this.dateToYMD(new Date(this.firstFormGroup.controls.dateCtrl.value!))
+    
+    console.log(shortDate)
+
     let obj ='{'+
-      '"date": "' + this.clerkFormGroup.controls.clerkCtrl.value + 
+      '"date": "' + shortDate + 
       '", "time": "' + this.secondFormGroup.controls.timeCtrl.value +
-      '", "userID": "testuserID", "clerkID": "testClerkID"';
-    if(false){
-      console.log("You should not be here")
-    }
-    else{
-      obj = obj + '}'
-    }
+      '", "userID": "testuserID", "clerkID": "testClerkID"}';
+    
     this.api.setAppointment(obj).subscribe({
     
       next:(res)=>{
@@ -99,7 +105,7 @@ export class AppointmentFormComponent {
         {
           if(res != null && res != undefined){
             console.log("1234"+res);
-            this.router.navigate(['/home-screen']);
+            this.router.navigate(['/home']);
           }else{
             //this.openSnackBarError("");
           }
