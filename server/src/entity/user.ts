@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany, CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from "typeorm"
 import { UserAddress } from "./address"
 import { Appointment } from "./appointment"
 import { Company } from "./company"
@@ -10,6 +10,15 @@ export class User {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
+
+    @CreateDateColumn()
+    createdDate: Date;
+ 
+    @UpdateDateColumn()
+    updatedDate: Date;
+ 
+    @DeleteDateColumn()
+    deletedDate: Date;
 
     @Column({ length: 30, nullable: true })
     firstName?: string
@@ -41,4 +50,7 @@ export class User {
 
     @OneToMany(()=> Disponibility, (disponibility)=> disponibility.user )
     disponibilities:Disponibility[]
+    
+    @Column({default:false})
+    isActive:boolean
 }

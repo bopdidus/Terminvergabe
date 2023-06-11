@@ -38,9 +38,9 @@ export class UserController {
         try {
             const { firstName, lastName, email, phoneNumber, birthdate, street, city, postal } = request.body;
             const checkEmail = await this.userRepository.findOne({where:{email: email}})    
-            //let terminator =new TerminatorEmail()
+            let terminator =new TerminatorEmail()
             if(checkEmail) return {code:400, data:"Email already exist"}
-           // await terminator.sendActivationEmail(email,"http://localhost:3000/account/activation")
+           await terminator.sendActivationEmail(email, lastName, "http://localhost:3000/account/activation")
             let addr = await this.addressRepository.findOne({ where: { street: street, city: city}})
         if(addr == null || addr == undefined)
         {

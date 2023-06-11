@@ -17,6 +17,8 @@
       "@types/joi": "^17.2.3",
       "@types/jsonwebtoken": "^9.0.2",
       "@types/node-mailjet": "^3.3.9",
+      "@types/nodemailer": "^6.4.8",
+      "@types/web-push": "^3.3.2",
       "bcryptjs": "^2.4.3",
       "body-parser": "^1.19.1",
       "cors": "^2.8.5",
@@ -24,9 +26,11 @@
       "joi": "^17.9.2",
       "jsonwebtoken": "^9.0.0",
       "node-mailjet": "^6.0.2",
+      "nodemailer": "^6.9.3",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.13",
-      "typeorm": "0.3.16"
+      "typeorm": "0.3.16",
+      "web-push": "^3.6.1"
    },
    "devDependencies": {
       "@types/node": "^16.11.10",

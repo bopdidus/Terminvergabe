@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany, CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from "typeorm"
 import { UserAddress } from "./address"
 import { User } from "./user"
 
@@ -8,6 +8,15 @@ export class Company {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
+
+    @CreateDateColumn()
+    createdDate: Date;
+ 
+    @UpdateDateColumn()
+    updatedDate: Date;
+ 
+    @DeleteDateColumn()
+    deletedDate: Date;
 
     @Column({ length: 50 })
     name: string

@@ -4,9 +4,9 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import * as cors from "cors"
 import {UserRoutes} from "./routes/user.route"
-import { User } from "./entity/user"
 import { CompanyRoutes } from "./routes/company.route"
 import { DisponibilityRoutes } from "./routes/disponibility.route"
+import * as webpush from "web-push";
 
 AppDataSource.initialize().then(async () => {
 
@@ -15,6 +15,9 @@ AppDataSource.initialize().then(async () => {
     app.use(bodyParser.json())
     app.use(cors())
 
+    console.log("userroute " + UserRoutes)
+    console.log("companyroute "+ CompanyRoutes)
+    console.log(" disponibility "+ DisponibilityRoutes)
   
     UserRoutes.forEach(route => {
         (app as any)[route.method](route.route, ...route.middlewares ,(req: Request, res: Response, next: Function) => {
