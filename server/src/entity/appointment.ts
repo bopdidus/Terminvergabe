@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, BaseEntity } from "typeorm"
 import { User } from "./User"
 
 
 @Entity()
-export class Appointment {
+export class Appointment extends BaseEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
@@ -14,7 +14,7 @@ export class Appointment {
     @Column()
     time: string
 
-    //todo user trennen
+    //todo user nutzen
 
     /** Auskommtentiert zum Test 
     @ManyToOne(() =>User, (user)=> user.appointments)
@@ -22,6 +22,9 @@ export class Appointment {
 
     @ManyToOne(() =>User, (user)=> user.appointments)
     clerk: User*/
+
+    // @Column()
+    // qrCodeString?: string
 
     @Column()
     userID: string

@@ -19,8 +19,8 @@
           <mat-form-field appearance="fill">
             <mat-label>{{"CLERKCHOICE_PROMPT"|translate}}</mat-label>
             <mat-select formControlName="clerkCtrl" #clerkInput required>
-              <mat-option *ngFor="let clerk of clerks" [value]="clerk.value">
-                {{clerk.name}}
+              <mat-option *ngFor="let clerk of dbClerks" [value]="clerk.id">
+                {{clerk.lastName}} &nbsp; {{clerk.firstName}}
               </mat-option>
             </mat-select>
           </mat-form-field>          
@@ -49,8 +49,8 @@
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>{{"TIME"|translate}}</ng-template>
           <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
-          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required *ngFor="let time of times" [value]="time.value">
-            <mat-chip-option>{{time.timeValue}}</mat-chip-option>
+          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required>
+            <mat-chip-option *ngFor="let time of times" [value]="time.timeValue">{{time.timeValue}}</mat-chip-option>
           </mat-chip-listbox>
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
@@ -79,3 +79,5 @@
     </p>
   </mat-card-footer>
 </mat-card>
+
+<dialog>blabla</dialog>

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { AppDataSource } from "../data-source"
 import { User } from "../entity/User"
 import { Disponibility } from "../entity/disponibility"
+import { MoreThanOrEqual } from "typeorm"
 
 export class DisponibilityController {
 
@@ -84,6 +85,17 @@ export class DisponibilityController {
             return {code:500, data: error}   
         }
        
+    }
+
+    async getTimes(request: Request, response: Response, next: NextFunction){
+        const id = request.params.id
+        const currentDate = new Date()
+        // let userForDisponibilities = await this.userRepository.findOneBy({ id })
+        let disponibilities = await this.disponibilityRepository.find({
+            relations:{ user:true,},
+            where: { user:{id:id}}
+            })
+        return {code:201, data: disponibilities}
     }
 
 }

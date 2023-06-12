@@ -8,6 +8,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { AppDataSource } from 'server/src/data-source';
+import { User } from 'server/src/entity/User';
+
+
 
 interface Clerk{
   value: string;
@@ -31,12 +35,8 @@ export class AppointmentFormComponent {
   currentDate : any;
   currentTime : any;
 
-  // Sachbearbeiter Dummy data
-  clerks: Clerk[] = [
-    {value: 'Otto Waalkes', name: 'Otto Waalkes'},
-    {value: 'Zarina Kasir', name: 'Zarina Kasir'},
-    {value: 'Ahmet Kaya', name: 'Ahmet Kaya'},
-  ];
+  dbClerks: any;
+  dbTimes: any;  
 
   times: Timeslot[] = [
     {value: 'slot-0', timeValue: '08:00'},
@@ -62,7 +62,7 @@ export class AppointmentFormComponent {
   stepperOrientation: Observable<StepperOrientation>;
 
   constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, public translate: TranslateService, 
-    private api: ApiService, private _snackBar: MatSnackBar, private router: Router,) {
+    private api: ApiService, private _snackBar: MatSnackBar, private router: Router) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
@@ -70,6 +70,10 @@ export class AppointmentFormComponent {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
+
+    this.api.getClerks().subscribe(data => {
+      this.dbClerks = data;
+    })
   }
 
   changeLanguage(lang) {
@@ -133,7 +137,11 @@ export class AppointmentFormComponent {
   }
 
   setCurrentClerk(clerk: string){
-    this.currentClerk = clerk
+    this.currentClerk = clerk    
+
+    this.api.getTimes(this.currentClerk).subscribe(data => {
+      this.dbTimes = data;
+    })
   }
 
   setCurrentDate(){

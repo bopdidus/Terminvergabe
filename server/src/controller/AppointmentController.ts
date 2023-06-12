@@ -41,7 +41,7 @@ export class AppointmentController {
     /* save an appointment */
     async save(request: Request, response: Response, next: NextFunction) {
         try {
-            const { date, time, userID, clerkID } = request.body;
+            const { date, time, qrCodeString, userID, clerkID } = request.body;
 
             // let appointmentUser = await this.userRepository.findOne({
             //     where: { id: iduser }})
@@ -55,12 +55,14 @@ export class AppointmentController {
             const appointment = Object.assign(new Appointment(), {
                 date,
                 time,
+                qrCodeString,
                 userID,
                 clerkID
             })
-            const saveAppointment = this.appointmentRepository.save(appointment)
+            //const saveAppointment = this.appointmentRepository.save(appointment)
+            await appointment.save();
 
-            return {code:200, data: saveAppointment} 
+            return {code:200, data: appointment} 
         } catch (error) {
             return {code:500, data: error}  
         }
@@ -103,4 +105,5 @@ export class AppointmentController {
         }
        
     }
+
 }

@@ -43,14 +43,21 @@ export const UserRoutes = [{
     middlewares:[
         
     ]
-},
-{
+}, {
     method: "post",
     route: "/login",
     controller: UserController,
     action: "login",
     middlewares:[
         CheckRequestLogin
+    ]
+}, {
+    method: "get",
+    route: "/users-clerks",
+    controller: UserController,
+    action: "allClerks",
+    middlewares:[
+       // checkAuth
     ]
 }
 ]

@@ -6,16 +6,17 @@ import * as bcrypt from "bcryptjs"
 import * as Jwt from "jsonwebtoken"
 import { CONSTANT } from "../constants"
 import { TerminatorEmail } from "../utils/node-email"
+import { Company } from "../entity/company"
 
 export class UserController {
 
     private userRepository = AppDataSource.getRepository(User)
     private addressRepository = AppDataSource.getRepository(UserAddress)
+    private companyRepository = AppDataSource.getRepository(Company)
   
 
     async all(request: Request, response: Response, next: NextFunction) {
         const users = await this.userRepository.find()
-        //console.log("test Output")
         return {code:200, data: users}  
     }
 
@@ -134,6 +135,31 @@ export class UserController {
             return {code:500, data: error}   
         }
        
+    }
+
+    async allClerks(request: Request, response: Response, next: NextFunction) {
+        console.log("getting all clerks")
+        // const clerkQueryResult = await this.userRepository
+        //     .createQueryBuilder("user")
+        //     .select("user.firstName", "user.lastName")
+        //     .where("user.email = :email", { email: "behoerde@bochum.de"})
+        //     .getMany()
+        
+        // for (let i in clerkQueryResult  ){
+        //     console.log("step")
+        //     console.log(i)
+        // }
+        // console.log(clerkQueryResult) //Was not able to create a working Query
+        
+        // const clerks = await this.companyRepository.find({}) //brauchen
+        const usersClerks = await this.userRepository.find({
+            where: [
+              {email: "behoerde@bochum.de"},
+              {email: "zk.behoerde@bochum.de"},
+              {email: "ak.behoerde@bochum.de"},
+              ]
+            })
+        return {code:200, data: usersClerks}  
     }
 
 }
