@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-
+import { Appointment } from 'src/app/Model/appointment';
 import {TranslateService} from '@ngx-translate/core';
 
 
@@ -23,22 +23,22 @@ export class CalendarOverviewComponent  {
     translate.use(sessionStorage.getItem('language')?sessionStorage.getItem('language')!:'en');
   }
 
-    getFormat()
+  getFormat()
+  {
+    if(this.selected! >= new Date())
     {
-      if(this.selected! >= new Date())
-      {
-        const yyyy = this.selected!.getFullYear();
-        let mm = this.selected!.getMonth() + 1; // Months start at 0!
-        let dd = this.selected!.getDate();
-        this.the_date = yyyy + '-'
-        if (mm < 10) this.the_date +='0' + mm + '-';
-        else this.the_date += mm + '-'
+      const yyyy = this.selected!.getFullYear();
+      let mm = this.selected!.getMonth() + 1; // Months start at 0!
+      let dd = this.selected!.getDate();
+      this.the_date = yyyy + '-'
+      if (mm < 10) this.the_date +='0' + mm + '-';
+      else this.the_date += mm + '-'
 
-        if (dd < 10) this.the_date +='0' + dd;
-        else this.the_date += dd;
-       
-      }
-       
+      if (dd < 10) this.the_date +='0' + dd;
+      else this.the_date += dd;       
     }
+  }
     
+  //call the function to fill the day with appointments
+  //put "add" button code here
 }

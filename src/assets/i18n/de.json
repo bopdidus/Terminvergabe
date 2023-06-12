@@ -56,7 +56,7 @@
     "DASHBOARD":"Übersicht",
     "APPOINTMENT":"Termine",
     "PROFILE":"Profile",
-    "SETTING":"Einstellung",
+    "SETTING":"Einstellungen",
     "EDIT":"Bearbeiten",
     "SAVE":"Speicher",
     "PASSWORD":"Passwort",
@@ -68,7 +68,7 @@
     "PREVIOUS":"Zurück",
     "SUBJECT":"Betreff",
     "STARTAT":"Beginnstunde",
-    "ENDAT":"Endsstunde",
+    "ENDAT":"Endstunde",
     "ACTION":"Actions",
     "ACCEPT":"Zusagen",
     "CANCEL":"Stornieren",
@@ -79,5 +79,8 @@
     "ON_REGISTER_ERROR":"Fehler werden aufgetreten",
     "ADD_HOME_SCREEN": "Füg die Anwendung in Home Screen",
     "INSTALL_ON_IOS":"Um diese WEB-App auf Ihrem Gerät zu installieren, tippen Sie auf die Schaltfläche 'Menü' und dann auf die Schaltfläche 'Zum Startbildschirm hinzufügen'",
-    "NEW_VERSION":"Neue Version dieser Anwendung, moechten Sie aktualisieren?"
+    "NEW_VERSION":"Neue Version dieser Anwendung, moechten Sie aktualisieren?",
+    "APPTLENGTH":"Terminlänge",
+    "ADDAPPT":"Verfügbarkeit hinzufügen",
+    "ADD":"Hinzufügen"
 }

@@ -89,28 +89,28 @@
             </mat-card>
         </div>
         <div class="col-4">
-            <h3>Add a disponibility</h3>
+            <h3>{{'ADDAPPT'|translate}}</h3>
             <mat-divider></mat-divider>
             <br>
             <form action="">
                 <div class="mb-3">
-                    <label for="the_date" class="form-label">Format (mm/dd/yyyy)</label>
+                    <label for="the_date" class="form-label">{{'DATE'|translate}} ({{'DATE_FORMAT'|translate}})</label>
                     <input type="date"  class="form-control" id="the_date" [value]="the_date" >
                   </div>
                   <div class="mb-3">
-                    <label for="start_time" class="form-label">Start time</label>
-                    <input type="time" class="form-control" id="start_time" >
+                    <label for="start_time" class="form-label">{{'STARTAT'|translate}}</label>
+                    <input type="text" class="form-control" id="start_time" >                    
                   </div>
                   <div class="mb-3">
-                    <label for="end_time" class="form-label">End time</label>
-                    <input type="time" class="form-control" id="end_time" >
+                    <label for="end_time" class="form-label">{{'ENDAT'|translate}}</label>
+                    <input type="text" class="form-control" id="end_time" >
                   </div>
                   <div class="mb-3">
-                    <label for="interval_time" class="form-label">Interval</label>
+                    <label for="interval_time" class="form-label">{{'APPTLENGTH'|translate}}</label>
                     <input type="number" class="form-control" id="interval_time" >
                   </div>
                   <div class="mb-3">
-                    <button type="button" class="btn btn-outline-success form-control">Add</button>
+                    <button type="button" class="btn btn-outline-success form-control">{{'ADD'|translate}}</button>
                   </div>
             </form>
         </div>
@@ -130,7 +130,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                
+
             </tr>
         </table>
     </div>

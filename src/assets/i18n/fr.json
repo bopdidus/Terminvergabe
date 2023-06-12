@@ -79,5 +79,8 @@
     "ON_REGISTER_ERROR":"Des erreurs sont survenues",
     "ADD_HOME_SCREEN": "Ajouter l'application à l'écran d'accueil",
     "INSTALL_ON_IOS":"Pour installer cette application WEB sur votre appareil, appuyez sur le bouton 'Menu' puis sur le bouton 'Ajouter à l'écran d'accueil'",
-    "NEW_VERSION":"Nouvelle version de cette application,voulez-vous mettre à jour?"
+    "NEW_VERSION":"Nouvelle version de cette application,voulez-vous mettre à jour?",
+    "APPTLENGTH":"Durée de la nomination",
+    "ADDAPPT":"Ajouter une disponibilité",
+    "ADD":"Ajouter"
 }
