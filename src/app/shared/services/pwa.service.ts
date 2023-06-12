@@ -13,10 +13,15 @@ export class PwaService {
     private platform: Platform) { }
 
     public initPwaPrompt() {
+      window.addEventListener('beforeinstallprompt', (event: any) => {
+        event.preventDefault();
+        console.log("occured")
+        this.openPromptComponent('android');
+      });
       if (this.platform.ANDROID) {
         window.addEventListener('beforeinstallprompt', (event: any) => {
           event.preventDefault();
-          this.promptPwaEvent = event;
+          console.log("occured")
           this.openPromptComponent('android');
         });
       }

@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'appointment-list', component: AppointmentListComponent, canActivate:[UserGuard] },
   { path: 'appointment-form', component: AppointmentFormComponent, canActivate:[UserGuard]  },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent, /*canActivate:[UserGuard] */ },
+  { path: 'profile', component: ProfileComponent, canActivate:[UserGuard]  },
   { path: 'user', component: DashboardComponent },
 ];
 
