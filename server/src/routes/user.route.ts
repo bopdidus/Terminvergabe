@@ -54,47 +54,13 @@ export const UserRoutes = [{
         CheckRequestLogin
     ]
 },
-
-//Appointments
 {
     method: "get",
-    route: "/appointments",
-    controller: AppointmentController,
-    action: "all",
-    validation: [
-
-    ]
-}, {
-    method: "get",
-    route: "/appointments/:id",
-    controller: AppointmentController,
-    action: "one",
-    validation:[
-        
-    ]
-}, {
-    method: "post",
-    route: "/appointments",
-    controller: AppointmentController,
-    action: "save",
-    validation:[
-        
-    ]
-}, {
-    method: "put",
-    route: "/appointments",
-    controller: AppointmentController,
-    action: "update",
-    validation:[
-        
-    ]
-}, {
-    method: "delete",
-    route: "/appointments/:id",
-    controller: AppointmentController,
-    action: "remove",
-    validation:[
-        
+    route: "/account/activation/:id",
+    controller: UserController,
+    action: "login",
+    middlewares:[
+        CheckRequestLogin
     ]
 }
 ]

@@ -15,9 +15,7 @@ AppDataSource.initialize().then(async () => {
     app.use(bodyParser.json())
     app.use(cors())
 
-    console.log("userroute " + UserRoutes)
-    console.log("companyroute "+ CompanyRoutes)
-    console.log(" disponibility "+ DisponibilityRoutes)
+  
   
     UserRoutes.forEach(route => {
         (app as any)[route.method](route.route, ...route.middlewares ,(req: Request, res: Response, next: Function) => {

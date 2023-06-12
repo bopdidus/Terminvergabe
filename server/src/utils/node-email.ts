@@ -7,9 +7,12 @@ export class TerminatorEmail{
 
         const transporter = nodemailer.createTransport({
           service: 'gmail',
+          host:"smtp.gmail.com",
+          port:587,
+          secure:false,
           auth:{
             user: "terminator.activation@gmail.com",
-            pass: "BJT_Terminator9"
+            pass: "oouiyyukyctirdma"
           }
         })
 
@@ -17,7 +20,7 @@ export class TerminatorEmail{
             from: "terminator.activation@gmail.com",
             to: email_receiver,
             subject:"Activation of account",
-            html: `Hello '+ ${name} ,<br/> <h1> Welcome in Terminator</h1>.</br> Follow the link in order to activate your account.<a href=${link}>Activatiion </a>. <b>Thank You </b>`
+            html: `Hello  ${name} ,<br/> <h1> Welcome in Terminator</h1>.</br> Follow the link in order to activate your account.<a href=${link}>Activatiion </a>. <b>Thank You </b>`
 
           };
         

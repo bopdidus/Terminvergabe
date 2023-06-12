@@ -40,7 +40,7 @@ export class UserController {
             const checkEmail = await this.userRepository.findOne({where:{email: email}})    
             let terminator =new TerminatorEmail()
             if(checkEmail) return {code:400, data:"Email already exist"}
-           await terminator.sendActivationEmail(email, lastName, "http://localhost:3000/account/activation")
+           
             let addr = await this.addressRepository.findOne({ where: { street: street, city: city}})
         if(addr == null || addr == undefined)
         {
@@ -67,7 +67,9 @@ export class UserController {
             phoneNumber,
             addr
         })
-        const saveUser = this.userRepository.save(user)
+        const saveUser = await this.userRepository.save(user)
+        let idEncoded = Buffer.from(saveUser.id, 'utf-8').toString('base64') 
+        await terminator.sendActivationEmail(email, lastName, "http://localhost:3000/account/activation/"+idEncoded)
         return {code:200, data: saveUser} 
         } catch (error) {
             return {code:500, data: error}  
@@ -134,5 +136,21 @@ export class UserController {
         }
        
     }
+
+    async activation(request: Request, response: Response, next: NextFunction){
+        try {
+            const idEncoded = request.params.id
+            const idDecoded = Buffer.from(idEncoded, 'base64').toString('utf-8')
+    
+            const updatedUser = await this.userRepository.update({id: idDecoded}, {
+                isActive: true
+            })
+            return {code:201, data: updatedUser}
+        } catch (error) {
+            return {code:500, data: error}  
+        }
+       
+    }
+
 
 }
