@@ -58,9 +58,9 @@ export const UserRoutes = [{
     method: "get",
     route: "/account/activation/:id",
     controller: UserController,
-    action: "login",
+    action: "activation",
     middlewares:[
-        CheckRequestLogin
+        
     ]
 }
 ]

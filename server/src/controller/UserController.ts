@@ -69,7 +69,7 @@ export class UserController {
         })
         const saveUser = await this.userRepository.save(user)
         let idEncoded = Buffer.from(saveUser.id, 'utf-8').toString('base64') 
-        await terminator.sendActivationEmail(email, lastName, "http://localhost:3000/account/activation/"+idEncoded)
+        await terminator.sendActivationEmail(email, lastName, "http://192.168.1.103:3000/account/activation/"+idEncoded)
         return {code:200, data: saveUser} 
         } catch (error) {
             return {code:500, data: error}  
@@ -89,7 +89,8 @@ export class UserController {
 
                     if(!user) return { code:404, data:"User does not exist"}
                     const validPass = await bcrypt.compare(request.body.password, user.password)
-                    if(!validPass) return response.status(404).send("Email or Password is Wrong");
+                    if(!validPass) return {code:404, data:"Email or Password is Wrong"};
+                    if(!user.isActive) return { code:403, data:" user account is not activated"}
                     const token = Jwt.sign({_id: user.email}, CONSTANT.SECRET, {expiresIn:"1h"})
                     return {code:200, data:{"result": user, "token": token}}
             }
