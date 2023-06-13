@@ -1,4 +1,3 @@
-import { AppointmentController } from "../controller/AppointmentController";
 import { UserController } from "../controller/UserController";
 import { checkAuth } from "../middlewares/auth.middleware";
 import { CheckRequestLogin, CheckRequestUser } from "../middlewares/validation";
@@ -44,8 +43,7 @@ export const UserRoutes = [{
     middlewares:[
         
     ]
-},
-{
+}, {
     method: "post",
     route: "/login",
     controller: UserController,
@@ -59,8 +57,15 @@ export const UserRoutes = [{
     route: "/account/activation/:id",
     controller: UserController,
     action: "activation",
-    middlewares:[
+    middlewares:[]
         
+}, {
+    method: "get",
+    route: "/users-clerks",
+    controller: UserController,
+    action: "allClerks",
+    middlewares:[
+       // checkAuth
     ]
 }
 ]

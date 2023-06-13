@@ -1,25 +1,24 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne } from "typeorm"
-import { User } from "./user"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, BaseEntity, OneToOne, JoinColumn } from "typeorm"
+import { User } from "./User"
+import { Disponibility } from "./disponibility"
 
 
 @Entity()
-export class Appointment {
+export class Appointment extends BaseEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column()
-    date: string
-
-    @Column()
-    time: string
-
-    //todo user trennen
-
-    @ManyToOne(() =>User, (user)=> user.appointments)
+    
+    @ManyToOne(() =>User, (user:User)=> user.id)
     user: User
 
-    @ManyToOne(() =>User, (user)=> user.appointments)
+    @ManyToOne(() =>User, (user:User)=> user.id)
     clerk: User
 
+    // @Column()
+    // qrCodeString?: string
+    @OneToOne(()=>Disponibility, (dis:Disponibility)=> dis.id)
+    @JoinColumn({name:'disponibilityId'})
+    availability: Disponibility
 }

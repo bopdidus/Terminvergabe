@@ -21,6 +21,7 @@ import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 //-------------------MODULES(END)----------------------
 
 //-------------------COMPONENTS(START)----------------------
@@ -72,6 +73,7 @@ const initializer = (pwaService:PwaService)=>()=>{
     MatProgressBarModule,
     CompanyModule,
     BrowserAnimationsModule,
+    QRCodeModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {

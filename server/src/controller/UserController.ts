@@ -1,16 +1,18 @@
 import { AppDataSource } from "../data-source"
 import { NextFunction, Request, Response } from "express"
-import { User } from "../entity/user"
+import { User } from "../entity/User"
 import { UserAddress } from "../entity/address"
 import * as bcrypt from "bcryptjs"
 import * as Jwt from "jsonwebtoken"
 import { CONSTANT } from "../constants"
 import { TerminatorEmail } from "../utils/node-email"
+import { Company } from "../entity/company"
 
 export class UserController {
 
     private userRepository = AppDataSource.getRepository(User)
     private addressRepository = AppDataSource.getRepository(UserAddress)
+    private companyRepository = AppDataSource.getRepository(Company)
   
 
     async all(request: Request, response: Response, next: NextFunction) {
@@ -153,5 +155,17 @@ export class UserController {
        
     }
 
+
+    async allClerks(request: Request, response: Response, next: NextFunction) {
+        console.log("getting all clerks")
+        const usersClerks = await this.userRepository.find({
+            where: [
+              {email: "behoerde@bochum.de"},
+              {email: "zk.behoerde@bochum.de"},
+              {email: "ak.behoerde@bochum.de"},
+              ]
+            })
+        return {code:200, data: usersClerks}  
+    }
 
 }

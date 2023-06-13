@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SwUpdate } from '@angular/service-worker';
+import { ApiService } from '../services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 export interface PeriodicElement {
   position: number;
@@ -17,6 +19,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 4, datum: '23. Mai 2023', name: 'Termin bei Sachbeartbeiter Ada', uhrzeit: '11.30 Uhr', symbol: 'X' },
 ];
 
+
 /**
  * @title Basic use of `<table mat-table>`
  */
@@ -28,16 +31,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class AppointmentListComponent implements OnInit{
-  displayedColumns: string[] = ['position', 'datum', 'name', 'uhrzeit', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dbAppointments: any;
   view:string;
-
+  displayedColumns: String[] = ['date', 'time', 'name'];
   hide = true;
-  constructor(public translate: TranslateService, private swUpdate: SwUpdate) {
+  connectedUser: string
+  
+
+  constructor(public translate: TranslateService, private route:ActivatedRoute, 
+    private api: ApiService, private swUpdate: SwUpdate) {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
     this.view ="appointment-list";
+    this.connectedUser = route.snapshot.paramMap.get('id')!
+    
+    
+
+    this.api.getUsersAppointments(this.connectedUser).subscribe(data => {
+      try {        
+        this.dbAppointments = data;  //stuck here
+      } catch (error) {
+        console.log(error)
+      }
+    });
   }
   ngOnInit(): void {
     this.reloadApp()

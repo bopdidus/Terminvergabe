@@ -11,5 +11,12 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true
+   //    "typeRoots": [
+   //       "node_modules/@types", // add for @types for other packages nor delete it.
+   //       "node_modules/typeorm-faker/@types"
+   //   ],
+   //   "types": [
+   //       "sample"
+   //   ]
    }
 }

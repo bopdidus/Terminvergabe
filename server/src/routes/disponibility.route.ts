@@ -42,5 +42,13 @@ export const DisponibilityRoutes = [{
     middlewares:[
         
     ]
+}, {
+    method: "get",
+    route: "/disponibilitiesByUser/:id",
+    controller: DisponibilityController,
+    action: "getTimes",
+    middlewares:[
+        
+    ]
 }
 ]

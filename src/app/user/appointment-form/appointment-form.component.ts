@@ -5,9 +5,10 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Observable, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiService } from '../services/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 interface Clerk{
   value: string;
@@ -26,25 +27,20 @@ interface Timeslot{
 })
 
 export class AppointmentFormComponent {
+  //snackbar variables
+  currentClerk = '';
+  currentDate : any;
+  currentTime : any;
 
-  // Sachbearbeiter Dummy data
-  clerks: Clerk[] = [
-    {value: 'otto-0', name: 'Otto Waalkes'},
-    {value: 'zarina-1', name: 'Zarina Kasir'},
-    {value: 'ahmet-2', name: 'Ahmet Kaya'},
-  ];
+  dbClerks: any;
+  dbTimes: any;  
 
-  times: Timeslot[] = [
-    {value: 'slot-0', timeValue: '08:00'},
-    {value: 'slot-1', timeValue: '09:00'},
-    {value: 'slot-2', timeValue: '10:00'},
-    {value: 'slot-3', timeValue: '11:00'}
-  ]
+  times: Timeslot[]=[]
+  connectedUser:string
 
-  myDate = new Date();
 
-  ClerkFormGroup = this._formBuilder.group({
-    dateCtrl: ['', Validators.required],
+  clerkFormGroup = this._formBuilder.group({
+    clerkCtrl: ['', Validators.required],
   });
   firstFormGroup = this._formBuilder.group({
     dateCtrl: ['', Validators.required],
@@ -53,11 +49,13 @@ export class AppointmentFormComponent {
     timeCtrl: ['', Validators.required],
   });
   isLinear = true;
+  qrCode ='';
 
   stepperOrientation: Observable<StepperOrientation>;
 
-  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, public translate: TranslateService, 
-    private api: ApiService, private _snackBar: MatSnackBar, private router: Router,) {
+  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, 
+    public translate: TranslateService, private route:ActivatedRoute,
+    private api: ApiService, private _snackBar: MatSnackBar, private router: Router) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
@@ -65,6 +63,11 @@ export class AppointmentFormComponent {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
+    this.connectedUser = route.snapshot.paramMap.get('id')!
+
+    this.api.getClerks().subscribe(data => {
+       this.dbClerks = data;
+     })
   }
 
   changeLanguage(lang) {
@@ -74,37 +77,45 @@ export class AppointmentFormComponent {
     this.translate.use(lang)
   }
 
+  dateToYMD(date: Date) {
+    let d = date.getDate();
+    let m = date.getMonth() + 1;
+    let y = date.getFullYear();
+    return '' + y + '-' + (m<=9 ? '0'+m : m) + '-' + (d<=9 ? '0'+d : d)
+  }
+
   onAppointmentCommit() //onRegister() copied
   {
     console.log("in onAppointmentCommit() gelandet")
-    let obj ='{'+
-      '"date": "2023/07/07"';
-    if(false){
-      console.log("You should not be here")
-    }
-    else{
-      obj = obj + '}'
-    }
-    // this.api.setAppointment(obj).subscribe({
+    let shortDate = this.dateToYMD(new Date(this.firstFormGroup.controls.dateCtrl.value!))
     
-    //   next:(res)=>{
-    //     if(res)
-    //     {
-    //       if(res != null && res != undefined){
-    //         console.log(res);
-    //         //this.router.navigate(['/appointment-form']);
-    //       }else{
-    //         //this.openSnackBarError("");
-    //       }
-    //     }
-    //   else{
-    //     //this.openSnackBarError("");
-    //   }
-    // },
-    // error:(error)=>{
-    //   console.log(error);
-    //   //this.openSnackBarError(error)
-    // }})
+    console.log(shortDate)
+
+    let obj ='{'+
+      '"userID": "' + this.connectedUser + 
+      '", "clerkID": "' + this.currentClerk +
+      '", "disponibilityID": "'+ this.currentTime  +'"}';
+    console.log(obj)
+    this.api.setAppointment(obj).subscribe({
+    
+      next:(res)=>{
+        if(res)
+        {
+          if(res != null && res != undefined){
+            console.log("1234"+res);
+            this.router.navigate(['/home', this.connectedUser]);
+          }else{
+            this.openSnackBarError("");
+          }
+        }
+      else{
+        this.openSnackBarError("");
+      }
+    },
+    error:(error)=>{
+      console.log(error);
+      this.openSnackBarError(error)
+    }})
   }
 
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
@@ -117,6 +128,47 @@ export class AppointmentFormComponent {
     }
 
     return '';
+  }
+
+  setCurrentClerk(clerk: string){
+    this.currentClerk = clerk    
+
+    this.api.getTimes(this.currentClerk).subscribe(data => {
+      this.dbTimes = data;
+      console.log(this.dbTimes)
+    })
+  }
+
+  setCurrentDate(myDate){
+    this.currentDate = myDate
+    const shortDate = new Date(this.currentDate)
+    this.currentDate = this.dateToYMD(shortDate);
+    console.log(this.currentDate)
+    this.times=[]
+    this.dbTimes.forEach(element => {
+      if(element.disponibilityDate == this.currentDate){
+        this.times.push({value: element.id, timeValue:element.start_time})
+      }
+      console.log(this.times)
+    });
+    
+  }
+
+  setCurrentTime(){
+    this.currentTime = this.secondFormGroup.get("timeCtrl")?.value
+    this.qrCode = this.currentClerk.toString() + "_" + this.currentDate.toString() + "_" + this.currentTime.toString();
+  }
+
+  openSnackBar(){
+    let outputmsg = "Sie haben bei "+ this.currentClerk + " am " + this.currentDate + " um " + this.currentTime + " einen Termin!";
+    try {
+      //save appointment
+      this.onAppointmentCommit()
+
+    } catch (error) {
+      console.log(error)
+    }
+    this._snackBar.open(outputmsg, 'Okay');
   }
 
   openSnackBarError(error:any) {

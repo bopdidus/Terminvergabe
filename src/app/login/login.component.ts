@@ -14,6 +14,7 @@ import { LoadingService } from '../shared/services/loading.service';
 })
 export class LoginComponent  {
 hide = true;
+connectedUser:string
 loginForm = new FormGroup({
   emailCtrl: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ]),
   passwordCtrl: new FormControl ('', [Validators.required, Validators.minLength(8)])
@@ -44,8 +45,8 @@ loginForm = new FormGroup({
               this.openSnackBarError("");
             }
             else{
+              this.connectedUser = res.result.id
               sessionStorage.setItem("token", res.token)
-              sessionStorage.setItem("user", res.result)
             }
           }
           
@@ -56,7 +57,7 @@ loginForm = new FormGroup({
         },
         complete:()=>{
           this.loaderService.hideLoader()
-            this.router.navigate(['user/home'])
+            this.router.navigate(['user/home', this.connectedUser])
         }
       })
     }

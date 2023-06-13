@@ -38,9 +38,6 @@ export class User {
 
     @Column()
     password:string
-    
-    @OneToMany(() =>Appointment, (appointment)=> appointment.user)
-    appointments: Appointment[]
 
     @ManyToOne(() =>UserAddress, (userAddress)=> userAddress.users)
     address: UserAddress
@@ -54,3 +51,17 @@ export class User {
     @Column({default:false})
     isActive:boolean
 }
+
+// generate Stubs/Dummy Daten
+// const postStubs = typeormFaker.stub(User);
+
+/**User[
+*     {id: 1, firstName: 'Otto', lastName: 'Waalkes', birthdate: '', email: 'ow.auslaenderbehoerde@bochum.de', phoneNumber: 02341234561, password: 'password1'},
+*     {id: 2, firstName: 'Zarina', lastName: 'Kasir', birthdate: '', email: 'zk.auslaenderbehoerde@bochum.de', phoneNumber: 02341234562, password: 'password1'},
+*     {id: 3, firstName: 'Ahmet', lastName: 'Kaya', birthdate: '', email: 'ak.auslaenderbehoerde@bochum.de', phoneNumber: 02341234563, password: 'password1'}
+* ]
+*/
+/** const count = 5
+// const postStubs = typeormFaker.stub(User, count, {
+//     lastName: 'Waalkes'
+})*/

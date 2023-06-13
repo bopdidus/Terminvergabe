@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express"
 import { AppDataSource } from "../data-source"
-import { User } from "../entity/user"
+import { User } from "../entity/User"
 import { Disponibility } from "../entity/disponibility"
+import { MoreThanOrEqual } from "typeorm"
 
 export class DisponibilityController {
 
@@ -10,7 +11,7 @@ export class DisponibilityController {
   
 
     async all(request: Request, response: Response, next: NextFunction) {
-        const disponibilities = await this.disponibilityRepository.find()
+        const disponibilities = await this.disponibilityRepository.find({relations:{user:true}})
         return {code:200, data: disponibilities}  
     }
 
@@ -34,20 +35,20 @@ export class DisponibilityController {
         try {
             const {  disponibilityDate, start_time, end_time, userEmail } = request.body;
             let connectedUser = await this.userRepository.findOne({ where: { email: userEmail}})
+
             if(connectedUser == null || connectedUser == undefined)
             {
                 return {code: 404, data:"user not found"}
             }
 
             
-            const disponibility = Object.assign(new Disponibility(), {
-                start_time,
-                end_time,
-                disponibilityDate,
-                connectedUser
-            })
-
-            const savedDisponibility = this.disponibilityRepository.save(disponibility)
+            const disponibility = new Disponibility();
+             disponibility.start_time = start_time
+             disponibility.end_time = end_time
+             disponibility.disponibilityDate=  disponibilityDate,
+             disponibility.user=   connectedUser
+            
+            const savedDisponibility = await this.disponibilityRepository.save(disponibility)
             return {code:200, data: savedDisponibility} 
             } catch (error) {
                 return {code:500, data: error}  
@@ -84,6 +85,22 @@ export class DisponibilityController {
             return {code:500, data: error}   
         }
        
+    }
+
+    async getTimes(request: Request, response: Response, next: NextFunction){
+        const id = request.params.id
+        const currentDate = new Date()
+        // let userForDisponibilities = await this.userRepository.findOneBy({ id })
+        let disponibilities = await this.disponibilityRepository.find({
+           
+            where:{
+                user:{
+                    id:id
+                },
+                disponibilityDate:MoreThanOrEqual(currentDate)
+            }
+            })
+        return {code:201, data: disponibilities}
     }
 
 }

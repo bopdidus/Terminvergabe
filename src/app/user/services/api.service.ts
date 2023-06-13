@@ -16,11 +16,6 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  setAppointment(date: string){
-    const body='{"date":'+ date + '", "time":"13:00"'
-    return this.http.post(apiURL, body, httpOptions)
-  }
-  
   login(email:string, password:string)
   {
     const body='{"email": "'+ email+'", "password":"'+ password+'"}'
@@ -32,5 +27,27 @@ export class ApiService {
   {
     const params = JSON.parse(body)
     return this.http.post(apiURL+"users", params, httpOptions)
+  }
+  
+  setAppointment(body: string)
+  {
+    const params = JSON.parse(body)
+    return this.http.post(apiURL+"appointments", params, httpOptions)
+  }
+  
+  getClerks(){
+    return this.http.get(apiURL+"users-clerks", httpOptions)
+  }
+
+  getTimes(id: string){
+    return this.http.get(apiURL + "disponibilitiesByUser/" + id, httpOptions)
+  }
+
+  getUsersAppointments(id: string){
+    return this.http.get(apiURL + "appointments-user/" + id + "/all", httpOptions)
+  }
+
+  getAvailibility(id: string){
+    return this.http.get(apiURL + "appointment/" + id, httpOptions)
   }
 }

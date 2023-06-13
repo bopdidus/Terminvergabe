@@ -82,5 +82,7 @@
     "NEW_VERSION":"Nouvelle version de cette application,voulez-vous mettre à jour?",
     "APPTLENGTH":"Durée de la nomination",
     "ADDAPPT":"Ajouter une disponibilité",
-    "ADD":"Ajouter"
+    "ADD":"Ajouter",
+    "EMPTY_TIMES":"Aucun rendez-vous disponible pour cette date",
+    "APPOINTMENT_WITH":"Rendez-vous chez"
 }
