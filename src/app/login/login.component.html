@@ -44,7 +44,7 @@
 
   <mat-card-footer>
     <mat-divider></mat-divider>
-    <p> {{'HAVE_NOT_ACCOUNT' | translate}}. <a [routerLink]="['/user/register']"> {{'CREATE_ACCOUNT' | translate}}</a>.
+    <p> {{'HAVE_NOT_ACCOUNT' | translate}} <a [routerLink]="['/user/register']"> {{'CREATE_ACCOUNT' | translate}}</a>.
       <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
       </select>
