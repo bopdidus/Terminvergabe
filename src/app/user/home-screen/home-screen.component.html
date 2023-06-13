@@ -1,13 +1,13 @@
 <div class="container-fluid">
     <div class="myContainer">
         <div  id="divCol1">
-            <button class="myBtnMenu" routerLink="/user/appointment-list" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+            <button class="myBtnMenu" (click)="navigateToAppointmentList()" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
                 color="accent" matTooltip="{{'CHECK APPOINTMENTS HINT'|translate}}" matBadge="4" matBadgeColor="warn">
                 <mat-icon>calendar_view_day</mat-icon>
             </button>
         </div>
         <div id="divCol2">
-            <button mat-fab class="myBtnMenu" routerLink="/user/appointment-form" routerLinkActive="active" ariaCurrentWhenActive="page" 
+            <button mat-fab class="myBtnMenu" (click)="navigateToAppointmentForm()" routerLinkActive="active" ariaCurrentWhenActive="page" 
                 color="primary" matTooltip="{{'MAKE APPOINTMENT HINT'|translate}}">
                 <mat-icon>query_builder</mat-icon>
             </button>

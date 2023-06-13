@@ -40,6 +40,14 @@ export class ApiService {
   }
 
   getTimes(id: string){
-    return this.http.get(apiURL + "disponibilitiesByUser/:" + id, httpOptions)
+    return this.http.get(apiURL + "disponibilitiesByUser/" + id, httpOptions)
+  }
+
+  getUsersAppointments(id: string){
+    return this.http.get(apiURL + "appointments-user/" + id + "/all", httpOptions)
+  }
+
+  getAvailibility(id: string){
+    return this.http.get(apiURL + "appointment/" + id, httpOptions)
   }
 }

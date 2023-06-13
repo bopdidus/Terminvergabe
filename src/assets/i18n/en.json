@@ -76,6 +76,8 @@
     "MONTHLY":"Monthly",
     "YEARLY":"Yearly",
     "NOTFOUND": "Page Not Found",
-    "ON_REGISTER_ERROR":"Some errors occured"
+    "ON_REGISTER_ERROR":"Some errors occured",
+    "EMPTY_TIMES":"There are no availabilities for this date",
+    "APPOINTMENT_WITH":"Appointment with"
 
 }

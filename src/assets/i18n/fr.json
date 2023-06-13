@@ -76,5 +76,7 @@
     "MONTHLY":"Mensuel",
     "YEARLY":"Annuel",
     "NOTFOUND": "Page introuvable",
-    "ON_REGISTER_ERROR":"Des erreurs sont survenues"
+    "ON_REGISTER_ERROR":"Des erreurs sont survenues",
+    "EMPTY_TIMES":"Aucun rendez-vous disponible pour cette date",
+    "APPOINTMENT_WITH":"Rendez-vous chez"
 }

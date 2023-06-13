@@ -41,5 +41,31 @@ export const AppointmentRoutes = [
     middlewares:[
         
     ]
+}, {
+    method: "get",
+    route: "/appointments-user/:id/all",
+    controller: AppointmentController,
+    action: "getUsersAppointments",
+    middlewares:[
+        
+    ]
+},
+{
+    method: "get",
+    route: "/appointments-clerk/:id/all",
+    controller: AppointmentController,
+    action: "getClerkAppointments",
+    middlewares:[
+        
+    ]
+},
+{
+    method: "get",
+    route: "/appointment/:id",
+    controller: AppointmentController,
+    action: "getAvailability",
+    middlewares:[
+        
+    ]
 }
 ]

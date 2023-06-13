@@ -10,41 +10,41 @@
         color="primary"><mat-icon>home</mat-icon></button>
     </div>
   </mat-card-header>
-  <mat-card-content>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-card-content>    
+    <table mat-table [dataSource]="dbAppointments" class="mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
       <!-- Date Column -->
-      <ng-container matColumnDef="position">
+      <!-- <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> # </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Date Column -->
-      <ng-container matColumnDef="datum">
+      <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> {{'DATE'|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.availability.disponibilityDate}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> {{'DESCRIPTION'|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <th mat-header-cell *matHeaderCellDef> {{'APPOINTMENT_WITH'|translate}} </th>
+        <td mat-cell *matCellDef="let element">Frau {{element.clerk.lastName}} </td>
       </ng-container>
 
       <!-- Time Column -->
-      <ng-container matColumnDef="uhrzeit">
+     <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef> {{'TIME'|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.uhrzeit}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.availability.start_time}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
+      <!--<ng-container matColumnDef="symbol">
         <th mat-header-cell *matHeaderCellDef> {{'STORNO'|translate}} </th>
         <td mat-cell *matCellDef="let element"><mat-icon fontIcon="home"></mat-icon> {{element.symbol}} </td>
-      </ng-container>
+      </ng-container>-->
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

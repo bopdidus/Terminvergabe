@@ -76,5 +76,7 @@
     "MONTHLY":"Monatlich",
     "YEARLY":"Jährlich",
     "NOTFOUND": "Seite Nicht Gefunden",
-    "ON_REGISTER_ERROR":"Fehler werden aufgetreten"
+    "ON_REGISTER_ERROR":"Fehler werden aufgetreten",
+    "EMPTY_TIMES":"Keine Verfügbarkeiten für das ausgewählte Datum",
+    "APPOINTMENT_WITH":"Termin bei"
 }

@@ -34,24 +34,30 @@
           <ng-template matStepLabel>{{"DATECHOICE"|translate}}</ng-template>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{"DATECHOICE_PROMPT"|translate}}</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dateCtrl" #dateInput required>
+            <input matInput [matDatepicker]="picker" formControlName="dateCtrl" #dateInput (dateChange)="setCurrentDate(dateInput.value)"  required>
               <mat-hint>{{"DATE_FORMAT"|translate}}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
-            <button mat-button (click)="setCurrentDate()" matStepperNext>{{"NEXT"|translate}}</button>
+            <button mat-button matStepperNext>{{"NEXT"|translate}}</button>
           </div>
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>{{"TIME"|translate}}</ng-template>
-          <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
-          <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required>
-            <mat-chip-option *ngFor="let time of times" [value]="time.timeValue">{{time.timeValue}}</mat-chip-option>
-          </mat-chip-listbox>
+          <div *ngIf="times.length > 0">
+            <p>{{"PROMPT APPOINTMENT FORM STEP 2"|translate}}</p>
+            <mat-chip-listbox aria-label="Time selection" formControlName="timeCtrl" required>
+              <mat-chip-option *ngFor="let time of times" [value]="time.value">{{time.timeValue}}</mat-chip-option>
+            </mat-chip-listbox>
+          </div>
+          <div *ngIf="times.length <= 0">
+            <p>{{"EMPTY_TIMES"|translate}}</p>
+          </div>
+          
           <div>
             <button mat-button matStepperPrevious>{{"BACK"|translate}}</button>
             <button mat-button (click)="setCurrentTime()" matStepperNext>{{"NEXT"|translate}}</button>

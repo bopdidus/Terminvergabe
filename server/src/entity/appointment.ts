@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, BaseEntity } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, BaseEntity, OneToOne, JoinColumn } from "typeorm"
 import { User } from "./User"
+import { Disponibility } from "./disponibility"
 
 
 @Entity()
@@ -8,28 +9,16 @@ export class Appointment extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column({type: "date"})
-    date: Date
-
-    @Column()
-    time: string
-
-    //todo user nutzen
-
-    /** Auskommtentiert zum Test 
-    @ManyToOne(() =>User, (user)=> user.appointments)
+    
+    @ManyToOne(() =>User, (user:User)=> user.id)
     user: User
 
-    @ManyToOne(() =>User, (user)=> user.appointments)
-    clerk: User*/
+    @ManyToOne(() =>User, (user:User)=> user.id)
+    clerk: User
 
     // @Column()
     // qrCodeString?: string
-
-    @Column()
-    userID: string
-
-    @Column()
-    clerkID: string
-
+    @OneToOne(()=>Disponibility, (dis:Disponibility)=> dis.id)
+    @JoinColumn({name:'disponibilityId'})
+    availability: Disponibility
 }

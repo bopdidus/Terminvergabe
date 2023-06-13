@@ -7,10 +7,7 @@ import { Observable, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiService } from '../services/api.service';
-import { Router } from '@angular/router';
-import { AppDataSource } from 'server/src/data-source';
-import { User } from 'server/src/entity/User';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 interface Clerk{
@@ -38,14 +35,9 @@ export class AppointmentFormComponent {
   dbClerks: any;
   dbTimes: any;  
 
-  times: Timeslot[] = [
-    {value: 'slot-0', timeValue: '08:00'},
-    {value: 'slot-1', timeValue: '09:00'},
-    {value: 'slot-2', timeValue: '10:00'},
-    {value: 'slot-3', timeValue: '11:00'}
-  ]
+  times: Timeslot[]=[]
+  connectedUser:string
 
-  myDate = new Date();
 
   clerkFormGroup = this._formBuilder.group({
     clerkCtrl: ['', Validators.required],
@@ -61,7 +53,8 @@ export class AppointmentFormComponent {
 
   stepperOrientation: Observable<StepperOrientation>;
 
-  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, public translate: TranslateService, 
+  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, 
+    public translate: TranslateService, private route:ActivatedRoute,
     private api: ApiService, private _snackBar: MatSnackBar, private router: Router) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -70,10 +63,11 @@ export class AppointmentFormComponent {
     translate.use(localStorage.getItem('language') ? localStorage.getItem('language')! : 'de');
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
+    this.connectedUser = route.snapshot.paramMap.get('id')!
 
     this.api.getClerks().subscribe(data => {
-      this.dbClerks = data;
-    })
+       this.dbClerks = data;
+     })
   }
 
   changeLanguage(lang) {
@@ -98,10 +92,10 @@ export class AppointmentFormComponent {
     console.log(shortDate)
 
     let obj ='{'+
-      '"date": "' + shortDate + 
-      '", "time": "' + this.secondFormGroup.controls.timeCtrl.value +
-      '", "userID": "testuserID", "clerkID": "testClerkID"}';
-    
+      '"userID": "' + this.connectedUser + 
+      '", "clerkID": "' + this.currentClerk +
+      '", "disponibilityID": "'+ this.currentTime  +'"}';
+    console.log(obj)
     this.api.setAppointment(obj).subscribe({
     
       next:(res)=>{
@@ -109,18 +103,18 @@ export class AppointmentFormComponent {
         {
           if(res != null && res != undefined){
             console.log("1234"+res);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home', this.connectedUser]);
           }else{
-            //this.openSnackBarError("");
+            this.openSnackBarError("");
           }
         }
       else{
-        //this.openSnackBarError("");
+        this.openSnackBarError("");
       }
     },
     error:(error)=>{
       console.log(error);
-      //this.openSnackBarError(error)
+      this.openSnackBarError(error)
     }})
   }
 
@@ -141,13 +135,23 @@ export class AppointmentFormComponent {
 
     this.api.getTimes(this.currentClerk).subscribe(data => {
       this.dbTimes = data;
+      console.log(this.dbTimes)
     })
   }
 
-  setCurrentDate(){
-    this.currentDate = this.firstFormGroup.get("dateCtrl")?.value
+  setCurrentDate(myDate){
+    this.currentDate = myDate
     const shortDate = new Date(this.currentDate)
-    this.currentDate = shortDate.toLocaleDateString('de-DE', {weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'})
+    this.currentDate = this.dateToYMD(shortDate);
+    console.log(this.currentDate)
+    this.times=[]
+    this.dbTimes.forEach(element => {
+      if(element.disponibilityDate == this.currentDate){
+        this.times.push({value: element.id, timeValue:element.start_time})
+      }
+      console.log(this.times)
+    });
+    
   }
 
   setCurrentTime(){
