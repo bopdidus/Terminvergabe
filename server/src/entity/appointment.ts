@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, BaseEntity, OneToOne, JoinColumn } from "typeorm"
-import { User } from "./User"
+import { User } from "./user"
 import { Disponibility } from "./disponibility"
 
 

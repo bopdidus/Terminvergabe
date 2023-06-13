@@ -8,7 +8,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "all",
     middlewares:[
-       // checkAuth
+       //checkAuth
     ]
 }, {
     method: "get",
@@ -65,7 +65,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "allClerks",
     middlewares:[
-       // checkAuth
+       checkAuth
     ]
 }
 ]
