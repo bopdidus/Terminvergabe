@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source"
 import { NextFunction, Request, Response } from "express"
-import { User } from "../entity/User"
+import { User } from "../entity/user"
 import { UserAddress } from "../entity/address"
 import * as bcrypt from "bcryptjs"
 import * as Jwt from "jsonwebtoken"
@@ -71,7 +71,7 @@ export class UserController {
         })
         const saveUser = await this.userRepository.save(user)
         let idEncoded = Buffer.from(saveUser.id, 'utf-8').toString('base64') 
-        await terminator.sendActivationEmail(email, lastName, "http://192.168.1.103:3000/account/activation/"+idEncoded)
+        await terminator.sendActivationEmail(email, lastName, "http://192.168.137.70:3000/account/activation/"+idEncoded)
         return {code:200, data: saveUser} 
         } catch (error) {
             return {code:500, data: error}  

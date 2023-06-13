@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
-import { User } from "./User";
+import { User } from "./user";
 import { Company } from "./company";
 
 @Entity()
@@ -11,7 +11,7 @@ export class UserAddress {
     @Column({ length: 50})
     street: string
 
-    @Column({ length: 50 , unique:true })
+    @Column({ length: 50})
     city: string
 
     @Column()

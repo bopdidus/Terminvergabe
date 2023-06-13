@@ -8,7 +8,7 @@ export const CompanyRoutes = [{
     controller: CompanyController,
     action: "all",
     middlewares:[
-        //checkAuth
+        checkAuth
     ]
 }, {
     method: "get",
@@ -23,8 +23,8 @@ export const CompanyRoutes = [{
     route: "/companies",
     controller: CompanyController,
     action: "update",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 },
  {
@@ -40,8 +40,8 @@ export const CompanyRoutes = [{
     route: "/companies/:id",
     controller: CompanyController,
     action: "remove",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 },
 {
@@ -49,8 +49,8 @@ export const CompanyRoutes = [{
     route: "/login",
     controller: CompanyController,
     action: "login",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 }
 ]

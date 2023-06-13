@@ -1,4 +1,5 @@
 import { AppointmentController } from "../controller/AppointmentController";
+import { checkAuth } from "../middlewares/auth.middleware";
 
 export const AppointmentRoutes = [
 {
@@ -6,48 +7,48 @@ export const AppointmentRoutes = [
     route: "/appointments",
     controller: AppointmentController,
     action: "all",
-    middlewares: [
-
+    middlewares: [        
+        checkAuth
     ]
 }, {
     method: "get",
     route: "/appointments/:id",
     controller: AppointmentController,
     action: "one",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 }, {
     method: "post",
     route: "/appointments",
     controller: AppointmentController,
     action: "save",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 }, {
     method: "put",
     route: "/appointments",
     controller: AppointmentController,
     action: "update",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 }, {
     method: "delete",
     route: "/appointments/:id",
     controller: AppointmentController,
     action: "remove",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 }, {
     method: "get",
     route: "/appointments-user/:id/all",
     controller: AppointmentController,
     action: "getUsersAppointments",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 },
 {
@@ -55,8 +56,8 @@ export const AppointmentRoutes = [
     route: "/appointments-clerk/:id/all",
     controller: AppointmentController,
     action: "getClerkAppointments",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 },
 {
@@ -64,8 +65,8 @@ export const AppointmentRoutes = [
     route: "/appointment/:id",
     controller: AppointmentController,
     action: "getAvailability",
-    middlewares:[
-        
+    middlewares: [        
+        checkAuth
     ]
 }
 ]
