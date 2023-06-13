@@ -18,6 +18,7 @@ export const AppDataSource = new DataSource({
     entities: [User, UserAddress, Company, Disponibility, Appointment],
     migrations: [],
     subscribers: [],
+    
 })
 
 AppDataSource.initialize().then(() =>{

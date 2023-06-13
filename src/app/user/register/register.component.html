@@ -130,7 +130,7 @@
       </mat-stepper>
     </mat-card-content>
     <mat-card-footer>
-      <p>{{'HAVE_ACCOUNT'|translate}}. <a href="/login">{{'LOGIN'|translate}}</a> 
+      <p>{{'HAVE_ACCOUNT'|translate}}. <a [routerLink]="['/login']">{{'LOGIN'|translate}}</a> 
         <select #langSelect style="float: right;" (change)="changeLanguage(langSelect.value)">
           <option *ngFor="let lang of translate.getLangs()" [value]="lang" >{{lang}}</option>
         </select>
