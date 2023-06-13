@@ -8,7 +8,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "all",
     middlewares:[
-       //checkAuth
+       checkAuth
     ]
 }, {
     method: "get",
@@ -24,7 +24,7 @@ export const UserRoutes = [{
     controller: UserController,
     action: "update",
     middlewares:[
-        
+        checkAuth
     ]
 },
  {
@@ -41,7 +41,6 @@ export const UserRoutes = [{
     controller: UserController,
     action: "remove",
     middlewares:[
-        
     ]
 }, {
     method: "post",
@@ -66,6 +65,15 @@ export const UserRoutes = [{
     action: "allClerks",
     middlewares:[
        checkAuth
+    ]
+},
+{
+    method: "post",
+    route: "/save-clerk",
+    controller: UserController,
+    action: "saveClerk",
+    middlewares:[
+        CheckRequestUser
     ]
 }
 ]

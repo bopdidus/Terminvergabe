@@ -78,6 +78,57 @@ export class UserController {
         }
     }
 
+
+    async saveClerk(request: Request, response: Response, next: NextFunction) {
+       
+        try {
+            const { firstName, lastName, email, phoneNumber, birthdate, street, city, postal, companyId } = request.body;
+            const checkEmail = await this.userRepository.findOne({where:{email: email}})    
+            if(checkEmail) return {code:400, data:"Email already exist"}
+           
+            let company = await this.companyRepository.findOneOrFail({where:{
+                id: companyId
+            }})
+
+            if(company == null || company == undefined) return {code:400, data: "Company does not exist"}
+
+            let addr = await this.addressRepository.findOneOrFail({ where: { street: street, city: city, postal:postal}})
+        if(addr == null || addr == undefined)
+        {
+            addr = Object.assign(new UserAddress(), {
+                street,
+                city,
+                postal
+            }) 
+           addr = await this.addressRepository.save(addr)
+        }
+
+        //calcul  of hash
+
+        const salt = await bcrypt.genSalt(15)
+        const hashPassword = await bcrypt.hash(request.body.password, salt)
+        const password = hashPassword
+        const user = new User()
+          user.firstName =  firstName
+          user.lastName = lastName
+          user.birthdate = birthdate
+          user.email = email
+          user.password = password
+          user.phoneNumber = phoneNumber
+          user.address = addr
+          user.company = company
+        
+          
+        const saveUser = await this.userRepository.save(user)
+        company.users.push(saveUser)
+        return {code:200, data: saveUser} 
+        } catch (error) {
+            return {code:500, data: error}  
+        }
+    }
+
+
+
     async login(request:Request, response:Response, next: NextFunction){
         try {
             if(request.body.email!= undefined && request.body.password != null){

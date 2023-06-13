@@ -11,8 +11,8 @@ import { UserGuard } from '../guards/user.guard';
 
 const routes: Routes = [
   { path: 'home/:id', component: HomeScreenComponent },
-  { path: 'appointment-list/:id', component: AppointmentListComponent/*, canActivate:[UserGuard]*/ },
-  { path: 'appointment-form/:id', component: AppointmentFormComponent/*, canActivate:[UserGuard]*/  },
+  { path: 'appointment-list/:id', component: AppointmentListComponent, canActivate:[UserGuard] },
+  { path: 'appointment-form/:id', component: AppointmentFormComponent, canActivate:[UserGuard]  },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate:[UserGuard]  },
   { path: 'user', component: DashboardComponent },
