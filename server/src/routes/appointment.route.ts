@@ -8,7 +8,7 @@ export const AppointmentRoutes = [
     controller: AppointmentController,
     action: "all",
     middlewares: [        
-        checkAuth
+        //checkAuth
     ]
 }, {
     method: "get",
@@ -48,7 +48,7 @@ export const AppointmentRoutes = [
     controller: AppointmentController,
     action: "getUsersAppointments",
     middlewares: [        
-        checkAuth
+        //checkAuth
     ]
 },
 {

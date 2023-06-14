@@ -7,7 +7,7 @@ export const DisponibilityRoutes = [{
     controller: DisponibilityController,
     action: "all",
     middlewares:[
-       checkAuth
+       //checkAuth
     ]
 }, {
     method: "get",
@@ -32,7 +32,7 @@ export const DisponibilityRoutes = [{
     controller: DisponibilityController,
     action: "save",
     middlewares: [        
-        checkAuth
+        //checkAuth
     ]
 }, {
     method: "delete",
@@ -48,7 +48,7 @@ export const DisponibilityRoutes = [{
     controller: DisponibilityController,
     action: "getTimes",
     middlewares: [        
-        checkAuth
+        //checkAuth
     ]
 }
 ]

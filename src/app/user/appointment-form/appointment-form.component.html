@@ -20,7 +20,7 @@
             <mat-label>{{"CLERKCHOICE_PROMPT"|translate}}</mat-label>
             <mat-select formControlName="clerkCtrl" #clerkInput required>
               <mat-option *ngFor="let clerk of dbClerks" [value]="clerk.id">
-                {{clerk.lastName}} &nbsp; {{clerk.firstName}}
+                {{clerk.firstName}}&nbsp;{{clerk.lastName}} 
               </mat-option>
             </mat-select>
           </mat-form-field>          
