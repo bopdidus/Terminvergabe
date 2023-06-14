@@ -9,7 +9,8 @@ export const RegisterObjectSimpleUser = Joi.object().keys({
     password: Joi.string().alphanum().required(),
     street: Joi.string().min(2).max(100).required(),
     city: Joi.string().alphanum().min(2).max(100).required(),
-    postal:Joi.number().required()
+    postal:Joi.number().required(),
+    companyId: Joi.string().optional()
 })
 
 export const RegisterObjectCompanyUser = Joi.object().keys({

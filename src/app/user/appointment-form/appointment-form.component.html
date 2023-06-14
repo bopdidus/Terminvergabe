@@ -8,8 +8,8 @@
 <mat-card id="card-appointment-form">
   <mat-card-header>
     <mat-card-title>{{"DATECHOICE"|translate}}</mat-card-title>
-    <button routerLink="/user/home" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
-      color="primary"><mat-icon>home</mat-icon></button><!--Noch mehr Übersetzung nötig - vor allem für fr-->
+    <button [routerLink]="routeUrl" routerLinkActive="active" ariaCurrentWhenActive="page" mat-fab
+      color="primary"><mat-icon>home</mat-icon></button><!--routeUrl not working somehow-->
   </mat-card-header>
   <mat-card-content>
     <mat-stepper [linear]="isLinear" #stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">

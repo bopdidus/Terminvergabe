@@ -8,7 +8,7 @@ export const CompanyRoutes = [{
     controller: CompanyController,
     action: "all",
     middlewares:[
-        checkAuth
+        //checkAuth
     ]
 }, {
     method: "get",

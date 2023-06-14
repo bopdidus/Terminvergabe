@@ -35,7 +35,7 @@ export class CompanyController {
     async save(request: Request, response: Response, next: NextFunction) {
        
         try {
-            const {  name, email, phoneNumber, birthdate, street, city, postal } = request.body;
+            const {  name, email, phoneNumber, street, city, postal } = request.body;
             const checkEmail = await this.companyRepository.findOne({where:{email: email}})    
             if(checkEmail) return {code:400, data:"Email already exist"}
             let addr = await this.addressRepository.findOne({ where: { street: street, city: city}})
@@ -57,7 +57,6 @@ export class CompanyController {
         const password = hashPassword
         const company = Object.assign(new Company(), {
             name,
-            birthdate,
             email,
             password,
             phoneNumber,

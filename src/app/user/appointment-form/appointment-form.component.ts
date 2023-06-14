@@ -50,6 +50,8 @@ export class AppointmentFormComponent {
   });
   isLinear = true;
   qrCode ='';
+  routeUrl = '';
+  companyId:'54f973f4-c594-4c43-bbfa-c0c28dbf859a'
 
   stepperOrientation: Observable<StepperOrientation>;
 
@@ -64,8 +66,10 @@ export class AppointmentFormComponent {
     console.log(this.translate.currentLang)
     translate.addLangs(['de', 'en', 'fr']);
     this.connectedUser = route.snapshot.paramMap.get('id')!
+    this.routeUrl = '"/home/user/'+ this.connectedUser +'"'
 
-    this.api.getClerks().subscribe(data => {
+    //let obj = '"companyId":"' + this.companyId + '"'
+    this.api.getClerks().subscribe(data => { //!!!!!!
        this.dbClerks = data;
      })
   }

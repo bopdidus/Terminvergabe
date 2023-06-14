@@ -7,6 +7,7 @@ import * as Jwt from "jsonwebtoken"
 import { CONSTANT } from "../constants"
 import { TerminatorEmail } from "../utils/node-email"
 import { Company } from "../entity/company"
+import { IsNull, Not } from "typeorm"
 
 export class UserController {
 
@@ -206,14 +207,13 @@ export class UserController {
        
     }
 
-
+//!!!!!!!
     async allClerks(request: Request, response: Response, next: NextFunction) {
+        //const { companyId } = request.body;
         console.log("getting all clerks")
         const usersClerks = await this.userRepository.find({
             where: [
-              {email: "behoerde@bochum.de"},
-              {email: "zk.behoerde@bochum.de"},
-              {email: "ak.behoerde@bochum.de"},
+              {company: Not(IsNull())}
               ]
             })
         return {code:200, data: usersClerks}  

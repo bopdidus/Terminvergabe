@@ -35,7 +35,7 @@ export class ApiService {
     return this.http.post(apiURL+"appointments", params, httpOptions)
   }
   
-  getClerks(){
+  getClerks(){ //UserControlle allClerks !!!
     return this.http.get(apiURL+"users-clerks", httpOptions)
   }
 
